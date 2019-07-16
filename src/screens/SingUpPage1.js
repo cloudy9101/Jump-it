@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-
+import AsyncStorage from '@react-native-community/async-storage';
 import {
   Container,
   Form,
@@ -11,23 +11,30 @@ import {
   CheckBox,
   Button,
   Text,
-  Thumbnail
+  Thumbnail,
+  Toast
 } from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 import KeyboardShift from '../components/KeyboardShift';
+import ValidationUtil from '../utils/ValidationUtil';
 export default class SignUpPage1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isCheck: true,
-      photo: null
+      photo: null,
+      firstName: '',
+      lastName: '',
+      gender: 1
     };
     this.handleCheckBox = this.handleCheckBox.bind(this);
     this.handleImagePicker = this.handleImagePicker.bind(this);
+    this.btnHandler = this.btnHandler.bind(this);
   }
   handleCheckBox() {
     this.setState({
-      isCheck: !this.state.isCheck
+      isCheck: !this.state.isCheck,
+      gender: !this.state.isCheck ? 0 : 1
     });
   }
   handleImagePicker() {
@@ -53,11 +60,32 @@ export default class SignUpPage1 extends Component {
       }
     });
   }
+  async btnHandler() {
+    const { firstName, lastName, gender, photo } = this.state;
+    // if (ValidationUtil.isEmpty(firstName) || ValidationUtil.isEmpty(lastName)) {
+    //   Toast.show({
+    //     text: 'All Fields Are Required..',
+    //     buttonText: 'Cancel',
+    //     type: 'danger',
+    //     duration: 2500
+    //   });
+    //   return;
+    // }
+    let payload = await AsyncStorage.getItem('payload');
+    payload = Object.assign(JSON.parse(payload), {
+      firstName,
+      lastName,
+      gender,
+      photo
+    });
+    await AsyncStorage.setItem('payload', JSON.stringify(payload));
+
+    this.props.navigation.navigate('SignUp2');
+  }
 
   render() {
     return (
       <Container>
-        {/* <Content> */}
         <Form style={{ marginTop: 70 }}>
           <Item inlineLabel style={{ margin: 10 }}>
             <Label style={{ fontSize: 15 }}>Your Photo</Label>
@@ -79,11 +107,11 @@ export default class SignUpPage1 extends Component {
           </Item>
           <Item stackedLabel style={{ margin: 10 }}>
             <Label>First Name</Label>
-            <Input />
+            <Input onChangeText={text => this.setState({ firstName: text })} />
           </Item>
           <Item stackedLabel style={{ margin: 10 }}>
             <Label>Last Name</Label>
-            <Input />
+            <Input onChangeText={text => this.setState({ lastName: text })} />
           </Item>
 
           <Item stackedLabel style={{ margin: 10 }}>
@@ -105,18 +133,11 @@ export default class SignUpPage1 extends Component {
             </View>
           </Item>
           <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-            <Button
-              block
-              rounded
-              bordered
-              warning
-              onPress={() => this.props.navigation.navigate('SignUp2')}
-            >
+            <Button block rounded bordered warning onPress={this.btnHandler}>
               <Text>Next</Text>
             </Button>
           </View>
         </Form>
-        {/* </Content> */}
       </Container>
     );
   }

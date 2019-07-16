@@ -39,7 +39,7 @@ export default class KeyboardShift extends Component {
       <Animated.View
         style={[styles.container, { transform: [{ translateY: shift }] }]}
       >
-        {children()}
+        {children}
       </Animated.View>
     );
   }

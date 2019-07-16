@@ -23,9 +23,10 @@ export default class SignUpPage2 extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <Container>
-        {/* <Content> */}
         <Form style={{ marginTop: 90 }}>
           <Item stackedLabel style={{ margin: 10 }}>
             <Label>Date of Birth</Label>
@@ -72,7 +73,7 @@ export default class SignUpPage2 extends Component {
               rounded
               bordered
               warning
-              onPress={() => this.props.navigation.navigate('SignIn')}
+              onPress={() => navigation.navigate('SignIn')}
             >
               <Text>Conform</Text>
             </Button>
