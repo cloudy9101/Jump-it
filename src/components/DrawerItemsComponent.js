@@ -9,7 +9,7 @@ export default (DrawerItemsComponent = props => {
       <Header style={styles.headerStyle}>
         <Body>
           <Thumbnail large source={require('../../assets/download.jpeg')} />
-          <Text>SpiderMan</Text>
+          <Text style={{ paddingTop: 10 }}>SpiderMan</Text>
         </Body>
       </Header>
       <Content contentContainerStyle={styles.contentStyle}>
