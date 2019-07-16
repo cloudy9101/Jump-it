@@ -29,6 +29,7 @@ export default class HeightAndWeightPicker extends Component {
           ref={'picker'}
           options={this.props.data}
           initialOptionIndex={35}
+          styles={{ width: 270 }}
           confirmTextStyle={{ color: 'black', fontSize: 15 }}
           cancelTextStyle={{ color: '#666', fontSize: 15 }}
           onSubmit={option => {
