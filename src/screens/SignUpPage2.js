@@ -18,10 +18,16 @@ export default class SignUpPage2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date()
+      date: new Date(),
+      weight: 0,
+      height: '175cm'
     };
+    this.btnHandler = this.btnHandler.bind(this);
   }
 
+  async btnHandler() {
+    const { weight, height } = this.state;
+  }
   render() {
     const { navigation } = this.props;
 
@@ -68,13 +74,7 @@ export default class SignUpPage2 extends Component {
           </Item>
 
           <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-            <Button
-              block
-              rounded
-              bordered
-              warning
-              onPress={() => navigation.navigate('SignIn')}
-            >
+            <Button block rounded bordered warning onPress={this.btnHandler}>
               <Text>Conform</Text>
             </Button>
           </View>
