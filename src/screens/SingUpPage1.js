@@ -72,12 +72,14 @@ export default class SignUpPage1 extends Component {
     //   return;
     // }
     let payload = await AsyncStorage.getItem('payload');
+
     payload = Object.assign(JSON.parse(payload), {
+      photo: photo === null ? null : photo.uri,
       firstName,
       lastName,
-      gender,
-      photo
+      gender
     });
+
     await AsyncStorage.setItem('payload', JSON.stringify(payload));
 
     this.props.navigation.navigate('SignUp2');

@@ -1,4 +1,4 @@
-import userActions from './user.action';
+import {register} from './user.action';
 export{
-    userActions;
+    register
 }
