@@ -45,10 +45,10 @@ class SignUpPage2 extends Component {
     this.props.register(payload);
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.users.isRegistered) {
+    if (nextProps.users.isFinished) {
       setTimeout(() => {
         this.props.navigation.navigate('home');
-      }, 300);
+      }, 250);
     } else {
       Toast.show({
         text: nextProps.users.error,
@@ -74,61 +74,63 @@ class SignUpPage2 extends Component {
     console.log(this.props.users.isRegistered);
     return (
       <Container>
-        {!this.props.users.isRegistered ? (
-          <Form style={{ marginTop: 90 }}>
-            <Item stackedLabel style={{ margin: 10 }}>
-              <Label>Date of Birth</Label>
-              <DatePicker
-                style={{ width: 200 }}
-                date={this.state.date}
-                mode="date"
-                placeholder="select date"
-                format="DD-MM-YYYY"
-                minDate="01-01-1900"
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                showIcon={false}
-                style={{
-                  width: 120,
-                  height: 30,
-                  marginLeft: -270
-                }}
-                customStyles={{
-                  dateInput: {
-                    borderWidth: 0
-                  }
-                }}
-                onDateChange={date => {
-                  this.setState({ date: date });
-                }}
-              />
-            </Item>
-            <Item stackedLabel style={{ margin: 10 }}>
-              <Label>Your Height</Label>
-              <HeightAndWeightPicker
-                value={this.state.height}
-                data={UserHeightData}
-                handleHeightAndWeight={this.handleHeightAndWeight}
-              />
-            </Item>
+        <Form style={{ marginTop: 90 }}>
+          <Item stackedLabel style={{ margin: 10 }}>
+            <Label>Date of Birth</Label>
+            <DatePicker
+              style={{ width: 200 }}
+              date={this.state.date}
+              mode="date"
+              placeholder="select date"
+              format="DD-MM-YYYY"
+              minDate="01-01-1900"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              showIcon={false}
+              style={{
+                width: 120,
+                height: 30,
+                marginLeft: -270
+              }}
+              customStyles={{
+                dateInput: {
+                  borderWidth: 0
+                }
+              }}
+              onDateChange={date => {
+                this.setState({ date: date });
+              }}
+            />
+          </Item>
+          <Item stackedLabel style={{ margin: 10 }}>
+            <Label>Your Height</Label>
+            <HeightAndWeightPicker
+              value={this.state.height}
+              data={UserHeightData}
+              handleHeightAndWeight={this.handleHeightAndWeight}
+            />
+          </Item>
 
-            <Item stackedLabel style={{ margin: 10 }}>
-              <Label>Your Weight</Label>
-              <HeightAndWeightPicker
-                value={this.state.weight}
-                data={UserWeightData}
-                handleHeightAndWeight={this.handleHeightAndWeight}
-              />
-            </Item>
+          <Item stackedLabel style={{ margin: 10 }}>
+            <Label>Your Weight</Label>
+            <HeightAndWeightPicker
+              value={this.state.weight}
+              data={UserWeightData}
+              handleHeightAndWeight={this.handleHeightAndWeight}
+            />
+          </Item>
 
-            <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-              <Button block rounded bordered warning onPress={this.btnHandler}>
-                <Text>Conform</Text>
-              </Button>
-            </View>
-          </Form>
-        ) : (
-          <Spinner color="#f5a742" />
+          <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
+            <Button block rounded bordered warning onPress={this.btnHandler}>
+              <Text>Conform</Text>
+            </Button>
+          </View>
+        </Form>
+        {!this.props.users.isFinished ? null : (
+          <Spinner
+            color="#f5a742"
+            style={{ position: 'absolute', top: '2%', left: '46%' }}
+          />
         )}
       </Container>
     );

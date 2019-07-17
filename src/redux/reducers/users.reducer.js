@@ -17,21 +17,22 @@ const initState = {
   birthday: '',
   height: '',
   weight: '',
-  isRegistered: false
+  isFinished: false,
+  token: ''
 };
 
 export const users = (state = initState, action) => {
   switch (action.type) {
     case SIGN_UP:
-      return { ...state, msg: action.msg, isRegistered: true };
+      return { ...state, isFinished: true, msg: action.msg };
     case ERROR_MSG:
-      return { ...state, error: action.error };
+      return { error: action.error };
     case LOG_OUT:
       return { ...initState };
     case LOGIN_SUCCESS:
-      return { token: action.token };
+      return { token: action.token, isFinished: true };
     case LOGIN_FAIL:
-      return { ...state };
+      return { error: action.error };
     default:
       return state;
   }

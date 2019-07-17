@@ -8,12 +8,15 @@ import {
   Label,
   Button,
   Text,
-  Content
+  Content,
+  Toast,
+  Spinner
 } from 'native-base';
 import KeyboardShift from '../components/KeyboardShift';
 import { connect } from 'react-redux';
 import { login } from '../redux/actions';
 import ValidationUtil from '../utils/ValidationUtil';
+import AsyncStorage from '@react-native-community/async-storage';
 export class SignInPage extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +26,41 @@ export class SignInPage extends Component {
     };
     this.btnHandler = this.btnHandler.bind(this);
   }
-  async btnHandler() {}
+  async btnHandler() {
+    const { email, password } = this.state;
+    if (ValidationUtil.isEmpty(email) || ValidationUtil.isEmpty(password)) {
+      Toast.show({
+        text: 'All Fields Are Required..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+      return;
+    }
+    this.props.login({ email, password });
+  }
+  async componentWillReceiveProps(nextProps) {
+    if (nextProps.users.isFinished) {
+      await AsyncStorage.setItem(
+        'token',
+        JSON.stringify(this.props.users.token)
+      );
+
+      let value = await AsyncStorage.getItem('token');
+      console.log(JSON.parse(value) + '    22222222');
+
+      setTimeout(() => {
+        this.props.navigation.navigate('home');
+      }, 250);
+    } else {
+      Toast.show({
+        text: nextProps.users.error,
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+    }
+  }
 
   render() {
     return (
