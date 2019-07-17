@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import { Container, Content } from 'native-base';
-import DatePicker from 'react-native-datepicker'
+import CalendarStrip from 'react-native-calendar-strip';
 
 import PlanItemComponent from '../components/PlanItemComponent';
 
@@ -44,24 +43,20 @@ export default class PlanPage extends Component {
     return (
       <Container>
         <Content>
-          <View style={{ justifyContent: 'center' }}>
-            <DatePicker
-              date={this.state.date}
-              mode="date"
-              format="YYYY-MM-DD"
-              minDate="2010-01-01"
-              maxDate="2999-12-31"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateInput: {
-                  borderWidth: 0
-                }
-              }}
-              showIcon={false}
-              onDateChange={(date) => {this.setState({date: date})}}
-            />
-          </View>
+          <CalendarStrip
+            calendarAnimation={{type: 'sequence', duration: 30}}
+            daySelectionAnimation={{type: 'background', duration: 200, highlightColor: '#febc42'}}
+            style={{height: 100, paddingTop: 10, paddingBottom: 10}}
+            calendarHeaderStyle={{color: 'black'}}
+            calendarColor={'#fea742'}
+            dateNumberStyle={{color: 'black'}}
+            dateNameStyle={{color: 'black'}}
+            highlightDateNumberStyle={{color: 'black'}}
+            highlightDateNameStyle={{color: 'black'}}
+            disabledDateNameStyle={{color: 'grey'}}
+            disabledDateNumberStyle={{color: 'grey'}}
+            iconContainer={{flex: 0.1}}
+          />
           { this.state.items }
         </Content>
       </Container>
