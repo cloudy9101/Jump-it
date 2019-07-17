@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import { connect } from 'react-redux';
+import { register } from '../redux/actions';
 import { UserHeightData, UserWeightData } from '../commons/UserData';
 import {
   Container,
@@ -15,7 +17,7 @@ import DatePicker from 'react-native-datepicker';
 import HeightAndWeightPicker from '../components/HeightAndWeightPicker';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export default class SignUpPage2 extends Component {
+class SignUpPage2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,6 +39,8 @@ export default class SignUpPage2 extends Component {
       weight: parseInt(weight),
       height: parseInt(height)
     });
+    console.log(payload);
+    this.props.register(payload);
   }
   handleHeightAndWeight(value) {
     if (value.trim().includes('cm')) {
@@ -48,7 +52,6 @@ export default class SignUpPage2 extends Component {
         weight: value
       });
     }
-    console.log(this.state.weight, this.state.height);
   }
   render() {
     const { navigation } = this.props;
@@ -113,3 +116,11 @@ export default class SignUpPage2 extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  users: state.users
+});
+const mapDispatchToProps = { register };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUpPage2);
