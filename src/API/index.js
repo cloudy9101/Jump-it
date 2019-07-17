@@ -1,4 +1,4 @@
-const GATEWAY = 'http://localhost:3000'
+const GATEWAY = 'http://localhost:3000';
 
 export function post(path, body) {
   return fetch(GATEWAY + path, {
@@ -7,9 +7,8 @@ export function post(path, body) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(body)
-  }).then(res => res.json())
+  }).then(res => res.json());
 }
 export function get(path) {
-  return fetch(GATEWAY + path).then(res => res.json())
+  return fetch(GATEWAY + path).then(res => res.json());
 }
-

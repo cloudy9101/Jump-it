@@ -10,7 +10,9 @@ import {
   Label,
   Content,
   Button,
-  Text
+  Text,
+  Toast,
+  Spinner
 } from 'native-base';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
@@ -39,8 +41,22 @@ class SignUpPage2 extends Component {
       weight: parseInt(weight),
       height: parseInt(height)
     });
-    console.log(payload);
+
     this.props.register(payload);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.users.isRegistered) {
+      setTimeout(() => {
+        this.props.navigation.navigate('home');
+      }, 300);
+    } else {
+      Toast.show({
+        text: nextProps.users.error,
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+    }
   }
   handleHeightAndWeight(value) {
     if (value.trim().includes('cm')) {
@@ -53,65 +69,67 @@ class SignUpPage2 extends Component {
       });
     }
   }
-  render() {
-    const { navigation } = this.props;
 
+  render() {
+    console.log(this.props.users.isRegistered);
     return (
       <Container>
-        <Form style={{ marginTop: 90 }}>
-          <Item stackedLabel style={{ margin: 10 }}>
-            <Label>Date of Birth</Label>
+        {!this.props.users.isRegistered ? (
+          <Form style={{ marginTop: 90 }}>
+            <Item stackedLabel style={{ margin: 10 }}>
+              <Label>Date of Birth</Label>
+              <DatePicker
+                style={{ width: 200 }}
+                date={this.state.date}
+                mode="date"
+                placeholder="select date"
+                format="DD-MM-YYYY"
+                minDate="01-01-1900"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                showIcon={false}
+                style={{
+                  width: 120,
+                  height: 30,
+                  marginLeft: -270
+                }}
+                customStyles={{
+                  dateInput: {
+                    borderWidth: 0
+                  }
+                }}
+                onDateChange={date => {
+                  this.setState({ date: date });
+                }}
+              />
+            </Item>
+            <Item stackedLabel style={{ margin: 10 }}>
+              <Label>Your Height</Label>
+              <HeightAndWeightPicker
+                value={this.state.height}
+                data={UserHeightData}
+                handleHeightAndWeight={this.handleHeightAndWeight}
+              />
+            </Item>
 
-            <DatePicker
-              style={{ width: 200 }}
-              date={this.state.date}
-              mode="date"
-              placeholder="select date"
-              format="DD-MM-YYYY"
-              minDate="01-01-1900"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              showIcon={false}
-              style={{
-                width: 120,
-                height: 30,
-                marginLeft: -270
-              }}
-              customStyles={{
-                dateInput: {
-                  borderWidth: 0
-                }
-              }}
-              onDateChange={date => {
-                this.setState({ date: date });
-              }}
-            />
-          </Item>
-          <Item stackedLabel style={{ margin: 10 }}>
-            <Label>Your Height</Label>
+            <Item stackedLabel style={{ margin: 10 }}>
+              <Label>Your Weight</Label>
+              <HeightAndWeightPicker
+                value={this.state.weight}
+                data={UserWeightData}
+                handleHeightAndWeight={this.handleHeightAndWeight}
+              />
+            </Item>
 
-            <HeightAndWeightPicker
-              value={this.state.height}
-              data={UserHeightData}
-              handleHeightAndWeight={this.handleHeightAndWeight}
-            />
-          </Item>
-
-          <Item stackedLabel style={{ margin: 10 }}>
-            <Label>Your Weight</Label>
-            <HeightAndWeightPicker
-              value={this.state.weight}
-              data={UserWeightData}
-              handleHeightAndWeight={this.handleHeightAndWeight}
-            />
-          </Item>
-
-          <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-            <Button block rounded bordered warning onPress={this.btnHandler}>
-              <Text>Conform</Text>
-            </Button>
-          </View>
-        </Form>
+            <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
+              <Button block rounded bordered warning onPress={this.btnHandler}>
+                <Text>Conform</Text>
+              </Button>
+            </View>
+          </Form>
+        ) : (
+          <Spinner color="#f5a742" />
+        )}
       </Container>
     );
   }

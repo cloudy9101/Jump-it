@@ -11,10 +11,21 @@ import {
   Content
 } from 'native-base';
 import KeyboardShift from '../components/KeyboardShift';
-
+import { connect } from 'react-redux';
+import { login } from '../redux/actions';
+import ValidationUtil from '../utils/ValidationUtil';
 export class SignInPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+    this.btnHandler = this.btnHandler.bind(this);
+  }
+  async btnHandler() {}
+
   render() {
-    const { navigation } = this.props;
     return (
       <KeyboardShift>
         <Container style={styles.containerStyle}>
@@ -36,32 +47,29 @@ export class SignInPage extends Component {
 
             <Item inlineLabel style={{ margin: 10 }}>
               <Label>Email</Label>
-              <Input />
+              <Input onChangeText={text => this.setState({ email: text })} />
             </Item>
 
             <Item inlineLabel last style={{ margin: 10 }}>
               <Label>Password</Label>
-              <Input secureTextEntry={true} />
+              <Input
+                secureTextEntry={true}
+                onChangeText={text => this.setState({ password: text })}
+              />
             </Item>
 
             <View style={styles.buttonStyle}>
               <Button
                 bordered
                 onPress={() => {
-                  navigation.navigate('SignUp');
+                  this.props.navigation.navigate('SignUp');
                 }}
                 light
               >
                 <Text>Sign Up</Text>
               </Button>
 
-              <Button
-                bordered
-                onPress={() => {
-                  navigation.navigate('home');
-                }}
-                light
-              >
+              <Button bordered onPress={this.btnHandler} light>
                 <Text>Sign In</Text>
               </Button>
             </View>
@@ -71,8 +79,14 @@ export class SignInPage extends Component {
     );
   }
 }
-
-export default SignInPage;
+const mapStateToProps = state => ({
+  users: state.users
+});
+const mapDispatchToProps = { login };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignInPage);
 const styles = StyleSheet.create({
   containerStyle: {
     backgroundColor: '#f5a742'
