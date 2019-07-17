@@ -9,8 +9,8 @@ const initState = {
   lastName: '',
   gender: 1,
   birthday: '',
-  height: 0,
-  weight: 0
+  height: '',
+  weight: ''
 };
 
 export const users = (state = initState, action) => {

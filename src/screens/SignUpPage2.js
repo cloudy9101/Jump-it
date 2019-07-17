@@ -10,23 +10,45 @@ import {
   Button,
   Text
 } from 'native-base';
+import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
-
 import HeightAndWeightPicker from '../components/HeightAndWeightPicker';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class SignUpPage2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
-      weight: 0,
+      date: moment().format('DD-MM-YYYY'),
+      weight: '75kg',
       height: '175cm'
     };
     this.btnHandler = this.btnHandler.bind(this);
+    this.handleHeightAndWeight = this.handleHeightAndWeight.bind(this);
   }
 
   async btnHandler() {
-    const { weight, height } = this.state;
+    const { weight, height, date } = this.state;
+    const timestamp = moment(date, 'DD-MM-YYYY').toDate();
+
+    let payload = await AsyncStorage.getItem('payload');
+    payload = Object.assign(JSON.parse(payload), {
+      birthday: Date.parse(timestamp),
+      weight: parseInt(weight),
+      height: parseInt(height)
+    });
+  }
+  handleHeightAndWeight(value) {
+    if (value.trim().includes('cm')) {
+      this.setState({
+        height: value
+      });
+    } else {
+      this.setState({
+        weight: value
+      });
+    }
+    console.log(this.state.weight, this.state.height);
   }
   render() {
     const { navigation } = this.props;
@@ -65,12 +87,20 @@ export default class SignUpPage2 extends Component {
           <Item stackedLabel style={{ margin: 10 }}>
             <Label>Your Height</Label>
 
-            <HeightAndWeightPicker value="175cm" data={UserHeightData} />
+            <HeightAndWeightPicker
+              value={this.state.height}
+              data={UserHeightData}
+              handleHeightAndWeight={this.handleHeightAndWeight}
+            />
           </Item>
 
           <Item stackedLabel style={{ margin: 10 }}>
             <Label>Your Weight</Label>
-            <HeightAndWeightPicker value="75kg" data={UserWeightData} />
+            <HeightAndWeightPicker
+              value={this.state.weight}
+              data={UserWeightData}
+              handleHeightAndWeight={this.handleHeightAndWeight}
+            />
           </Item>
 
           <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
@@ -79,7 +109,6 @@ export default class SignUpPage2 extends Component {
             </Button>
           </View>
         </Form>
-        {/* </Content> */}
       </Container>
     );
   }
