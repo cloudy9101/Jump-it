@@ -88,7 +88,7 @@ export default class SignUpPage1 extends Component {
   render() {
     return (
       <Container>
-        <Form style={{ marginTop: 70 }}>
+        <Form style={{ marginTop: 80 }}>
           <Item inlineLabel style={{ margin: 10 }}>
             <Label style={{ fontSize: 15 }}>Your Photo</Label>
             <Button transparent light onPress={this.handleImagePicker}>
