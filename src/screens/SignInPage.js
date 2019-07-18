@@ -9,8 +9,7 @@ import {
   Button,
   Text,
   Content,
-  Toast,
-  Spinner
+  Toast
 } from 'native-base';
 import KeyboardShift from '../components/KeyboardShift';
 import { connect } from 'react-redux';
@@ -39,15 +38,9 @@ export class SignInPage extends Component {
     }
     this.props.login({ email, password });
   }
-  async componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.users.isFinished) {
-      await AsyncStorage.setItem(
-        'token',
-        JSON.stringify(this.props.users.token)
-      );
-
-      let value = await AsyncStorage.getItem('token');
-      console.log(JSON.parse(value) + '    22222222');
+      AsyncStorage.setItem('token', JSON.stringify(nextProps.users.token));
 
       setTimeout(() => {
         this.props.navigation.navigate('home');

@@ -46,6 +46,8 @@ class SignUpPage2 extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.users.isFinished) {
+      AsyncStorage.setItem('token', JSON.stringify(nextProps.users.token));
+
       setTimeout(() => {
         this.props.navigation.navigate('home');
       }, 250);
@@ -71,7 +73,6 @@ class SignUpPage2 extends Component {
   }
 
   render() {
-    console.log(this.props.users.isRegistered);
     return (
       <Container>
         <Form style={{ marginTop: 90 }}>
