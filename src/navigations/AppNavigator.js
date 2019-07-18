@@ -13,6 +13,8 @@ import {
 } from 'react-navigation';
 
 import PlanPage from '../screens/PlanPage';
+import PlanPageTitle from '../components/PlanPageTitle';
+import DietPlanPage from '../screens/DietPlanPage';
 import FoodPage from '../screens/FoodPage';
 import WorkoutPage from '../screens/WorkoutPage';
 import MonitorPage from '../screens/MeasurementPage';
@@ -25,10 +27,21 @@ import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
 
+const PlanSwitchNavigator = createSwitchNavigator(
+  {
+    Exercise: {
+      screen: PlanPage
+    },
+    Diet: {
+      screen: DietPlanPage
+    }
+  }
+)
+
 const BottomTabNavigator = createBottomTabNavigator(
   {
     Plan: {
-      screen: PlanPage,
+      screen: PlanSwitchNavigator,
       navigationOptions: {
         tabBarIcon: ({ tintColor, focused }) => (
           <MaterialIcons
@@ -80,15 +93,20 @@ const BottomTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: 'red'
     },
-    navigationOptions: ({ navigation }) => {
+    navigationOptions: ({navigation}) => {
+      if(navigation.state.index === 0) {
+        return {
+          headerTitle: <PlanPageTitle navigation={navigation} />,
+        }
+      }
       const { routeName } = navigation.state.routes[navigation.state.index];
       return {
         headerTitle: routeName,
         headerStyle: {
           backgroundColor: '#f5a742'
         }
-      };
-    }
+      }
+    },
   }
 );
 const StackNavigator = createStackNavigator(
