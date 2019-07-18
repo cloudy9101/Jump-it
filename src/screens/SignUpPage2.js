@@ -50,7 +50,7 @@ class SignUpPage2 extends Component {
 
       setTimeout(() => {
         this.props.navigation.navigate('home');
-      }, 250);
+      }, 300);
     } else {
       Toast.show({
         text: nextProps.users.error,
