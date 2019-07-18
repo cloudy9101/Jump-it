@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch, Button } from 'native-base';
+import { ListItem, Text, Icon, Left, Body, Right, Button } from 'native-base';
 
 const ItemComponent = props => {
   return(
