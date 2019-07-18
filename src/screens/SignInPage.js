@@ -9,7 +9,8 @@ import {
   Button,
   Text,
   Content,
-  Toast
+  Toast,
+  Icon
 } from 'native-base';
 import KeyboardShift from '../components/KeyboardShift';
 import { connect } from 'react-redux';
@@ -41,10 +42,7 @@ export class SignInPage extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.users.isFinished) {
       AsyncStorage.setItem('token', JSON.stringify(nextProps.users.token));
-
-      setTimeout(() => {
-        this.props.navigation.navigate('home');
-      }, 250);
+      this.props.navigation.navigate('home');
     } else {
       Toast.show({
         text: nextProps.users.error,
