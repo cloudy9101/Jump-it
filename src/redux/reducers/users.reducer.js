@@ -24,7 +24,7 @@ const initState = {
 export const users = (state = initState, action) => {
   switch (action.type) {
     case SIGN_UP:
-      return { ...state, isFinished: true, msg: action.msg };
+      return { isFinished: true, token: action.token };
     case ERROR_MSG:
       return { error: action.error };
     case LOG_OUT:
