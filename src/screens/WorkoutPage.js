@@ -105,27 +105,25 @@ class WorkoutPage extends Component {
   }
   renderList() {
     let arr = [];
-    const iterator = mockData.values();
-    for (const obj of iterator) {
-      for (const key in obj) {
+    for (const obj of mockData) {
+      const key = Object.keys(obj)[0];
+      arr.push(
+        <SectionHeader
+          key={key}
+          workDate={key}
+          workCounts={obj[key].length}
+        />
+      );
+      obj[key].forEach(v => {
         arr.push(
-          <SectionHeader
-            key={key}
-            workDate={key}
-            workCounts={obj[key].length}
+          <SectionItems
+            key={v.id}
+            name={v.name}
+            frequency={v.value}
+            workDate={v.date}
           />
         );
-        obj[key].forEach(v => {
-          arr.push(
-            <SectionItems
-              key={v.id}
-              name={v.name}
-              frequency={v.value}
-              workDate={v.date}
-            />
-          );
-        });
-      }
+      });
     }
     return arr;
   }
