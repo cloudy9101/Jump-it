@@ -7,6 +7,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import AppNavigator from './navigations/AppNavigator';
 export default class App extends Component {
   render() {
+    console.disableYellowBox = true;
     return (
       <Provider store={store}>
         <Root>

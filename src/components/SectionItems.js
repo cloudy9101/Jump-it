@@ -9,20 +9,48 @@ import {
   Right,
   Text,
   Icon,
-  Thumbnail
+  Thumbnail,
+  Button
 } from 'native-base';
 export default class SectionItems extends Component {
   render() {
     return (
       <ListItem>
         <Left>
-          <Thumbnail
+          {/* <Thumbnail
             source={require('../../assets/run.png')}
             style={{
-              marginTop: -5,
-              marginRight: 10
+              
             }}
-          />
+          /> */}
+          <View
+            style={{
+              backgroundColor: '#f5a742',
+              marginRight: 5,
+              borderRadius: 60,
+              height: 40,
+              width: 40,
+
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.7,
+              shadowRadius: 2
+            }}
+          >
+            <Icon
+              name="running"
+              type="FontAwesome5"
+              style={{
+                fontSize: 20,
+                color: '#ffffff'
+              }}
+            />
+          </View>
+
           <View style={{ display: 'flex', flexDirection: 'column' }}>
             <View>
               <Text
