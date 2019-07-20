@@ -26,7 +26,7 @@
 		13E49DF21FBC4261BC193C10 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3999655C66D4BA0888D5BCD /* Ionicons.ttf */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		1B3E291C22E2762400535263 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3E291B22E2762400535263 /* HealthKit.framework */; };
+		1B3E292022E2A00C00535263 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3E291F22E2A00C00535263 /* HealthKit.framework */; };
 		1B40C05B22CB4D7D0046B413 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B40C05822CB4D570046B413 /* libRNVectorIcons.a */; };
 		1FC2237FD0604385A088595A /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D151E162872643FF9E88B920 /* MaterialCommunityIcons.ttf */; };
 		2B913FBC08D44BCB8EE03D91 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA70279E30534B01A332AE96 /* libRNCAsyncStorage.a */; };
@@ -416,7 +416,8 @@
 		168C7CFA0A874E998BD478F5 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		1B06F7C922CC1BEC00F32AC1 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		1B3E291622E2714700535263 /* jumpit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = jumpit.entitlements; path = jumpit/jumpit.entitlements; sourceTree = "<group>"; };
-		1B3E291B22E2762400535263 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		1B3E291F22E2A00C00535263 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		1B3E292322E2AF8900535263 /* RCTAppleHealthKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAppleHealthKit.xcodeproj; path = "../node_modules/rn-apple-healthkit/RCTAppleHealthKit.xcodeproj"; sourceTree = "<group>"; };
 		1B40C05222CB4D570046B413 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		1B40C07E22CB4EF00046B413 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		1B40C07F22CB4EF00046B413 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -489,7 +490,7 @@
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
-				1B3E291C22E2762400535263 /* HealthKit.framework in Frameworks */,
+				1B3E292022E2A00C00535263 /* HealthKit.framework in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
@@ -731,7 +732,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1B3E291B22E2762400535263 /* HealthKit.framework */,
+				1B3E291F22E2A00C00535263 /* HealthKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
@@ -760,6 +761,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1B3E292322E2AF8900535263 /* RCTAppleHealthKit.xcodeproj */,
 				1B06F7C922CC1BEC00F32AC1 /* RNImagePicker.xcodeproj */,
 				1B40C05222CB4D570046B413 /* RNVectorIcons.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
