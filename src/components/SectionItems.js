@@ -94,7 +94,7 @@ export default class SectionItems extends Component {
               <Icon
                 name="arrow-forward"
                 style={{ color: '#292828' }}
-                onPress={() => navigation.navigate('workoutDetail')}
+                onPress={() => navigation.navigate('WorkoutDetail')}
               />
             </View>
           </View>

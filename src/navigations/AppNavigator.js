@@ -39,17 +39,33 @@ const PlanSwitchNavigator = createSwitchNavigator(
   }
 )
 
-const WorkoutStackNavigator = createStackNavigator({
-  Workouts: {
-    screen: WorkoutPage,
-    navigationOptions: {
-      header: null
+const WorkoutStackNavigator = createStackNavigator(
+  {
+    Workouts: {
+      screen: WorkoutPage,
+      navigationOptions: {
+        header: null
+      }
+    },
+
+    WorkoutDetail: {
+      screen: WorkoutDetailPage,
+      navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.routeName}`,
+        headerStyle: {
+          backgroundColor: '#f5a742'
+        },
+
+        headerTintColor: 'black'
+      })
     }
   },
-  workoutDetail: {
-    screen: WorkoutDetailPage
+  {
+    defaultNavigationOptions: () => ({
+      headerBackTitle: null
+    })
   }
-});
+);
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
