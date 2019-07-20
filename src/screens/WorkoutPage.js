@@ -82,25 +82,72 @@ const mockData = [
 const stepCountOptions = {
   date: new Date(2019, 6, 17).toISOString()
 };
-let weightOptions = {
-  unit: 'pound'
-};
 
+let energyBurnedOption = {
+  startDate: new Date(2019, 6, 17).toISOString(), // required
+  endDate: new Date().toISOString()
+};
+let distanceWalkingRunningOption = {
+  unit: 'meter', // optional; default 'meter'
+  date: new Date(2019, 6, 17).toISOString() // optional; default now
+};
+let flightsClimbedOption = {
+  date: new Date(2019, 6, 17).toISOString() // optional; default now
+};
 AppleHealthKit.initHealthKit(HealthOptions, (err, results) => {
   if (err) {
     console.log('error initializing Healthkit: ', err);
     return;
   }
   console.log('HealthkitInitSuccess..');
-  AppleHealthKit.getStepCount(stepCountOptions, (err, results) => {
+});
+AppleHealthKit.getStepCount(stepCountOptions, (err, results) => {
+  if (err) {
+    return;
+  }
+  console.log('step.......');
+  console.log(results);
+});
+AppleHealthKit.getActiveEnergyBurned(energyBurnedOption, (err, results) => {
+  if (err) {
+    return;
+  }
+  console.log('energy burned....');
+  console.log(results);
+});
+AppleHealthKit.getDistanceWalkingRunning(
+  distanceWalkingRunningOption,
+  (err, results) => {
     if (err) {
+      console.log(err.message + 'distance  Working....');
       return;
     }
-    console.log('step.......');
+    console.log('distance  Working....');
     console.log(results);
-  });
+  }
+);
+AppleHealthKit.getFlightsClimbed(flightsClimbedOption, (err, result) => {
+  if (err) {
+    console.log(err.message + '  flight');
+    return;
+  }
+  console.log('flight  climbing....');
+  console.log(result);
 });
-
+let heartRateSamples = {
+  unit: 'bpm', // optional; default 'bpm'
+  startDate: new Date(2019, 6, 17).toISOString(), // required
+  endDate: new Date().toISOString(), // optional; default now
+  ascending: false, // optional; default false
+  limit: 10 // optional; default no limit
+};
+AppleHealthKit.getHeartRateSamples(heartRateSamples, (err, result) => {
+  if (err) {
+    return;
+  }
+  console.log('heart  rate....');
+  console.log(result);
+});
 class WorkoutPage extends Component {
   constructor(props) {
     super(props);

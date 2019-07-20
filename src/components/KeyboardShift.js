@@ -59,7 +59,7 @@ export default class KeyboardShift extends Component {
         }
         Animated.timing(this.state.shift, {
           toValue: gap,
-          duration: 100,
+          duration: 300,
           useNativeDriver: true
         }).start();
       }
