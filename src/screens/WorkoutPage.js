@@ -6,16 +6,21 @@ import {
   List,
   ListItem,
   Left,
-  Right,
   Text,
   Icon,
-  Thumbnail
+  Thumbnail,
+  Header,
+  Body,
+  Right,
+  Button,
+  Title
 } from 'native-base';
 import AppleHealthKit from 'rn-apple-healthkit';
 import moment from 'moment';
 import SectionHeader from '../components/SectionHeader';
 import SectionItems from '../components/SectionItems';
 import { HealthOptions } from '../commons/HealthOptions';
+import HeaderComponent from '../components/HeaderComponent';
 const mockData = [
   {
     '01-2019': [
@@ -176,8 +181,11 @@ class WorkoutPage extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <Container>
+        <HeaderComponent title={navigation.state.routeName} {...this.props} />
         <Content>
           <List>{this.renderList()}</List>
         </Content>

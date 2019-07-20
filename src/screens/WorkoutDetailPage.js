@@ -13,6 +13,7 @@ import {
   Button
 } from 'native-base';
 import WorkoutDetailItem from '../components/WorkoutDetailItem';
+import HeaderComponent from '../components/HeaderComponent';
 class WorkoutDetailPage extends Component {
   render() {
     return (

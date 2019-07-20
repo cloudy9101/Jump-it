@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Container } from 'native-base';
-import HeaderComponent from '../components/HeaderComponent';
+import HeaderComponent from '../components/DrawerHeaderComponent';
 export class SettingPage extends Component {
   render() {
     return (

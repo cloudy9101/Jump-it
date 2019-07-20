@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Text, View } from 'react-native';
 import { Container, Content } from 'native-base';
 import CalendarStrip from 'react-native-calendar-strip';
 import { connect } from 'react-redux';
@@ -6,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { fetchExercises } from '../redux/actions';
 import PlanItemComponent from '../components/PlanItemComponent';
+import HeaderComponent from '../components/HeaderComponent';
 
 class PlanPage extends Component {
   constructor(props) {
@@ -31,11 +33,13 @@ class PlanPage extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
     const items = this.props.exercisesPlan.data.map((item, i) => {
       return <PlanItemComponent key={i} name={item.name} value={item.value} />;
     });
     return (
       <Container>
+        <HeaderComponent title={navigation.state.routeName} {...this.props} />
         <Content>
           <CalendarStrip
             calendarAnimation={{type: 'sequence', duration: 30}}
