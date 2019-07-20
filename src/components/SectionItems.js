@@ -14,15 +14,10 @@ import {
 } from 'native-base';
 export default class SectionItems extends Component {
   render() {
+    const { navigation } = this.props;
     return (
       <ListItem>
         <Left>
-          {/* <Thumbnail
-            source={require('../../assets/run.png')}
-            style={{
-              
-            }}
-          /> */}
           <View
             style={{
               backgroundColor: '#f5a742',
@@ -96,7 +91,11 @@ export default class SectionItems extends Component {
               </Text>
             </View>
             <View style={{ marginTop: -3 }}>
-              <Icon name="arrow-forward" style={{ color: '#292828' }} />
+              <Icon
+                name="arrow-forward"
+                style={{ color: '#292828' }}
+                onPress={() => navigation.navigate('workoutDetail')}
+              />
             </View>
           </View>
         </Right>

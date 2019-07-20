@@ -167,6 +167,7 @@ class WorkoutPage extends Component {
             name={v.name}
             frequency={v.value}
             workDate={v.date}
+            {...this.props}
           />
         );
       });

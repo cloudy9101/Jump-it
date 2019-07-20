@@ -26,6 +26,7 @@ import SignInPage from '../screens/SignInPage';
 import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
+import WorkoutDetailPage from '../screens/WorkoutDetailPage';
 
 const PlanSwitchNavigator = createSwitchNavigator(
   {
@@ -37,6 +38,18 @@ const PlanSwitchNavigator = createSwitchNavigator(
     }
   }
 )
+
+const WorkoutStackNavigator = createStackNavigator({
+  workouts: {
+    screen: WorkoutPage,
+    navigationOptions: {
+      header: null
+    }
+  },
+  workoutDetail: {
+    screen: WorkoutDetailPage
+  }
+});
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
@@ -53,7 +66,7 @@ const BottomTabNavigator = createBottomTabNavigator(
       }
     },
     Workouts: {
-      screen: WorkoutPage,
+      screen: WorkoutStackNavigator,
       navigationOptions: {
         tabBarIcon: ({ tintColor, focusd }) => (
           <MaterialCommunityIcons
@@ -117,6 +130,7 @@ const StackNavigator = createStackNavigator(
   },
   {
     defaultNavigationOptions: ({ navigation }) => {
+      console.log(navigation.state.routes[1]);
       return {
         headerLeft: (
           <Ionicons
