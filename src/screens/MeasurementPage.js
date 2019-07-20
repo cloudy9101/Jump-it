@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+
+import { Container } from 'native-base';
+import HeaderComponent from '../components/HeaderComponent';
 export default class MeasurementPage extends Component {
   render() {
+    const { navigation } = this.props;
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>MeasurementPage!</Text>
-      </View>
+      <Container>
+        <HeaderComponent title={navigation.state.routeName} {...this.props} />
+        <Text>MeasurementPage</Text>
+      </Container>
     );
   }
 }

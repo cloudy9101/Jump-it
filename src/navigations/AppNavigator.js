@@ -40,7 +40,7 @@ const PlanSwitchNavigator = createSwitchNavigator(
 )
 
 const WorkoutStackNavigator = createStackNavigator({
-  workouts: {
+  Workouts: {
     screen: WorkoutPage,
     navigationOptions: {
       header: null
@@ -122,33 +122,11 @@ const BottomTabNavigator = createBottomTabNavigator(
     },
   }
 );
-const StackNavigator = createStackNavigator(
-  {
-    BottomTabNavigator: {
-      screen: BottomTabNavigator
-    }
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => {
-      console.log(navigation.state.routes[1]);
-      return {
-        headerLeft: (
-          <Ionicons
-            style={{ paddingLeft: 10 }}
-            onPress={() => navigation.openDrawer()}
-            name="md-menu"
-            size={30}
-          />
-        )
-      };
-    }
-  }
-);
 
 const DrawerNavigator = createDrawerNavigator(
   {
     Home: {
-      screen: StackNavigator,
+      screen: BottomTabNavigator,
       navigationOptions: {
         drawerLabel: 'Home',
         drawerIcon: ({ tintColor }) => (
