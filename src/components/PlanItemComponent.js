@@ -28,7 +28,7 @@ const PlanItemComponent = props => {
       break;
     default:
       return(
-        <ItemComponent iconType="AntDesign" iconName="rest" itemName="Rest" itemSubname="1 mins" />
+        <ItemComponent iconType="FontAwesome5" iconName="running" itemName={props.name} itemSubname={props.value} />
       );
   }
 }
