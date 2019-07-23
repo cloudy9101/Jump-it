@@ -2,28 +2,10 @@ import React, { Component } from 'react';
 import { Container, Content } from 'native-base';
 import CalendarStrip from 'react-native-calendar-strip';
 import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { fetchExercises } from '../redux/actions';
 import PlanItemComponent from '../components/PlanItemComponent';
-
-const planData = [
-  { key: 1, name: "running", value: "5 mins" },
-  { key: 2, name: "running", value: "10 mins" },
-  { key: 3, name: "running", value: "15 mins" },
-  { key: 4, name: "running", value: "25 mins" },
-  { key: 5, name: "running", value: "5 mins" },
-  { key: 6, name: "running", value: "10 mins" },
-  { key: 7, name: "running", value: "15 mins" },
-  { key: 8, name: "running", value: "25 mins" },
-  { key: 9, name: "running", value: "5 mins" },
-  { key: 10, name: "running", value: "10 mins" },
-  { key: 11, name: "running", value: "15 mins" },
-  { key: 12, name: "running", value: "25 mins" },
-  { key: 13, name: "running", value: "5 mins" },
-  { key: 14, name: "running", value: "10 mins" },
-  { key: 15, name: "running", value: "15 mins" },
-  { key: 16, name: "running", value: "25 mins" }
-]
 
 class PlanPage extends Component {
   constructor(props) {
@@ -35,13 +17,17 @@ class PlanPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchExercises(this.state.date);
+    AsyncStorage.getItem('token').then(token => {
+      this.props.fetchExercises(this.state.date, token);
+    });
   }
 
   handleDateSelected(date) {
     const newDate = date.toDate();
     this.setState({date: newDate})
-    this.props.fetchExercises(newDate);
+    AsyncStorage.getItem('token').then(token => {
+      this.props.fetchExercises(newDate, token);
+    })
   }
 
   render() {
