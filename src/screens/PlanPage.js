@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Content } from 'native-base';
 import CalendarStrip from 'react-native-calendar-strip';
+import { connect } from 'react-redux';
 
+import { fetchExercises } from '../redux/actions';
 import PlanItemComponent from '../components/PlanItemComponent';
 
 const planData = [
@@ -23,23 +25,29 @@ const planData = [
   { key: 16, name: "running", value: "25 mins" }
 ]
 
-export default class PlanPage extends Component {
+class PlanPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
       date: new Date()
     };
+    this.handleDateSelected = this.handleDateSelected.bind(this);
   }
 
   componentDidMount() {
-    const items = planData.map((item) => {
-      return <PlanItemComponent key={item.key} name={item.name} value={item.value} />;
-    });
-    this.setState({items: items})
+    this.props.fetchExercises(this.state.date);
+  }
+
+  handleDateSelected(date) {
+    const newDate = date.toDate();
+    this.setState({date: newDate})
+    this.props.fetchExercises(newDate);
   }
 
   render() {
+    const items = this.props.exercisesPlan.data.map((item, i) => {
+      return <PlanItemComponent key={i} name={item.name} value={item.value} />;
+    });
     return (
       <Container>
         <Content>
@@ -56,10 +64,20 @@ export default class PlanPage extends Component {
             disabledDateNameStyle={{color: 'grey'}}
             disabledDateNumberStyle={{color: 'grey'}}
             iconContainer={{flex: 0.1}}
+            onDateSelected={this.handleDateSelected}
           />
-          { this.state.items }
+          { items }
         </Content>
       </Container>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  exercisesPlan: state.exercisesPlan
+});
+const mapDispatchToProps = { fetchExercises };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlanPage);

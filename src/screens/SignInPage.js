@@ -27,17 +27,18 @@ export class SignInPage extends Component {
     this.btnHandler = this.btnHandler.bind(this);
   }
   async btnHandler() {
-    const { email, password } = this.state;
-    if (ValidationUtil.isEmpty(email) || ValidationUtil.isEmpty(password)) {
-      Toast.show({
-        text: 'All Fields Are Required..',
-        buttonText: 'Cancel',
-        type: 'danger',
-        duration: 2500
-      });
-      return;
-    }
-    this.props.login({ email, password });
+    // const { email, password } = this.state;
+    // if (ValidationUtil.isEmpty(email) || ValidationUtil.isEmpty(password)) {
+    //   Toast.show({
+    //     text: 'All Fields Are Required..',
+    //     buttonText: 'Cancel',
+    //     type: 'danger',
+    //     duration: 2500
+    //   });
+    //   return;
+    // }
+    // this.props.login({ email, password });
+    this.props.navigation.navigate('home');
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.users.isFinished) {
