@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Content, Icon, Button, ListItem, Left, Body, Right } from 'native-base';
 import { TextInput } from 'react-native';
+import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
+import { fetchDiets, addDiet } from '../redux/actions';
 import DietPlanItem from '../components/DietPlanItem';
 
 const planData = [
@@ -10,22 +13,31 @@ const planData = [
   { key: 3, name: "mediacation", value: "10g" },
 ]
 
-export default class DietPlanPage extends Component {
+class DietPlanPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { planData: planData, name: "", value: "" }
+    this.state = { name: "", value: "" }
     this.addItem = this.addItem.bind(this);
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('token').then(token => {
+      this.props.fetchDiets(token);
+    });
   }
 
   addItem() {
     const name = this.state.name;
     const value = this.state.value;
-    this.setState({planData: [...this.state.planData, { key: this.state.planData[this.state.planData.length - 1].key + 1, name: name, value: value }], name: "", value: ""});
+    AsyncStorage.getItem('token').then(token => {
+      this.props.addDiet(token, name, value);
+      this.setState({name: "", value: ""});
+    });
   }
 
   render() {
-    const items = this.state.planData.map((item) => {
-      return <DietPlanItem key={item.key} name={item.name} value={item.value} />;
+    const items = this.props.dietPlan.data.map((item, i) => {
+      return <DietPlanItem key={i} name={item.name} value={item.value} />;
     });
 
     return (
@@ -66,3 +78,12 @@ export default class DietPlanPage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  dietPlan: state.dietPlan
+});
+const mapDispatchToProps = { fetchDiets, addDiet };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DietPlanPage);
