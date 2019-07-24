@@ -22,7 +22,7 @@ export default class SignUpPage1 extends Component {
     super(props);
     this.state = {
       isCheck: true,
-      photo: null,
+      avator: null,
       firstName: '',
       lastName: '',
       gender: 1
@@ -51,17 +51,19 @@ export default class SignUpPage1 extends Component {
         skipBackup: true
       }
     };
+
     ImagePicker.showImagePicker(options, response => {
       if (response.uri) {
         let source = { uri: response.uri };
+        console.log(response.uri);
         this.setState({
-          photo: source
+          avator: source
         });
       }
     });
   }
   async btnHandler() {
-    const { firstName, lastName, gender, photo } = this.state;
+    const { firstName, lastName, gender, avator } = this.state;
     // if (ValidationUtil.isEmpty(firstName) || ValidationUtil.isEmpty(lastName)) {
     //   Toast.show({
     //     text: 'All Fields Are Required..',
@@ -74,7 +76,7 @@ export default class SignUpPage1 extends Component {
     let payload = await AsyncStorage.getItem('payload');
 
     payload = Object.assign(JSON.parse(payload), {
-      photo: photo === null ? null : photo.uri,
+      avator: avator === null ? null : avator.uri,
       firstName,
       lastName,
       gender
@@ -92,7 +94,7 @@ export default class SignUpPage1 extends Component {
           <Item inlineLabel style={{ margin: 10 }}>
             <Label style={{ fontSize: 15 }}>Your Photo</Label>
             <Button transparent light onPress={this.handleImagePicker}>
-              {this.state.photo === null ? (
+              {this.state.avator === null ? (
                 <Thumbnail
                   style={{ marginLeft: 30, top: -19 }}
                   large
@@ -102,7 +104,7 @@ export default class SignUpPage1 extends Component {
                 <Thumbnail
                   large
                   style={{ marginLeft: 30, top: -19 }}
-                  source={this.state.photo}
+                  source={this.state.avator}
                 />
               )}
             </Button>

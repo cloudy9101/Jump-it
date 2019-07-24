@@ -53,7 +53,7 @@ const WorkoutStackNavigator = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         title: `${navigation.state.routeName}`,
         headerStyle: {
-          backgroundColor: '#f5a742'
+          backgroundColor: '#1f3954'
         },
 
         headerTintColor: 'black'
@@ -223,7 +223,7 @@ const UserNavigator = createStackNavigator(
       headerBackTitle: null,
       headerTintColor: 'black',
       headerStyle: {
-        backgroundColor: '#f5a742'
+        backgroundColor: '#1f3954'
       }
     })
   }

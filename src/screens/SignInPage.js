@@ -117,7 +117,7 @@ export default connect(
 )(SignInPage);
 const styles = StyleSheet.create({
   containerStyle: {
-    backgroundColor: '#f5a742'
+    backgroundColor: '#1f3954'
   },
 
   formStyle: {
