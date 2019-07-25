@@ -28,12 +28,12 @@ export default class PlanPageTitle extends Component {
           active
           style={{
             width: 85,
-
             fontSize: 18,
             borderRadius: 0,
-            backgroundColor: '#315574'
+            backgroundColor: '#315574',
+            borderRightWidth: 0
           }}
-          //   disabled={this.state.btnIndex === 0 ? true : false}
+          // disabled={this.state.btnIndex === 0 ? true : false}
           onPress={() => this.pressHandler(0)}
         >
           <Text style={{ fontFamily: 'Georgia', fontSize: 16 }}>Exercise</Text>
@@ -45,11 +45,11 @@ export default class PlanPageTitle extends Component {
           last
           style={{
             width: 85,
-            // marginRight: -1,
+            //marginRight: -1,
             borderRadius: 0,
             backgroundColor: '#315574'
           }}
-          //   disabled={this.state.btnIndex === 1 ? true : false}
+          //disabled={this.state.btnIndex === 1 ? true : false}
           onPress={() => this.pressHandler(1)}
         >
           <Text

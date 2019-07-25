@@ -85,8 +85,8 @@ export default class SignUpPage extends Component {
   }
   render() {
     return (
-      <KeyboardShift>
-        <Container style={{ backgroundColor: '#1f3954' }}>
+      <Container style={{ backgroundColor: '#1f3954' }}>
+        <KeyboardShift>
           <Form style={{ marginTop: 80 }}>
             <Item stackedLabel style={{ margin: 10 }}>
               <Label
@@ -99,7 +99,7 @@ export default class SignUpPage extends Component {
                 Email
               </Label>
               <Input
-                style={{ color: '#ffffff' }}
+                style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 onChangeText={text => this.setState({ email: text })}
               />
             </Item>
@@ -114,7 +114,7 @@ export default class SignUpPage extends Component {
                 User Name
               </Label>
               <Input
-                style={{ color: '#ffffff' }}
+                style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 onChangeText={text => this.setState({ username: text })}
               />
             </Item>
@@ -129,7 +129,7 @@ export default class SignUpPage extends Component {
                 Password
               </Label>
               <Input
-                style={{ color: '#ffffff' }}
+                style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
               />
@@ -145,7 +145,7 @@ export default class SignUpPage extends Component {
                 Repassword
               </Label>
               <Input
-                style={{ color: '#ffffff' }}
+                style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ repassword: text })}
               />
@@ -164,8 +164,8 @@ export default class SignUpPage extends Component {
               </Button>
             </View>
           </Form>
-        </Container>
-      </KeyboardShift>
+        </KeyboardShift>
+      </Container>
     );
   }
 }

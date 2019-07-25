@@ -55,8 +55,8 @@ export class SignInPage extends Component {
 
   render() {
     return (
-      <KeyboardShift>
-        <Container style={styles.containerStyle}>
+      <Container style={styles.containerStyle}>
+        <KeyboardShift>
           <Form style={styles.formStyle}>
             <View
               style={{
@@ -83,7 +83,7 @@ export class SignInPage extends Component {
                 Email
               </Label>
               <Input
-                style={{ color: '#ffffff' }}
+                style={{ color: '#ffffff', flex: 1, fontSize: 16 }}
                 onChangeText={text => this.setState({ email: text })}
               />
             </Item>
@@ -99,7 +99,7 @@ export class SignInPage extends Component {
                 Password
               </Label>
               <Input
-                style={{ color: '#ffffff' }}
+                style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
               />
@@ -125,8 +125,8 @@ export class SignInPage extends Component {
               </Button>
             </View>
           </Form>
-        </Container>
-      </KeyboardShift>
+        </KeyboardShift>
+      </Container>
     );
   }
 }

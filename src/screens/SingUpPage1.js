@@ -127,7 +127,10 @@ export default class SignUpPage1 extends Component {
             >
               First Name
             </Label>
-            <Input onChangeText={text => this.setState({ firstName: text })} />
+            <Input
+              style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
+              onChangeText={text => this.setState({ firstName: text })}
+            />
           </Item>
           <Item stackedLabel style={{ margin: 10 }}>
             <Label
@@ -139,7 +142,10 @@ export default class SignUpPage1 extends Component {
             >
               Last Name
             </Label>
-            <Input onChangeText={text => this.setState({ lastName: text })} />
+            <Input
+              style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
+              onChangeText={text => this.setState({ lastName: text })}
+            />
           </Item>
 
           <Item stackedLabel style={{ margin: 10 }}>
