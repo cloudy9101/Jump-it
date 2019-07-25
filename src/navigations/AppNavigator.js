@@ -28,16 +28,14 @@ import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
 import WorkoutDetailPage from '../screens/WorkoutDetailPage';
 
-const PlanSwitchNavigator = createSwitchNavigator(
-  {
-    Exercise: {
-      screen: PlanPage
-    },
-    Diet: {
-      screen: DietPlanPage
-    }
+const PlanSwitchNavigator = createSwitchNavigator({
+  Exercise: {
+    screen: PlanPage
+  },
+  Diet: {
+    screen: DietPlanPage
   }
-)
+});
 
 const WorkoutStackNavigator = createStackNavigator(
   {
@@ -120,22 +118,20 @@ const BottomTabNavigator = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: 'red'
-    },
-    navigationOptions: ({navigation}) => {
-      if(navigation.state.index === 0) {
-        return {
-          headerTitle: <PlanPageTitle navigation={navigation} />,
-        }
+      activeTintColor: '#fff',
+      style: {
+        backgroundColor: '#1f3954'
       }
+    },
+    navigationOptions: ({ navigation }) => {
       const { routeName } = navigation.state.routes[navigation.state.index];
       return {
         headerTitle: routeName,
         headerStyle: {
           backgroundColor: '#f5a742'
         }
-      }
-    },
+      };
+    }
   }
 );
 
@@ -223,11 +219,12 @@ const UserNavigator = createStackNavigator(
       headerBackTitle: null,
       headerTintColor: '#fff',
       headerStyle: {
-        backgroundColor: '#1f3954'
+        backgroundColor: '#1f3954',
+        color: '#fff'
       },
+
       headerTitleStyle: {
-        fontFamily: 'Georgia',
-        fontSize: 19
+        fontFamily: 'Georgia'
       }
     })
   }

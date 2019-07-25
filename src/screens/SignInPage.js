@@ -88,7 +88,7 @@ export class SignInPage extends Component {
               />
             </Item>
 
-            <Item inlineLabel last style={{ margin: 10 }}>
+            <Item inlineLabel style={{ margin: 10 }}>
               <Label
                 style={{
                   color: '#fff',

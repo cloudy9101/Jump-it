@@ -134,7 +134,7 @@ export default class SignUpPage extends Component {
                 onChangeText={text => this.setState({ password: text })}
               />
             </Item>
-            <Item stackedLabel last style={{ margin: 10 }}>
+            <Item stackedLabel style={{ margin: 10 }}>
               <Label
                 style={{
                   color: '#fff',
