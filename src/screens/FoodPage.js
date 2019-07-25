@@ -6,7 +6,7 @@ export default class FoodPage extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
         <Text>food!</Text>
       </Container>

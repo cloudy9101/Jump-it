@@ -5,7 +5,7 @@ import HeaderComponent from '../components/DrawerHeaderComponent';
 export default class ProfilePage extends Component {
   render() {
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent titleName="Profile" {...this.props} />
       </Container>
     );

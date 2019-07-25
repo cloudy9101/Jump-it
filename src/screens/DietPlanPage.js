@@ -50,7 +50,7 @@ class DietPlanPage extends Component {
     });
 
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent
           title={this.props.navigation.state.routeName}
           {...this.props}

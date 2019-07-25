@@ -5,7 +5,7 @@ import HeaderComponent from '../components/DrawerHeaderComponent';
 export class SettingPage extends Component {
   render() {
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent titleName="Setting" {...this.props} />
       </Container>
     );

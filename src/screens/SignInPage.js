@@ -75,7 +75,7 @@ export class SignInPage extends Component {
             <Item inlineLabel style={{ margin: 10 }}>
               <Label
                 style={{
-                  color: '#fff',
+                  color: '#ffffff',
                   fontFamily: 'Helvetica',
                   fontSize: 18
                 }}
@@ -83,7 +83,7 @@ export class SignInPage extends Component {
                 Email
               </Label>
               <Input
-                style={{ color: '#fff' }}
+                style={{ color: '#ffffff' }}
                 onChangeText={text => this.setState({ email: text })}
               />
             </Item>
@@ -91,7 +91,7 @@ export class SignInPage extends Component {
             <Item inlineLabel style={{ margin: 10 }}>
               <Label
                 style={{
-                  color: '#fff',
+                  color: '#ffffff',
                   fontFamily: 'Helvetica',
                   fontSize: 18
                 }}
@@ -99,7 +99,7 @@ export class SignInPage extends Component {
                 Password
               </Label>
               <Input
-                style={{ color: '#fff' }}
+                style={{ color: '#ffffff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
               />

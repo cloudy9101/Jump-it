@@ -79,7 +79,7 @@ class SignUpPage2 extends Component {
           <Item stackedLabel style={{ margin: 10 }}>
             <Label
               style={{
-                color: '#fff',
+                color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18
               }}
@@ -114,7 +114,7 @@ class SignUpPage2 extends Component {
           <Item stackedLabel style={{ margin: 10 }}>
             <Label
               style={{
-                color: '#fff',
+                color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18
               }}
@@ -131,7 +131,7 @@ class SignUpPage2 extends Component {
           <Item stackedLabel style={{ margin: 10 }}>
             <Label
               style={{
-                color: '#fff',
+                color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18
               }}

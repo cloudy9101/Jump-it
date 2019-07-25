@@ -94,7 +94,7 @@ export default class SignUpPage1 extends Component {
           <Item inlineLabel style={{ margin: 10 }}>
             <Label
               style={{
-                color: '#fff',
+                color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18
               }}
@@ -120,7 +120,7 @@ export default class SignUpPage1 extends Component {
           <Item stackedLabel style={{ margin: 10 }}>
             <Label
               style={{
-                color: '#fff',
+                color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18
               }}
@@ -132,7 +132,7 @@ export default class SignUpPage1 extends Component {
           <Item stackedLabel style={{ margin: 10 }}>
             <Label
               style={{
-                color: '#fff',
+                color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18
               }}
@@ -145,7 +145,7 @@ export default class SignUpPage1 extends Component {
           <Item stackedLabel style={{ margin: 10 }}>
             <Label
               style={{
-                color: '#fff',
+                color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18
               }}
@@ -155,13 +155,13 @@ export default class SignUpPage1 extends Component {
             <View style={styles.viewStyle}>
               <CheckBox
                 checked={this.state.isCheck}
-                color="#fff"
+                color="#ffffff"
                 onPress={this.handleCheckBox}
               />
               <Text
                 style={{
                   paddingLeft: 15,
-                  color: '#fff',
+                  color: '#ffffff',
                   fontFamily: 'Helvetica',
                   fontSize: 18
                 }}
@@ -170,14 +170,14 @@ export default class SignUpPage1 extends Component {
               </Text>
 
               <CheckBox
-                color="#fff"
+                color="#ffffff"
                 checked={!this.state.isCheck}
                 onPress={this.handleCheckBox}
               />
               <Text
                 style={{
                   paddingLeft: 15,
-                  color: '#fff',
+                  color: '#ffffff',
                   fontFamily: 'Helvetica',
                   fontSize: 18
                 }}

@@ -23,18 +23,44 @@ export default class PlanPageTitle extends Component {
         <Button
           small
           light
-          // disabled={this.state.btnIndex === 0 ? true : false}
+          bordered
+          first
+          active
+          style={{
+            width: 85,
+
+            fontSize: 18,
+            borderRadius: 0,
+            backgroundColor: '#315574'
+          }}
+          //   disabled={this.state.btnIndex === 0 ? true : false}
           onPress={() => this.pressHandler(0)}
         >
-          <Text>Exercise</Text>
+          <Text style={{ fontFamily: 'Georgia', fontSize: 16 }}>Exercise</Text>
         </Button>
         <Button
           small
           light
-          //  disabled={this.state.btnIndex === 1 ? true : false}
+          bordered
+          last
+          style={{
+            width: 85,
+            // marginRight: -1,
+            borderRadius: 0,
+            backgroundColor: '#315574'
+          }}
+          //   disabled={this.state.btnIndex === 1 ? true : false}
           onPress={() => this.pressHandler(1)}
         >
-          <Text>Diet</Text>
+          <Text
+            style={{
+              paddingLeft: 30,
+              fontFamily: 'Georgia',
+              fontSize: 16
+            }}
+          >
+            Diet
+          </Text>
         </Button>
       </View>
     );
