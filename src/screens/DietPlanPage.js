@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
-import { Container, Content, Icon, Button, ListItem, Left, Body, Right } from 'native-base';
+import {
+  Container,
+  Content,
+  Icon,
+  Button,
+  ListItem,
+  Left,
+  Body,
+  Right
+} from 'native-base';
 import { TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { fetchDiets, addDiet } from '../redux/actions';
 import DietPlanItem from '../components/DietPlanItem';
+import HeaderComponent from '../components/HeaderComponent';
 
 const planData = [
-  { key: 1, name: "sugar", value: "10g" },
-  { key: 2, name: "blood pressure", value: "120/80 mmHg" },
-  { key: 3, name: "mediacation", value: "10g" },
-]
+  { key: 1, name: 'sugar', value: '10g' },
+  { key: 2, name: 'blood pressure', value: '120/80 mmHg' },
+  { key: 3, name: 'mediacation', value: '10g' }
+];
 
 class DietPlanPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", value: "" }
+    this.state = { name: '', value: '' };
     this.addItem = this.addItem.bind(this);
   }
 
@@ -31,7 +40,7 @@ class DietPlanPage extends Component {
     const value = this.state.value;
     AsyncStorage.getItem('token').then(token => {
       this.props.addDiet(token, name, value);
-      this.setState({name: "", value: ""});
+      this.setState({ name: '', value: '' });
     });
   }
 
@@ -42,32 +51,43 @@ class DietPlanPage extends Component {
 
     return (
       <Container>
+        <HeaderComponent
+          title={this.props.navigation.state.routeName}
+          {...this.props}
+        />
         <Content>
-          { items }
+          {items}
           <ListItem icon>
             <Left>
-              <Icon style={{color: "#FF9501"}} active={false} type="MaterialCommunityIcons" name="notebook" />
+              <Icon
+                style={{ color: '#FF9501' }}
+                active={false}
+                type="MaterialCommunityIcons"
+                name="notebook"
+              />
             </Left>
-            <Body style={{flexDirection: "row", justifyContent: 'space-between'}}>
+            <Body
+              style={{ flexDirection: 'row', justifyContent: 'space-between' }}
+            >
               <TextInput
                 placeholder="Item"
                 editable={true}
-                style={{flex: 1, fontSize: 16}}
+                style={{ flex: 1, fontSize: 16 }}
                 value={this.state.name}
-                onChangeText={(text) => this.setState({name: text})}
+                onChangeText={text => this.setState({ name: text })}
               />
               <TextInput
                 placeholder="Value"
                 editable={true}
-                style={{flex: 1, fontSize: 16}}
+                style={{ flex: 1, fontSize: 16 }}
                 value={this.state.value}
-                onChangeText={(text) => this.setState({value: text})}
+                onChangeText={text => this.setState({ value: text })}
               />
             </Body>
             <Right>
               <Icon
                 onPress={this.addItem}
-                style={{color: "#FF9501"}}
+                style={{ color: '#FF9501' }}
                 type="AntDesign"
                 name="plus"
               />

@@ -98,7 +98,7 @@ class SignUpPage2 extends Component {
               style={{
                 width: 120,
                 height: 30,
-                marginLeft: -270,
+                marginLeft: -260,
                 width: 200
               }}
               customStyles={{

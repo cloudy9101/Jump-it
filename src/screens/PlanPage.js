@@ -26,10 +26,10 @@ class PlanPage extends Component {
 
   handleDateSelected(date) {
     const newDate = date.toDate();
-    this.setState({date: newDate})
+    this.setState({ date: newDate });
     AsyncStorage.getItem('token').then(token => {
       this.props.fetchExercises(newDate, token);
-    })
+    });
   }
 
   render() {
@@ -38,25 +38,29 @@ class PlanPage extends Component {
       return <PlanItemComponent key={i} name={item.name} value={item.value} />;
     });
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
         <Content>
           <CalendarStrip
-            calendarAnimation={{type: 'sequence', duration: 30}}
-            daySelectionAnimation={{type: 'background', duration: 200, highlightColor: '#febc42'}}
-            style={{height: 100, paddingTop: 10, paddingBottom: 10}}
-            calendarHeaderStyle={{color: 'black'}}
+            calendarAnimation={{ type: 'sequence', duration: 30 }}
+            daySelectionAnimation={{
+              type: 'background',
+              duration: 200,
+              highlightColor: '#febc42'
+            }}
+            style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
+            calendarHeaderStyle={{ color: 'black' }}
             calendarColor={'#fea742'}
-            dateNumberStyle={{color: 'black'}}
-            dateNameStyle={{color: 'black'}}
-            highlightDateNumberStyle={{color: 'black'}}
-            highlightDateNameStyle={{color: 'black'}}
-            disabledDateNameStyle={{color: 'grey'}}
-            disabledDateNumberStyle={{color: 'grey'}}
-            iconContainer={{flex: 0.1}}
+            dateNumberStyle={{ color: 'black' }}
+            dateNameStyle={{ color: 'black' }}
+            highlightDateNumberStyle={{ color: 'black' }}
+            highlightDateNameStyle={{ color: 'black' }}
+            disabledDateNameStyle={{ color: 'grey' }}
+            disabledDateNumberStyle={{ color: 'grey' }}
+            iconContainer={{ flex: 0.1 }}
             onDateSelected={this.handleDateSelected}
           />
-          { items }
+          {items}
         </Content>
       </Container>
     );

@@ -15,7 +15,9 @@ export default class HeightAndWeightPicker extends Component {
       <View>
         <Text
           style={{
-            color: '#555',
+            color: '#fff',
+            fontFamily: 'Helvetica',
+            fontSize: 18,
             marginTop: 20,
             marginLeft: -170
           }}

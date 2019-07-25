@@ -52,11 +52,11 @@ AppleHealthKit.initHealthKit(HealthOptions, (err, results) => {
     console.log('error initializing Healthkit: ', err);
     return;
   }
-  console.log('HealthkitInitSuccess..');
-  this.sub = NativeAppEventEmitter.addListener('change:steps', evt => {
-    console.log('cccccc');
-    console.log(evt);
-  });
+  // console.log('HealthkitInitSuccess..');
+  // this.sub = NativeAppEventEmitter.addListener('change:steps', evt => {
+  //   console.log('cccccc');
+  //   console.log(evt);
+  // });
   AppleHealthKit.getStepCount(null, (error, results) => {
     if (error) {
       console.log('getStepCountError: ', error);
@@ -65,7 +65,6 @@ AppleHealthKit.initHealthKit(HealthOptions, (err, results) => {
     console.log('step value.......');
     console.log(results);
   });
-
 });
 
 class WorkoutPage extends Component {
@@ -74,9 +73,9 @@ class WorkoutPage extends Component {
     this.renderList = this.renderList.bind(this);
   }
 
-  componentWillUnmount() {
-    this.sub.remove();
-  }
+  // componentWillUnmount() {
+  //   this.sub.remove();
+  // }
 
   renderList() {
     let arr = [];
