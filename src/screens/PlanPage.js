@@ -40,32 +40,30 @@ class PlanPage extends Component {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
-        <Content>
-          <CalendarStrip
-            calendarAnimation={{ type: 'sequence', duration: 30 }}
-            daySelectionAnimation={{
-              type: 'background',
-              duration: 200,
-              highlightColor: '#1f3954'
-            }}
-            style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
-            calendarHeaderStyle={{
-              color: '#ffffff',
-              fontFamily: 'Helvetica',
-              fontSize: 18
-            }}
-            calendarColor={'#315574'}
-            dateNumberStyle={{ color: '#ffffff' }}
-            dateNameStyle={{ color: '#ffffff' }}
-            highlightDateNumberStyle={{ color: '#ffffff' }}
-            highlightDateNameStyle={{ color: '#ffffff' }}
-            disabledDateNameStyle={{ color: '#ffffff' }}
-            disabledDateNumberStyle={{ color: '#ffffff' }}
-            iconContainer={{ flex: 0.1 }}
-            onDateSelected={this.handleDateSelected}
-          />
-          {items}
-        </Content>
+        <CalendarStrip
+          calendarAnimation={{ type: 'sequence', duration: 30 }}
+          daySelectionAnimation={{
+            type: 'background',
+            duration: 200,
+            highlightColor: '#1f3954'
+          }}
+          style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
+          calendarHeaderStyle={{
+            color: '#ffffff',
+            fontFamily: 'Helvetica',
+            fontSize: 18
+          }}
+          calendarColor={'#315574'}
+          dateNumberStyle={{ color: '#ffffff' }}
+          dateNameStyle={{ color: '#ffffff' }}
+          highlightDateNumberStyle={{ color: '#ffffff' }}
+          highlightDateNameStyle={{ color: '#ffffff' }}
+          disabledDateNameStyle={{ color: '#ffffff' }}
+          disabledDateNumberStyle={{ color: '#ffffff' }}
+          iconContainer={{ flex: 0.1 }}
+          onDateSelected={this.handleDateSelected}
+        />
+        <Content>{items}</Content>
       </Container>
     );
   }

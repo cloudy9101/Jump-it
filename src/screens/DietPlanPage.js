@@ -60,7 +60,7 @@ class DietPlanPage extends Component {
           <ListItem icon>
             <Left>
               <Icon
-                style={{ color: '#FF9501' }}
+                style={{ color: '#ffffff' }}
                 active={false}
                 type="MaterialCommunityIcons"
                 name="notebook"
@@ -71,15 +71,17 @@ class DietPlanPage extends Component {
             >
               <TextInput
                 placeholder="Item"
+                placeholderTextColor="#888"
                 editable={true}
-                style={{ flex: 1, fontSize: 16 }}
+                style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 value={this.state.name}
                 onChangeText={text => this.setState({ name: text })}
               />
               <TextInput
                 placeholder="Value"
                 editable={true}
-                style={{ flex: 1, fontSize: 16 }}
+                placeholderTextColor="#888"
+                style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 value={this.state.value}
                 onChangeText={text => this.setState({ value: text })}
               />
@@ -87,7 +89,7 @@ class DietPlanPage extends Component {
             <Right>
               <Icon
                 onPress={this.addItem}
-                style={{ color: '#FF9501' }}
+                style={{ color: '#ffffff' }}
                 type="AntDesign"
                 name="plus"
               />
