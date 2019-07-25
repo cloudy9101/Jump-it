@@ -74,12 +74,19 @@ class SignUpPage2 extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#1f3954' }}>
         <Form style={{ marginTop: 90 }}>
           <Item stackedLabel style={{ margin: 10 }}>
-            <Label>Date of Birth</Label>
+            <Label
+              style={{
+                color: '#fff',
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              Date of Birth
+            </Label>
             <DatePicker
-              style={{ width: 200 }}
               date={this.state.date}
               mode="date"
               placeholder="select date"
@@ -91,7 +98,8 @@ class SignUpPage2 extends Component {
               style={{
                 width: 120,
                 height: 30,
-                marginLeft: -270
+                marginLeft: -270,
+                width: 200
               }}
               customStyles={{
                 dateInput: {
@@ -104,7 +112,15 @@ class SignUpPage2 extends Component {
             />
           </Item>
           <Item stackedLabel style={{ margin: 10 }}>
-            <Label>Your Height</Label>
+            <Label
+              style={{
+                color: '#fff',
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              Your Height
+            </Label>
             <HeightAndWeightPicker
               value={this.state.height}
               data={UserHeightData}
@@ -113,7 +129,15 @@ class SignUpPage2 extends Component {
           </Item>
 
           <Item stackedLabel style={{ margin: 10 }}>
-            <Label>Your Weight</Label>
+            <Label
+              style={{
+                color: '#fff',
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              Your Weight
+            </Label>
             <HeightAndWeightPicker
               value={this.state.weight}
               data={UserWeightData}
@@ -122,14 +146,16 @@ class SignUpPage2 extends Component {
           </Item>
 
           <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-            <Button block rounded bordered warning onPress={this.btnHandler}>
-              <Text>Conform</Text>
+            <Button block rounded bordered light onPress={this.btnHandler}>
+              <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
+                Conform
+              </Text>
             </Button>
           </View>
         </Form>
         {!this.props.users.isFinished ? null : (
           <Spinner
-            color="#f5a742"
+            color="#1f3954"
             style={{ position: 'absolute', top: '2%', left: '46%' }}
           />
         )}

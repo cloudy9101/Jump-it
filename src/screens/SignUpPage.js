@@ -86,33 +86,81 @@ export default class SignUpPage extends Component {
   render() {
     return (
       <KeyboardShift>
-        <Container>
+        <Container style={{ backgroundColor: '#1f3954' }}>
           <Form style={{ marginTop: 80 }}>
             <Item stackedLabel style={{ margin: 10 }}>
-              <Label>Email</Label>
-              <Input onChangeText={text => this.setState({ email: text })} />
-            </Item>
-            <Item stackedLabel style={{ margin: 10 }}>
-              <Label>User Name</Label>
-              <Input onChangeText={text => this.setState({ username: text })} />
-            </Item>
-            <Item stackedLabel style={{ margin: 10 }}>
-              <Label>Password</Label>
+              <Label
+                style={{
+                  color: '#fff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                Email
+              </Label>
               <Input
+                style={{ color: '#fff' }}
+                onChangeText={text => this.setState({ email: text })}
+              />
+            </Item>
+            <Item stackedLabel style={{ margin: 10 }}>
+              <Label
+                style={{
+                  color: '#fff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                User Name
+              </Label>
+              <Input
+                style={{ color: '#fff' }}
+                onChangeText={text => this.setState({ username: text })}
+              />
+            </Item>
+            <Item stackedLabel style={{ margin: 10 }}>
+              <Label
+                style={{
+                  color: '#fff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                Password
+              </Label>
+              <Input
+                style={{ color: '#fff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
               />
             </Item>
             <Item stackedLabel last style={{ margin: 10 }}>
-              <Label>Repassword</Label>
+              <Label
+                style={{
+                  color: '#fff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                Repassword
+              </Label>
               <Input
+                style={{ color: '#fff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ repassword: text })}
               />
             </Item>
             <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-              <Button block rounded bordered warning onPress={this.btnHandler}>
-                <Text>Next</Text>
+              <Button block rounded bordered light onPress={this.btnHandler}>
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontFamily: 'Helvetica',
+                    fontSize: 18
+                  }}
+                >
+                  Next
+                </Text>
               </Button>
             </View>
           </Form>

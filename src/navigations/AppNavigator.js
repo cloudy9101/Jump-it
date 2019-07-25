@@ -221,9 +221,13 @@ const UserNavigator = createStackNavigator(
   {
     defaultNavigationOptions: () => ({
       headerBackTitle: null,
-      headerTintColor: 'black',
+      headerTintColor: '#fff',
       headerStyle: {
         backgroundColor: '#1f3954'
+      },
+      headerTitleStyle: {
+        fontFamily: 'Georgia',
+        fontSize: 19
       }
     })
   }

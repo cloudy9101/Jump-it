@@ -89,10 +89,18 @@ export default class SignUpPage1 extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#1f3954' }}>
         <Form style={{ marginTop: 80 }}>
           <Item inlineLabel style={{ margin: 10 }}>
-            <Label style={{ fontSize: 15 }}>Your Photo</Label>
+            <Label
+              style={{
+                color: '#fff',
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              Your Photo
+            </Label>
             <Button transparent light onPress={this.handleImagePicker}>
               {this.state.avator === null ? (
                 <Thumbnail
@@ -110,35 +118,79 @@ export default class SignUpPage1 extends Component {
             </Button>
           </Item>
           <Item stackedLabel style={{ margin: 10 }}>
-            <Label>First Name</Label>
+            <Label
+              style={{
+                color: '#fff',
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              First Name
+            </Label>
             <Input onChangeText={text => this.setState({ firstName: text })} />
           </Item>
           <Item stackedLabel style={{ margin: 10 }}>
-            <Label>Last Name</Label>
+            <Label
+              style={{
+                color: '#fff',
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              Last Name
+            </Label>
             <Input onChangeText={text => this.setState({ lastName: text })} />
           </Item>
 
           <Item stackedLabel style={{ margin: 10 }}>
-            <Label>Gender?</Label>
+            <Label
+              style={{
+                color: '#fff',
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              Gender
+            </Label>
             <View style={styles.viewStyle}>
               <CheckBox
                 checked={this.state.isCheck}
-                color="#f5a742"
+                color="#fff"
                 onPress={this.handleCheckBox}
               />
-              <Text style={{ paddingLeft: 15, color: '#555' }}>Male</Text>
+              <Text
+                style={{
+                  paddingLeft: 15,
+                  color: '#fff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                Male
+              </Text>
 
               <CheckBox
-                color="#f5a742"
+                color="#fff"
                 checked={!this.state.isCheck}
                 onPress={this.handleCheckBox}
               />
-              <Text style={{ paddingLeft: 15, color: '#555' }}>Female</Text>
+              <Text
+                style={{
+                  paddingLeft: 15,
+                  color: '#fff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                Female
+              </Text>
             </View>
           </Item>
           <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-            <Button block rounded bordered warning onPress={this.btnHandler}>
-              <Text>Next</Text>
+            <Button block rounded bordered light onPress={this.btnHandler}>
+              <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
+                Next
+              </Text>
             </Button>
           </View>
         </Form>
