@@ -72,15 +72,34 @@ export class SignInPage extends Component {
                 }}
               />
             </View>
-
             <Item inlineLabel style={{ margin: 10 }}>
-              <Label>Email</Label>
-              <Input onChangeText={text => this.setState({ email: text })} />
+              <Label
+                style={{
+                  color: '#fff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                Email
+              </Label>
+              <Input
+                style={{ color: '#fff' }}
+                onChangeText={text => this.setState({ email: text })}
+              />
             </Item>
 
             <Item inlineLabel last style={{ margin: 10 }}>
-              <Label>Password</Label>
+              <Label
+                style={{
+                  color: '#fff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                Password
+              </Label>
               <Input
+                style={{ color: '#fff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
               />
@@ -94,11 +113,15 @@ export class SignInPage extends Component {
                 }}
                 light
               >
-                <Text>Sign Up</Text>
+                <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
+                  Sign Up
+                </Text>
               </Button>
 
               <Button bordered onPress={this.btnHandler} light>
-                <Text>Sign In</Text>
+                <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
+                  Sign In
+                </Text>
               </Button>
             </View>
           </Form>
