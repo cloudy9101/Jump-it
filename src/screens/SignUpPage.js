@@ -91,7 +91,7 @@ export default class SignUpPage extends Component {
             <Item stackedLabel style={{ margin: 10 }}>
               <Label
                 style={{
-                  color: '#fff',
+                  color: '#ffffff',
                   fontFamily: 'Helvetica',
                   fontSize: 18
                 }}
@@ -99,14 +99,14 @@ export default class SignUpPage extends Component {
                 Email
               </Label>
               <Input
-                style={{ color: '#fff' }}
+                style={{ color: '#ffffff' }}
                 onChangeText={text => this.setState({ email: text })}
               />
             </Item>
             <Item stackedLabel style={{ margin: 10 }}>
               <Label
                 style={{
-                  color: '#fff',
+                  color: '#ffffff',
                   fontFamily: 'Helvetica',
                   fontSize: 18
                 }}
@@ -114,14 +114,14 @@ export default class SignUpPage extends Component {
                 User Name
               </Label>
               <Input
-                style={{ color: '#fff' }}
+                style={{ color: '#ffffff' }}
                 onChangeText={text => this.setState({ username: text })}
               />
             </Item>
             <Item stackedLabel style={{ margin: 10 }}>
               <Label
                 style={{
-                  color: '#fff',
+                  color: '#ffffff',
                   fontFamily: 'Helvetica',
                   fontSize: 18
                 }}
@@ -129,7 +129,7 @@ export default class SignUpPage extends Component {
                 Password
               </Label>
               <Input
-                style={{ color: '#fff' }}
+                style={{ color: '#ffffff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
               />
@@ -137,7 +137,7 @@ export default class SignUpPage extends Component {
             <Item stackedLabel style={{ margin: 10 }}>
               <Label
                 style={{
-                  color: '#fff',
+                  color: '#ffffff',
                   fontFamily: 'Helvetica',
                   fontSize: 18
                 }}
@@ -145,7 +145,7 @@ export default class SignUpPage extends Component {
                 Repassword
               </Label>
               <Input
-                style={{ color: '#fff' }}
+                style={{ color: '#ffffff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ repassword: text })}
               />
@@ -154,7 +154,7 @@ export default class SignUpPage extends Component {
               <Button block rounded bordered light onPress={this.btnHandler}>
                 <Text
                   style={{
-                    color: '#fff',
+                    color: '#ffffff',
                     fontFamily: 'Helvetica',
                     fontSize: 18
                   }}

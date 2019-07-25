@@ -46,17 +46,21 @@ class PlanPage extends Component {
             daySelectionAnimation={{
               type: 'background',
               duration: 200,
-              highlightColor: '#febc42'
+              highlightColor: '#1f3954'
             }}
             style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
-            calendarHeaderStyle={{ color: 'black' }}
-            calendarColor={'#fea742'}
-            dateNumberStyle={{ color: 'black' }}
-            dateNameStyle={{ color: 'black' }}
-            highlightDateNumberStyle={{ color: 'black' }}
-            highlightDateNameStyle={{ color: 'black' }}
-            disabledDateNameStyle={{ color: 'grey' }}
-            disabledDateNumberStyle={{ color: 'grey' }}
+            calendarHeaderStyle={{
+              color: '#ffffff',
+              fontFamily: 'Helvetica',
+              fontSize: 18
+            }}
+            calendarColor={'#315574'}
+            dateNumberStyle={{ color: '#ffffff' }}
+            dateNameStyle={{ color: '#ffffff' }}
+            highlightDateNumberStyle={{ color: '#ffffff' }}
+            highlightDateNameStyle={{ color: '#ffffff' }}
+            disabledDateNameStyle={{ color: '#ffffff' }}
+            disabledDateNumberStyle={{ color: '#ffffff' }}
             iconContainer={{ flex: 0.1 }}
             onDateSelected={this.handleDateSelected}
           />

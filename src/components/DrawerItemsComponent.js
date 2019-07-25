@@ -9,7 +9,16 @@ export default (DrawerItemsComponent = props => {
       <Header style={styles.headerStyle}>
         <Body>
           <Thumbnail large source={require('../../assets/download.jpeg')} />
-          <Text style={{ paddingTop: 10 }}>SpiderMan</Text>
+          <Text
+            style={{
+              color: '#ffffff',
+              fontFamily: 'Helvetica',
+              fontSize: 18,
+              paddingTop: 10
+            }}
+          >
+            SpiderMan
+          </Text>
         </Body>
       </Header>
       <Content contentContainerStyle={styles.contentStyle}>
@@ -24,6 +33,6 @@ const styles = StyleSheet.create({
   },
   headerStyle: {
     height: 180,
-    backgroundColor: '#f5a742'
+    backgroundColor: '#1f3954'
   }
 });

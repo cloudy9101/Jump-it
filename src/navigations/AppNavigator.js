@@ -118,7 +118,7 @@ const BottomTabNavigator = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: '#fff',
+      activeTintColor: '#ffffff',
       style: {
         backgroundColor: '#1f3954'
       }
@@ -182,7 +182,17 @@ const DrawerNavigator = createDrawerNavigator(
     initialRouteName: 'Home',
     drawerWidth: 200,
     contentOptions: {
-      activeTintColor: 'red'
+      activeTintColor: '#ffffff',
+      inactiveTintColor: '#8c8c8c',
+      itemsContainerStyle: {
+        backgroundColor: '#1f3954',
+        flex: 1
+      },
+      labelStyle: {
+        //fontFamily: 'Georgia',
+        fontSize: 16
+      },
+      activeBackgroundColor: '#315574'
     },
     contentComponent: DrawerItemsComponent
   }
@@ -217,10 +227,10 @@ const UserNavigator = createStackNavigator(
   {
     defaultNavigationOptions: () => ({
       headerBackTitle: null,
-      headerTintColor: '#fff',
+      headerTintColor: '#ffffff',
       headerStyle: {
         backgroundColor: '#1f3954',
-        color: '#fff'
+        color: '#ffffff'
       },
 
       headerTitleStyle: {

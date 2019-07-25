@@ -22,6 +22,7 @@ import SectionItems from '../components/SectionItems';
 import { HealthOptions } from '../commons/HealthOptions';
 import HeaderComponent from '../components/HeaderComponent';
 import { mockData } from '../commons/MockData';
+import CalendarStrip from 'react-native-calendar-strip';
 
 // AppleHealthKit.getDistanceWalkingRunning(HealthOptions, (err, results) => {
 //   if (err) {
@@ -70,43 +71,77 @@ AppleHealthKit.initHealthKit(HealthOptions, (err, results) => {
 class WorkoutPage extends Component {
   constructor(props) {
     super(props);
-    this.renderList = this.renderList.bind(this);
+    this.state = {
+      date: new Date()
+    };
+    //this.renderList = this.renderList.bind(this);
+    this.handleDateSelected = this.handleDateSelected.bind(this);
+  }
+  handleDateSelected(date) {
+    const newDate = date.toDate();
+    this.setState({ date: newDate });
+    // AsyncStorage.getItem('token').then(token => {
+    //   this.props.fetchExercises(newDate, token);
+    // });
   }
 
   // componentWillUnmount() {
   //   this.sub.remove();
   // }
 
-  renderList() {
-    let arr = [];
-    for (const obj of mockData) {
-      const key = Object.keys(obj)[0];
-      arr.push(
-        <SectionHeader key={key} workDate={key} workCounts={obj[key].length} />
-      );
-      obj[key].forEach(v => {
-        arr.push(
-          <SectionItems
-            key={v.id}
-            name={v.name}
-            frequency={v.value}
-            workDate={v.date}
-            {...this.props}
-          />
-        );
-      });
-    }
-    return arr;
-  }
+  // renderList() {
+  //   let arr = [];
+  //   for (const obj of mockData) {
+  //     const key = Object.keys(obj)[0];
+  //     arr.push(
+  //       <SectionHeader key={key} workDate={key} workCounts={obj[key].length} />
+  //     );
+  //     obj[key].forEach(v => {
+  //       arr.push(
+  //         <SectionItems
+  //           key={v.id}
+  //           name={v.name}
+  //           frequency={v.value}
+  //           workDate={v.date}
+  //           {...this.props}
+  //         />
+  //       );
+  //     });
+  //   }
+  //   return arr;
+  // }
 
   render() {
     const { navigation } = this.props;
 
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
         <Content>
-          <List>{this.renderList()}</List>
+          {/* <List>{this.renderList()}</List> */}
+          <CalendarStrip
+            calendarAnimation={{ type: 'sequence', duration: 30 }}
+            daySelectionAnimation={{
+              type: 'background',
+              duration: 200,
+              highlightColor: '#1f3954'
+            }}
+            style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
+            calendarHeaderStyle={{
+              color: '#ffffff',
+              fontFamily: 'Helvetica',
+              fontSize: 18
+            }}
+            calendarColor={'#315574'}
+            dateNumberStyle={{ color: '#ffffff' }}
+            dateNameStyle={{ color: '#ffffff' }}
+            highlightDateNumberStyle={{ color: '#ffffff' }}
+            highlightDateNameStyle={{ color: '#ffffff' }}
+            disabledDateNameStyle={{ color: '#ffffff' }}
+            disabledDateNumberStyle={{ color: '#ffffff' }}
+            iconContainer={{ flex: 0.1 }}
+            onDateSelected={this.handleDateSelected}
+          />
         </Content>
       </Container>
     );

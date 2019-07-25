@@ -12,11 +12,11 @@ export default (DrawerHeaderComponent = props => {
           onPress={() => navigation.openDrawer()}
           name="md-menu"
           size={30}
-          style={{ color: '#fff' }}
+          style={{ color: '#ffffff' }}
         />
       </Left>
       <Body>
-        <Title style={{ color: '#fff', fontFamily: 'Georgia' }}>
+        <Title style={{ color: '#ffffff', fontFamily: 'Georgia' }}>
           {props.titleName}
         </Title>
       </Body>

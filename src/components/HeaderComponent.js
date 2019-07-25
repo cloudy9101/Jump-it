@@ -12,7 +12,7 @@ export default (HeaderComponent = props => {
             type="MaterialCommunityIcons"
             style={{ color: 'black' }}
             onPress={() => props.navigation.openDrawer()}
-            style={{ color: '#fff' }}
+            style={{ color: '#ffffff' }}
           />
         </Button>
       </Left>
@@ -21,7 +21,7 @@ export default (HeaderComponent = props => {
         props.navigation.state.routeName === 'Diet' ? (
           <PlanPageTitle navigation={props.navigation} />
         ) : (
-          <Title style={{ color: '#fff', fontFamily: 'Georgia' }}>
+          <Title style={{ color: '#ffffff', fontFamily: 'Georgia' }}>
             {' '}
             {props.title}
           </Title>

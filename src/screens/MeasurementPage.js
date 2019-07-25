@@ -7,8 +7,8 @@ export default class MeasurementPage extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <Container>
-        <HeaderComponent title={navigation.state.routeName} {...this.props} />
+      <Container style={{ backgroundColor: '#1f3954' }}>
+        <HeaderComponent title={'Measure'} {...this.props} />
         <Text>MeasurementPage</Text>
       </Container>
     );
