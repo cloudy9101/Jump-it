@@ -44,18 +44,18 @@ const WorkoutStackNavigator = createStackNavigator(
       navigationOptions: {
         header: null
       }
-    },
-    WorkoutDetail: {
-      screen: WorkOutDetailPage,
-      navigationOptions: ({ navigation }) => ({
-        title: `${navigation.state.routeName}`,
-        headerStyle: {
-          backgroundColor: '#1f3954'
-        },
-
-        headerTintColor: '#fffff'
-      })
     }
+    // WorkoutDetail: {
+    //   screen: WorkOutDetailPage,
+    //   navigationOptions: ({ navigation }) => ({
+    //     title: `${navigation.state.routeName}`,
+    //     headerStyle: {
+    //       backgroundColor: '#1f3954'
+    //     },
+
+    //     headerTintColor: '#fffff'
+    //   })
+    // }
   },
   {
     defaultNavigationOptions: () => ({
