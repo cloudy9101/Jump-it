@@ -73,6 +73,13 @@ export class SignInPage extends Component {
               />
             </View>
             <Item inlineLabel style={{ margin: 10 }}>
+              <Icon
+                active
+                name="envelope"
+                type="EvilIcons"
+                style={{ color: '#ffffff' }}
+                fontSize="33"
+              />
               <Label
                 style={{
                   color: '#ffffff',
@@ -89,6 +96,13 @@ export class SignInPage extends Component {
             </Item>
 
             <Item inlineLabel style={{ margin: 10 }}>
+              <Icon
+                active
+                name="lock"
+                type="AntDesign"
+                style={{ color: '#ffffff' }}
+                fontSize="27"
+              />
               <Label
                 style={{
                   color: '#ffffff',

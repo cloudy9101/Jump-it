@@ -155,7 +155,7 @@ class SignUpPage2 extends Component {
         </Form>
         {!this.props.users.isFinished ? null : (
           <Spinner
-            color="#1f3954"
+            color="#ffffff"
             style={{ position: 'absolute', top: '2%', left: '46%' }}
           />
         )}
