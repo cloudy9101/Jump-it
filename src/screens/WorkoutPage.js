@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, NativeAppEventEmitter } from 'react-native';
+import { View } from 'react-native';
 import {
   Container,
   Content,
@@ -15,59 +15,50 @@ import {
   Button
 } from 'native-base';
 import CalendarStrip from 'react-native-calendar-strip';
-import AppleHealthKit from 'rn-apple-healthkit';
-
-import SectionHeader from '../components/SectionHeader';
-import SectionItems from '../components/SectionItems';
-import { HealthOptions } from '../commons/HealthOptions';
 import HeaderComponent from '../components/HeaderComponent';
 import { mockData } from '../commons/MockData';
-
 import WorkoutCard from '../components/WorkoutCard';
+import AppleHealthKit from 'rn-apple-healthkit';
+import { HealthOptions } from '../commons/HealthOptions';
 
-// AppleHealthKit.getDistanceWalkingRunning(HealthOptions, (err, results) => {
-//   if (err) {
-//     return;
-//   }
-//   console.log('distance value.......');
-//   console.log(results);
-// });
-// let options = {
-//   startDate: new Date(2019, 7, 22).toISOString(),
-//   endDate: new Date().toISOString(),
-//   type: 'Walking' // one of: ['Walking', 'StairClimbing', 'Running', 'Cycling', 'Workout']
-// };
-
-// AppleHealthKit.getFlightsClimbed(HealthOptions, (err, results) => {
-//   if (err) {
-//     return;
-//   }
-//   console.log('FlightsClimbed');
-//   console.log(results);
-// });
-let options = {
-  startDate: new Date(2019, 7, 20).toISOString(), // required
-  endDate: new Date().toISOString() // optional; default now
-};
 AppleHealthKit.initHealthKit(HealthOptions, (err, results) => {
   if (err) {
     console.log('error initializing Healthkit: ', err);
     return;
   }
-  // console.log('HealthkitInitSuccess..');
-  // this.sub = NativeAppEventEmitter.addListener('change:steps', evt => {
-  //   console.log('cccccc');
-  //   console.log(evt);
-  // });
-  AppleHealthKit.getStepCount(null, (error, results) => {
-    if (error) {
-      console.log('getStepCountError: ', error);
-      return;
-    }
-    console.log('step value.......');
-    console.log(results);
-  });
 });
+AppleHealthKit.getStepCount(null, (error, results) => {
+  if (error) {
+    console.log('getStepCountError: ', error);
+    return;
+  }
+  console.log('step value.......');
+  console.log(results);
+});
+let options = {
+  date: new Date(2019, 7, 25).toISOString() // optional; default now
+};
+AppleHealthKit.getFlightsClimbed(options, (err, results) => {
+  if (err) {
+    console.log('FlightsClimbed' + err.message);
+    return;
+  }
+  console.log('FlightsClimbed');
+  console.log(results);
+});
+
+AppleHealthKit.getDistanceWalkingRunning(null, (err, results) => {
+  if (err) {
+    return;
+  }
+  console.log('distance value.......');
+  console.log(results);
+});
+
+// let options = {
+//   startDate: new Date(2019, 7, 20).toISOString(), // required
+//   endDate: new Date().toISOString() // optional; default now
+// };
 
 class WorkoutPage extends Component {
   constructor(props) {
@@ -75,7 +66,7 @@ class WorkoutPage extends Component {
     this.state = {
       date: new Date()
     };
-    //this.renderList = this.renderList.bind(this);
+
     this.handleDateSelected = this.handleDateSelected.bind(this);
   }
   handleDateSelected(date) {
@@ -85,32 +76,6 @@ class WorkoutPage extends Component {
     //   this.props.fetchExercises(newDate, token);
     // });
   }
-
-  // componentWillUnmount() {
-  //   this.sub.remove();
-  // }
-
-  // renderList() {
-  //   let arr = [];
-  //   for (const obj of mockData) {
-  //     const key = Object.keys(obj)[0];
-  //     arr.push(
-  //       <SectionHeader key={key} workDate={key} workCounts={obj[key].length} />
-  //     );
-  //     obj[key].forEach(v => {
-  //       arr.push(
-  //         <SectionItems
-  //           key={v.id}
-  //           name={v.name}
-  //           frequency={v.value}
-  //           workDate={v.date}
-  //           {...this.props}
-  //         />
-  //       );
-  //     });
-  //   }
-  //   return arr;
-  // }
 
   render() {
     const { navigation } = this.props;
@@ -166,7 +131,27 @@ class WorkoutPage extends Component {
               shadowColor={'#4a8240'}
               name={'Working+Running Distance'}
               num={'6566'}
-              unit={'step'}
+              unit={'km'}
+              time={'19:00'}
+              onPress={() => {
+                console.log('navigate');
+                props.navigation.navigate('WorkoutDetail');
+              }}
+            />
+            <WorkoutCard
+              bkColor={'#6e61a8'}
+              shadowColor={'#5a5087'}
+              name={'Steps'}
+              num={'6566'}
+              unit={'steps'}
+              time={'19:00'}
+            />
+            <WorkoutCard
+              bkColor={'#3d7ea4'}
+              shadowColor={'#35596e'}
+              name={'Flights Climebed'}
+              num={'6566'}
+              unit={'floor'}
               time={'19:00'}
             />
           </View>
