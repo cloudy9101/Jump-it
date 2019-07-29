@@ -26,8 +26,8 @@ import SignInPage from '../screens/SignInPage';
 import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
-import WorkoutDetailPage from '../screens/WorkoutDetailPage';
-
+import WorkOutDetailPage from '../screens/WorkOutDetailPage';
+import AuthLoading from '../screens/AuthLoading';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
     screen: PlanPage
@@ -45,16 +45,15 @@ const WorkoutStackNavigator = createStackNavigator(
         header: null
       }
     },
-
     WorkoutDetail: {
-      screen: WorkoutDetailPage,
+      screen: WorkOutDetailPage,
       navigationOptions: ({ navigation }) => ({
         title: `${navigation.state.routeName}`,
         headerStyle: {
           backgroundColor: '#1f3954'
         },
 
-        headerTintColor: 'black'
+        headerTintColor: '#fffff'
       })
     }
   },
@@ -189,7 +188,6 @@ const DrawerNavigator = createDrawerNavigator(
         flex: 1
       },
       labelStyle: {
-        //fontFamily: 'Georgia',
         fontSize: 16
       },
       activeBackgroundColor: '#315574'
@@ -240,8 +238,14 @@ const UserNavigator = createStackNavigator(
   }
 );
 export default createAppContainer(
-  createSwitchNavigator({
-    init: UserNavigator,
-    home: DrawerNavigator
-  })
+  createSwitchNavigator(
+    {
+      auth: AuthLoading,
+      login: UserNavigator,
+      home: DrawerNavigator
+    },
+    {
+      initialRouteName: 'auth'
+    }
+  )
 );

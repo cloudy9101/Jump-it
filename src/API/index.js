@@ -4,7 +4,7 @@ const GATEWAY =
   Platform.OS === 'android'
     ? 'http://156.59.132.11:3000'
     : 'http://localhost:3000';
-//192.168.1.102
+//192.168.1.101
 export function post(path, body, token = '') {
   return fetch(GATEWAY + path, {
     method: 'POST',

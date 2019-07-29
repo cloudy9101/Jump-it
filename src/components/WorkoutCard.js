@@ -5,7 +5,7 @@ export default function WorkoutCard(props) {
   return (
     <View
       style={{
-        height: 150,
+        height: 130,
         width: '95%',
         backgroundColor: props.bkColor,
         marginTop: 20,
@@ -18,14 +18,14 @@ export default function WorkoutCard(props) {
       <TouchableOpacity>
         <View
           style={{
-            height: 130,
+            height: 110,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center'
           }}
         >
-          <View style={{ width: 150 }}>
+          <View style={{ width: 180 }}>
             <Text
               style={{
                 color: '#ffffff',
