@@ -6,12 +6,13 @@ export const HealthOptions = {
   permissions: {
     read: [
       PERMS.StepCount,
-      // PERMS.ActiveEnergyBurned,
-      // PERMS.BasalEnergyBurned,
       PERMS.BodyMassIndex,
       PERMS.DistanceWalkingRunning,
       PERMS.FlightsClimbed,
       PERMS.Steps
+      // PERMS.ActiveEnergyBurned,
+      // PERMS.BasalEnergyBurned,
+
       // PERMS.BiologicalSex,
       // PERMS.BloodGlucose,
       // PERMS.BloodPressureDiastolic,
