@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TextInput,
   UIManager,
-  Easing
+  Easing,
+  Platform
 } from 'react-native';
 
 const { State: TextInputState } = TextInput;
@@ -58,7 +59,7 @@ export default class KeyboardShift extends Component {
           return;
         }
         Animated.timing(this.state.shift, {
-          toValue: gap,
+          toValue: Platform.OS === 'ios' ? gap : gap - 30,
           duration: 300,
           useNativeDriver: true
         }).start();
