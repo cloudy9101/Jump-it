@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import {
   Container,
   Content,
@@ -18,9 +18,11 @@ import CalendarStrip from 'react-native-calendar-strip';
 import HeaderComponent from '../components/HeaderComponent';
 import { mockData } from '../commons/MockData';
 import WorkoutCard from '../components/WorkoutCard';
-// import AppleHealthKit from 'rn-apple-healthkit';
-// import { HealthOptions } from '../commons/HealthOptions';
+import moment from 'moment';
+import { initHeathKit, Data } from '../utils/AppleHealthUtil';
 
+Platform.OS === 'ios' ? initHeathKit() : null;
+console.log(Data);
 class WorkoutPage extends Component {
   constructor(props) {
     super(props);
@@ -28,9 +30,9 @@ class WorkoutPage extends Component {
       date: new Date()
     };
 
-    this.handleDateSelected = this.handleDateSelected.bind(this);
+    this.dateSelected = this.dateSelected.bind(this);
   }
-  handleDateSelected(date) {
+  dateSelected(date) {
     const newDate = date.toDate();
     this.setState({ date: newDate });
     // AsyncStorage.getItem('token').then(token => {
@@ -40,6 +42,7 @@ class WorkoutPage extends Component {
 
   render() {
     const { navigation } = this.props;
+    console.log();
 
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
@@ -65,7 +68,7 @@ class WorkoutPage extends Component {
           disabledDateNameStyle={{ color: '#ffffff' }}
           disabledDateNumberStyle={{ color: '#ffffff' }}
           iconContainer={{ flex: 0.1 }}
-          onDateSelected={this.handleDateSelected}
+          onDateSelected={this.dateSelected}
         />
         <Content>
           <View style={{ marginTop: 20 }}>
@@ -91,30 +94,37 @@ class WorkoutPage extends Component {
               bkColor={'#35652c'}
               shadowColor={'#4a8240'}
               name={'Working+Running Distance'}
-              num={'6566'}
+              num={(parseInt(Data.distance.value) / 1000).toFixed(1) || '5555'}
               unit={'km'}
-              time={'19:00'}
-              onPress={() => {
-                console.log('navigate');
-                props.navigation.navigate('WorkoutDetail');
-              }}
+              time={
+                moment(Date.parse(Data.distance.endDate)).format('HH:mm') ||
+                '19:00'
+              }
             />
             <WorkoutCard
               bkColor={'#6e61a8'}
               shadowColor={'#5a5087'}
               name={'Steps'}
-              num={'6566'}
+              num={Data.step.value || '5500'}
               unit={'steps'}
-              time={'19:00'}
+              time={
+                moment(Date.parse(Data.step.endDate)).format('HH:mm') || '19:00'
+              }
             />
-            <WorkoutCard
-              bkColor={'#3d7ea4'}
-              shadowColor={'#35596e'}
-              name={'Flights Climebed'}
-              num={'6566'}
-              unit={'floor'}
-              time={'19:00'}
-            />
+            {Data.flightsClimed ? (
+              <WorkoutCard
+                bkColor={'#3d7ea4'}
+                shadowColor={'#35596e'}
+                name={'Flights Climebed'}
+                num={Data.flightsClimed.value || '5'}
+                unit={'floor'}
+                time={
+                  moment(Date.parse(Data.flightsClimed.endDate)).format(
+                    'HH:mm'
+                  ) || '19:00'
+                }
+              />
+            ) : null}
           </View>
         </Content>
       </Container>
