@@ -22,7 +22,7 @@ import moment from 'moment';
 import { initHeathKit, Data } from '../utils/AppleHealthUtil';
 
 Platform.OS === 'ios' ? initHeathKit() : null;
-console.log(Data);
+
 class WorkoutPage extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +42,6 @@ class WorkoutPage extends Component {
 
   render() {
     const { navigation } = this.props;
-    console.log();
 
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
@@ -94,37 +93,44 @@ class WorkoutPage extends Component {
               bkColor={'#35652c'}
               shadowColor={'#4a8240'}
               name={'Working+Running Distance'}
-              num={(parseInt(Data.distance.value) / 1000).toFixed(1) || '5555'}
+              num={
+                Data.distance
+                  ? (parseInt(Data.distance.value) / 1000).toFixed(1)
+                  : '5.8'
+              }
               unit={'km'}
               time={
-                moment(Date.parse(Data.distance.endDate)).format('HH:mm') ||
-                '19:00'
+                Data.distance
+                  ? moment(Date.parse(Data.distance.endDate)).format('HH:mm')
+                  : '19:00'
               }
             />
             <WorkoutCard
               bkColor={'#6e61a8'}
               shadowColor={'#5a5087'}
               name={'Steps'}
-              num={Data.step.value || '5500'}
+              num={Data.step ? Data.step.value : '5500'}
               unit={'steps'}
               time={
-                moment(Date.parse(Data.step.endDate)).format('HH:mm') || '19:00'
+                Data.step
+                  ? moment(Date.parse(Data.step.endDate)).format('HH:mm')
+                  : '19:00'
               }
             />
-            {Data.flightsClimed ? (
-              <WorkoutCard
-                bkColor={'#3d7ea4'}
-                shadowColor={'#35596e'}
-                name={'Flights Climebed'}
-                num={Data.flightsClimed.value || '5'}
-                unit={'floor'}
-                time={
-                  moment(Date.parse(Data.flightsClimed.endDate)).format(
-                    'HH:mm'
-                  ) || '19:00'
-                }
-              />
-            ) : null}
+            <WorkoutCard
+              bkColor={'#3d7ea4'}
+              shadowColor={'#35596e'}
+              name={'Flights Climebed'}
+              num={Data.flightsClimed ? Data.flightsClimed.value : '5'}
+              unit={'floor'}
+              time={
+                Data.flightsClimed
+                  ? moment(Date.parse(Data.flightsClimed.endDate)).format(
+                      'HH:mm'
+                    )
+                  : '19:00'
+              }
+            />
           </View>
         </Content>
       </Container>
