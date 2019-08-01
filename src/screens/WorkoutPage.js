@@ -47,12 +47,8 @@ class WorkoutPage extends Component {
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
         <CalendarStrip
-          calendarAnimation={{ type: 'sequence', duration: 30 }}
-          daySelectionAnimation={{
-            type: 'background',
-            duration: 200,
-            highlightColor: '#1f3954'
-          }}
+          //calendarAnimation={{ type: 'sequence', duration: 150 }}
+          weekStripAnimation={{ Type: 'sequence', duration: 300 }}
           style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
           calendarHeaderStyle={{
             color: '#ffffff',
@@ -62,8 +58,8 @@ class WorkoutPage extends Component {
           calendarColor={'#315574'}
           dateNumberStyle={{ color: '#ffffff' }}
           dateNameStyle={{ color: '#ffffff' }}
-          highlightDateNumberStyle={{ color: '#ffffff' }}
-          highlightDateNameStyle={{ color: '#ffffff' }}
+          highlightDateNumberStyle={{ color: '#1b1b1b' }}
+          highlightDateNameStyle={{ color: '#1b1b1b' }}
           disabledDateNameStyle={{ color: '#ffffff' }}
           disabledDateNumberStyle={{ color: '#ffffff' }}
           iconContainer={{ flex: 0.1 }}

@@ -26,7 +26,7 @@ import SignInPage from '../screens/SignInPage';
 import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
-import WorkOutDetailPage from '../screens/WorkOutDetailPage';
+//import WorkOutDetailPage from '../screens/WorkOutDetailPage';
 import AuthLoading from '../screens/AuthLoading';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
@@ -37,32 +37,32 @@ const PlanSwitchNavigator = createSwitchNavigator({
   }
 });
 
-const WorkoutStackNavigator = createStackNavigator(
-  {
-    Workouts: {
-      screen: WorkoutPage,
-      navigationOptions: {
-        header: null
-      }
-    }
-    // WorkoutDetail: {
-    //   screen: WorkOutDetailPage,
-    //   navigationOptions: ({ navigation }) => ({
-    //     title: `${navigation.state.routeName}`,
-    //     headerStyle: {
-    //       backgroundColor: '#1f3954'
-    //     },
+// const WorkoutStackNavigator = createStackNavigator(
+//   {
+//     Workouts: {
+//       screen: WorkoutPage,
+//       navigationOptions: {
+//         header: null
+//       }
+//     }
+//     // WorkoutDetail: {
+//     //   screen: WorkOutDetailPage,
+//     //   navigationOptions: ({ navigation }) => ({
+//     //     title: `${navigation.state.routeName}`,
+//     //     headerStyle: {
+//     //       backgroundColor: '#1f3954'
+//     //     },
 
-    //     headerTintColor: '#fffff'
-    //   })
-    // }
-  },
-  {
-    defaultNavigationOptions: () => ({
-      headerBackTitle: null
-    })
-  }
-);
+//     //     headerTintColor: '#fffff'
+//     //   })
+//     // }
+//   },
+//   {
+//     defaultNavigationOptions: () => ({
+//       headerBackTitle: null
+//     })
+//   }
+// );
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
@@ -79,7 +79,7 @@ const BottomTabNavigator = createBottomTabNavigator(
       }
     },
     Workouts: {
-      screen: WorkoutStackNavigator,
+      screen: WorkoutPage,
       navigationOptions: {
         tabBarIcon: ({ tintColor, focusd }) => (
           <MaterialCommunityIcons
@@ -116,6 +116,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     }
   },
   {
+    lazy: true,
     tabBarOptions: {
       activeTintColor: '#ffffff',
       style: {
