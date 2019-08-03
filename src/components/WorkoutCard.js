@@ -9,10 +9,7 @@ export default function WorkoutCard(props) {
         width: '95%',
         backgroundColor: props.bkColor,
         marginTop: 20,
-        borderRadius: 10,
-        shadowColor: props.shadowColor,
-        shadowOffset: { width: 0.5, height: 1 },
-        shadowOpacity: 0.7
+        borderRadius: 10
       }}
     >
       {/* <TouchableOpacity> */}

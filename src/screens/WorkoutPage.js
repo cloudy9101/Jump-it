@@ -87,7 +87,6 @@ class WorkoutPage extends Component {
           >
             <WorkoutCard
               bkColor={'#35652c'}
-              shadowColor={'#4a8240'}
               name={'Working+Running Distance'}
               num={
                 Data.distance
@@ -103,7 +102,6 @@ class WorkoutPage extends Component {
             />
             <WorkoutCard
               bkColor={'#6e61a8'}
-              shadowColor={'#5a5087'}
               name={'Steps'}
               num={Data.step ? Data.step.value : '5500'}
               unit={'steps'}
@@ -115,7 +113,6 @@ class WorkoutPage extends Component {
             />
             <WorkoutCard
               bkColor={'#3d7ea4'}
-              shadowColor={'#35596e'}
               name={'Flights Climebed'}
               num={Data.flightsClimed ? Data.flightsClimed.value : '5'}
               unit={'floor'}
