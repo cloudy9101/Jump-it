@@ -106,7 +106,7 @@ export default class SignUpPage1 extends Component {
                 <Thumbnail
                   style={{ marginLeft: 30, top: -19 }}
                   large
-                  source={require('../../assets/camera.jpeg')}
+                  source={require('../../assets/images.png')}
                 />
               ) : (
                 <Thumbnail
@@ -192,13 +192,27 @@ export default class SignUpPage1 extends Component {
               </Text>
             </View>
           </Item>
-          <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-            <Button block rounded bordered light onPress={this.btnHandler}>
-              <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
-                Next
-              </Text>
-            </Button>
-          </View>
+          <Button
+            block
+            rounded
+            // bordered
+            onPress={this.btnHandler}
+            success
+            style={{
+              marginTop: 30,
+              marginLeft: 10,
+              marginRight: 10
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              Next
+            </Text>
+          </Button>
         </Form>
       </Container>
     );

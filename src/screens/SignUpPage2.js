@@ -144,14 +144,29 @@ class SignUpPage2 extends Component {
               handleHeightAndWeight={this.handleHeightAndWeight}
             />
           </Item>
-
-          <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-            <Button block rounded bordered light onPress={this.btnHandler}>
-              <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
-                Conform
-              </Text>
-            </Button>
-          </View>
+          <Button
+            block
+            rounded
+            // bordered
+            onPress={this.btnHandler}
+            success
+            style={{
+              marginTop: 30,
+              marginLeft: 10,
+              marginRight: 10
+              //  borderColor: '#fff'
+            }}
+          >
+            <Text
+              style={{
+                // color: '#ffffff',
+                fontFamily: 'Helvetica',
+                fontSize: 18
+              }}
+            >
+              Conform
+            </Text>
+          </Button>
         </Form>
         {!this.props.users.isFinished ? null : (
           <Spinner

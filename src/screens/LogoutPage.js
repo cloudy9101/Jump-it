@@ -23,7 +23,15 @@ export default class LogoutPage extends Component {
           style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
           onPress={this.logoutHandler}
         >
-          <Text>Logout</Text>
+          <Text
+            style={{
+              color: '#ffffff',
+              fontFamily: 'Helvetica',
+              fontSize: 18
+            }}
+          >
+            Logout
+          </Text>
         </Button>
       </Container>
     );
