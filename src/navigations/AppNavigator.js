@@ -26,7 +26,7 @@ import SignInPage from '../screens/SignInPage';
 import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
-//import WorkOutDetailPage from '../screens/WorkOutDetailPage';
+import PasswordChangePage from '../screens/PasswordChangePage';
 import AuthLoading from '../screens/AuthLoading';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
@@ -135,6 +135,36 @@ const BottomTabNavigator = createBottomTabNavigator(
   }
 );
 
+const SettingNavigator = createStackNavigator(
+  {
+    Setting: {
+      screen: SettingPage,
+      navigationOptions: ({ navigation }) => ({
+        header: null
+      })
+    },
+    PasswordChange: {
+      screen: PasswordChangePage,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Setting'
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: () => ({
+      headerBackTitle: null,
+      headerTintColor: '#ffffff',
+      headerStyle: {
+        backgroundColor: '#1f3954',
+        color: '#ffffff'
+      },
+
+      headerTitleStyle: {
+        fontFamily: 'Georgia'
+      }
+    })
+  }
+);
 const DrawerNavigator = createDrawerNavigator(
   {
     Home: {
@@ -160,7 +190,7 @@ const DrawerNavigator = createDrawerNavigator(
       }
     },
     Setting: {
-      screen: SettingPage,
+      screen: SettingNavigator,
       navigationOptions: {
         drawerLabel: 'Setting',
         drawerIcon: ({ tintColor }) => (
@@ -180,10 +210,12 @@ const DrawerNavigator = createDrawerNavigator(
   },
   {
     initialRouteName: 'Home',
-    drawerWidth: 200,
+    drawerWidth: 210,
+    drawerBackgroundColor: 'transparent',
     contentOptions: {
       activeTintColor: '#ffffff',
       inactiveTintColor: '#8c8c8c',
+
       itemsContainerStyle: {
         backgroundColor: '#1f3954',
         flex: 1
@@ -193,6 +225,7 @@ const DrawerNavigator = createDrawerNavigator(
       },
       activeBackgroundColor: '#315574'
     },
+
     contentComponent: DrawerItemsComponent
   }
 );

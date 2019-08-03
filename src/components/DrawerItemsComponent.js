@@ -8,7 +8,7 @@ export default (DrawerItemsComponent = props => {
     <Container>
       <Header style={styles.headerStyle}>
         <Body>
-          <Thumbnail large source={require('../../assets/download.jpeg')} />
+          <Thumbnail large source={require('../../assets/images.png')} />
           <Text
             style={{
               color: '#ffffff',

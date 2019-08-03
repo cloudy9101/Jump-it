@@ -48,7 +48,7 @@ export class SignInPage extends Component {
         text: nextProps.users.error,
         buttonText: 'Cancel',
         type: 'danger',
-        duration: 2500
+        duration: 250
       });
     }
   }
@@ -61,14 +61,16 @@ export class SignInPage extends Component {
             <View
               style={{
                 alignItems: 'center',
-                margin: 10
+
+                height: '45%'
+                // margin: 10
               }}
             >
               <Image
-                source={require('../../assets/jump.jpg')}
+                source={require('../../assets/jump.png')}
                 style={{
-                  width: '90%',
-                  borderRadius: 50
+                  width: '100%',
+                  height: '100%'
                 }}
               />
             </View>

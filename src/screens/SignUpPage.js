@@ -150,19 +150,29 @@ export default class SignUpPage extends Component {
                 onChangeText={text => this.setState({ repassword: text })}
               />
             </Item>
-            <View style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}>
-              <Button block rounded bordered light onPress={this.btnHandler}>
-                <Text
-                  style={{
-                    color: '#ffffff',
-                    fontFamily: 'Helvetica',
-                    fontSize: 18
-                  }}
-                >
-                  Next
-                </Text>
-              </Button>
-            </View>
+            <Button
+              block
+              rounded
+              // bordered
+              onPress={this.btnHandler}
+              success
+              style={{
+                marginTop: 30,
+                marginLeft: 10,
+                marginRight: 10
+                //  borderColor: '#fff'
+              }}
+            >
+              <Text
+                style={{
+                  // color: '#ffffff',
+                  fontFamily: 'Helvetica',
+                  fontSize: 18
+                }}
+              >
+                Next
+              </Text>
+            </Button>
           </Form>
         </KeyboardShift>
       </Container>
