@@ -8,7 +8,7 @@ export default class FoodPage extends Component {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
-        <Content contentContainerStyle={{ flex: 1 }}>
+        <Content>
           <Text>food!</Text>
         </Content>
       </Container>

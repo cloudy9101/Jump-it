@@ -61,9 +61,7 @@ export class SignInPage extends Component {
             <View
               style={{
                 alignItems: 'center',
-
-                height: '45%'
-                // margin: 10
+                height: '40%'
               }}
             >
               <Image
@@ -120,23 +118,53 @@ export class SignInPage extends Component {
                 onChangeText={text => this.setState({ password: text })}
               />
             </Item>
-
+            <Button
+              block
+              rounded
+              bordered
+              onPress={this.btnHandler}
+              style={{
+                marginTop: 30,
+                marginLeft: 15,
+                marginRight: 15,
+                borderColor: '#fff'
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontFamily: 'Helvetica',
+                  color: '#fff'
+                }}
+              >
+                Sign In
+              </Text>
+            </Button>
             <View style={styles.buttonStyle}>
               <Button
-                bordered
+                transparent
                 onPress={() => {
                   this.props.navigation.navigate('SignUp');
                 }}
                 light
+                style={{ borderWidth: 0 }}
               >
-                <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
+                <Text
+                  style={{
+                    fontSize: 19,
+                    fontFamily: 'Helvetica',
+                    color: '#58a4d1'
+                  }}
+                >
+                  <Icon
+                    name="registered"
+                    type="FontAwesome"
+                    style={{
+                      fontSize: 20,
+                      color: '#58a4d1'
+                    }}
+                  />
                   Sign Up
-                </Text>
-              </Button>
-
-              <Button bordered onPress={this.btnHandler} light>
-                <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
-                  Sign In
                 </Text>
               </Button>
             </View>
@@ -164,7 +192,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     flexDirection: 'row',
-    marginTop: 20,
-    justifyContent: 'space-around'
+    marginTop: 115,
+    justifyContent: 'center'
   }
 });

@@ -210,7 +210,7 @@ const DrawerNavigator = createDrawerNavigator(
   },
   {
     initialRouteName: 'Home',
-    drawerWidth: 210,
+    drawerWidth: 200,
     drawerBackgroundColor: 'transparent',
     contentOptions: {
       activeTintColor: '#ffffff',

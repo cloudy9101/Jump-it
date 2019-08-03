@@ -26,6 +26,7 @@ export const register = userInfo => {
   return dispatch => {
     post('/api/users/signup', userInfo).then(res => {
       if (res.code === 0) {
+        console.log(res);
         dispatch(registerSuccess(res.data.token));
       } else {
         dispatch(registerFailure(res));

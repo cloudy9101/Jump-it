@@ -10,7 +10,10 @@ class ChartScreen extends Component {
     const dividerColor = this.props.dividerColor;
     return (
       <View>
-        <ListItem itemDivider style={{ backgroundColor: '#315574' }}>
+        <ListItem
+          itemDivider
+          style={{ backgroundColor: dividerColor || '#315574' }}
+        >
           <Text
             style={{
               color: '#ffffff',
@@ -27,7 +30,8 @@ class ChartScreen extends Component {
           bezier
           style={{
             marginVertical: 20,
-            borderRadius: 2
+            borderRadius: 2,
+            marginTop: 0
           }}
           fromZero={true}
           width={Dimensions.get('window').width}

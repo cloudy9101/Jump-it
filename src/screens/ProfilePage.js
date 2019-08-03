@@ -85,7 +85,7 @@ export default class ProfilePage extends Component {
                 {this.state.avator === null ? (
                   <Thumbnail
                     style={{ marginLeft: 50, top: -19 }}
-                    source={require('../../assets/images.png')}
+                    source={require('../../assets/download.png')}
                     large
                   />
                 ) : (
