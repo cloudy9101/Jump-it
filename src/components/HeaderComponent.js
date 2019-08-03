@@ -2,7 +2,6 @@ import React from 'react';
 import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import PlanPageTitle from '../components/PlanPageTitle';
 export default (HeaderComponent = props => {
-  console.log(props.navigation);
   return (
     <Header style={{ backgroundColor: '#1f3954' }}>
       <Left>
@@ -27,15 +26,7 @@ export default (HeaderComponent = props => {
           </Title>
         )}
       </Body>
-      <Right>
-        {props.navigation.state.routeName === 'Profile' ? (
-          <Button>
-            <Text style={{ color: '#ffffff', fontFamily: 'Georgia' }}>
-              Save
-            </Text>
-          </Button>
-        ) : null}
-      </Right>
+      <Right />
     </Header>
   );
 });

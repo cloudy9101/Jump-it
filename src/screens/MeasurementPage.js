@@ -12,7 +12,7 @@ import {
   Tabs,
   TabHeading
 } from 'native-base';
-import ChartComponent from './ChartScreen';
+import ChartScreen from './ChartScreen';
 import HeaderComponent from '../components/HeaderComponent';
 const data = {
   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -34,7 +34,7 @@ export default class MeasurementPage extends Component {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={'Measure'} {...this.props} />
-        <Tabs tabBarUnderlineStyle={{ backgroundColor: '#eee', height: 1 }}>
+        <Tabs tabBarUnderlineStyle={{ backgroundColor: '#bbb', height: 1 }}>
           <Tab
             style={{ backgroundColor: '#1f3954' }}
             heading={
@@ -42,7 +42,6 @@ export default class MeasurementPage extends Component {
                 style={{
                   backgroundColor: '#1f3954'
                 }}
-                activeTabStyle={{ borderBottomColor: 'red' }}
               >
                 <Text
                   style={{
@@ -57,25 +56,29 @@ export default class MeasurementPage extends Component {
             }
           >
             <Content>
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#DD5144"
                 name="High Blood Pressure"
                 GradientFrom="#DD5144"
                 GradientTo="#a82216"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#b38b27"
                 name="Sugar Taken"
                 GradientFrom="#b38b27"
                 GradientTo="#946d0d"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
                 name="Steps"
+                dividerColor="#6e61a8"
                 GradientFrom="#6e61a8"
                 GradientTo="#453687"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#35652c"
                 name="Working+Running Distance"
                 GradientFrom="#35652c"
                 GradientTo="#163d0f"
@@ -103,25 +106,29 @@ export default class MeasurementPage extends Component {
             }
           >
             <Content>
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#DD5144"
                 name="High Blood Pressure"
                 GradientFrom="#DD5144"
                 GradientTo="#a82216"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#b38b27"
                 name="Sugar Taken"
                 GradientFrom="#b38b27"
                 GradientTo="#946d0d"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
                 name="Steps"
+                dividerColor="#6e61a8"
                 GradientFrom="#6e61a8"
                 GradientTo="#453687"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#35652c"
                 name="Working+Running Distance"
                 GradientFrom="#35652c"
                 GradientTo="#163d0f"
@@ -148,25 +155,29 @@ export default class MeasurementPage extends Component {
             }
           >
             <Content>
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#DD5144"
                 name="High Blood Pressure"
                 GradientFrom="#DD5144"
                 GradientTo="#a82216"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#b38b27"
                 name="Sugar Taken"
                 GradientFrom="#b38b27"
                 GradientTo="#946d0d"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
                 name="Steps"
+                dividerColor="#6e61a8"
                 GradientFrom="#6e61a8"
                 GradientTo="#453687"
                 data={data}
               />
-              <ChartComponent
+              <ChartScreen
+                dividerColor="#35652c"
                 name="Working+Running Distance"
                 GradientFrom="#35652c"
                 GradientTo="#163d0f"

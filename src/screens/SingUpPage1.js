@@ -106,7 +106,7 @@ export default class SignUpPage1 extends Component {
                 <Thumbnail
                   style={{ marginLeft: 30, top: -19 }}
                   large
-                  source={require('../../assets/images.png')}
+                  source={require('../../assets/download.png')}
                 />
               ) : (
                 <Thumbnail

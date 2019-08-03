@@ -59,10 +59,10 @@ class PasswordChangePage extends Component {
           <Button
             block
             rounded
-            // bordered
+            onPress={() => this.props.navigation.navigate('Setting')}
             success
             style={{
-              marginTop: 30,
+              marginTop: 40,
               marginLeft: 10,
               marginRight: 10
               //  borderColor: '#fff'
