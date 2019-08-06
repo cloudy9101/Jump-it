@@ -12,14 +12,17 @@ import {
   Toast,
   Icon
 } from 'native-base';
+
 import KeyboardShift from '../components/KeyboardShift';
 import { connect } from 'react-redux';
-import { login } from '../redux/actions';
+import { login, findUseInfo } from '../redux/actions';
 import ValidationUtil from '../utils/ValidationUtil';
 import AsyncStorage from '@react-native-community/async-storage';
 export class SignInPage extends Component {
   constructor(props) {
     super(props);
+    this.textInput1 = React.createRef();
+    this.textInput2 = React.createRef();
     this.state = {
       email: '',
       password: ''
@@ -33,7 +36,7 @@ export class SignInPage extends Component {
         text: 'All Fields Are Required..',
         buttonText: 'Cancel',
         type: 'danger',
-        duration: 2500
+        duration: 2000
       });
       return;
     }
@@ -42,14 +45,17 @@ export class SignInPage extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.users.isFinished) {
       AsyncStorage.setItem('token', nextProps.users.token);
+      this.props.findUseInfo(nextProps.users.token);
       this.props.navigation.navigate('home');
     } else {
       Toast.show({
         text: nextProps.users.error,
         buttonText: 'Cancel',
         type: 'danger',
-        duration: 250
+        duration: 2000
       });
+      this.textInput2.current._root.clear();
+      this.textInput1.current._root.clear();
     }
   }
 
@@ -90,6 +96,7 @@ export class SignInPage extends Component {
                 Email
               </Label>
               <Input
+                ref={this.textInput1}
                 style={{ color: '#ffffff', flex: 1, fontSize: 16 }}
                 onChangeText={text => this.setState({ email: text })}
               />
@@ -113,6 +120,7 @@ export class SignInPage extends Component {
                 Password
               </Label>
               <Input
+                ref={this.textInput2}
                 style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
@@ -177,7 +185,7 @@ export class SignInPage extends Component {
 const mapStateToProps = state => ({
   users: state.users
 });
-const mapDispatchToProps = { login };
+const mapDispatchToProps = { login, findUseInfo };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

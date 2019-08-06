@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { register } from '../redux/actions';
+import { register, findUseInfo } from '../redux/actions';
 import { UserHeightData, UserWeightData } from '../commons/UserData';
 import {
   Container,
@@ -46,7 +46,9 @@ class SignUpPage2 extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.users.isFinished) {
-      AsyncStorage.setItem('token', JSON.stringify(nextProps.users.token));
+      AsyncStorage.setItem('token', nextProps.users.token);
+      
+      this.props.findUseInfo(nextProps.users.token);
 
       setTimeout(() => {
         this.props.navigation.navigate('home');
@@ -56,7 +58,7 @@ class SignUpPage2 extends Component {
         text: nextProps.users.error,
         buttonText: 'Cancel',
         type: 'danger',
-        duration: 2500
+        duration: 2600
       });
     }
   }
@@ -147,19 +149,16 @@ class SignUpPage2 extends Component {
           <Button
             block
             rounded
-            // bordered
             onPress={this.btnHandler}
             success
             style={{
               marginTop: 30,
               marginLeft: 10,
               marginRight: 10
-              //  borderColor: '#fff'
             }}
           >
             <Text
               style={{
-                // color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18
               }}
@@ -168,12 +167,12 @@ class SignUpPage2 extends Component {
             </Text>
           </Button>
         </Form>
-        {!this.props.users.isFinished ? null : (
+        {/* {!this.props.users.isFinished ? null : (
           <Spinner
             color="#ffffff"
             style={{ position: 'absolute', top: '2%', left: '46%' }}
           />
-        )}
+        )} */}
       </Container>
     );
   }
@@ -181,7 +180,7 @@ class SignUpPage2 extends Component {
 const mapStateToProps = state => ({
   users: state.users
 });
-const mapDispatchToProps = { register };
+const mapDispatchToProps = { register, findUseInfo };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

@@ -55,7 +55,7 @@ export default class MeasurementPage extends Component {
               </TabHeading>
             }
           >
-            <Content>
+            <Content style={{ marginTop: 1 }}>
               <ChartScreen
                 dividerColor="#DD5144"
                 name="High Blood Pressure"
