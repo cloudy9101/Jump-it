@@ -107,7 +107,7 @@ const BottomTabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor, focusd }) => (
           <MaterialCommunityIcons
-            name="food"
+            name="food-apple"
             size={28}
             style={{ color: tintColor }}
           />
