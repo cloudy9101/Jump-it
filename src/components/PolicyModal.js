@@ -11,7 +11,7 @@ function PolicyModal(props) {
       animationInTiming={360}
     >
       <Content>
-        <View style={{ marginTop: '15%' }}>
+        <View style={{ marginTop: '10%' }}>
           <View style={{ alignItems: 'flex-end' }}>
             <Icon
               name="cross"

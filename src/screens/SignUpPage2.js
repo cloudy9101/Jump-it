@@ -44,7 +44,6 @@ class SignUpPage2 extends Component {
     });
   }
   modalHandler() {
-    console.log('ddddd');
     this.setState({
       isVisible: !this.state.isVisible
     });
