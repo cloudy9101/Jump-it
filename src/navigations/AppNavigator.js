@@ -27,6 +27,8 @@ import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
 
+import PasswordChangePage from '../screens/PasswordChangePage';
+
 import AuthLoading from '../screens/AuthLoading';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
@@ -37,32 +39,32 @@ const PlanSwitchNavigator = createSwitchNavigator({
   }
 });
 
-const WorkoutStackNavigator = createStackNavigator(
-  {
-    Workouts: {
-      screen: WorkoutPage,
-      navigationOptions: {
-        header: null
-      }
-    }
-    // WorkoutDetail: {
-    //   screen: WorkOutDetailPage,
-    //   navigationOptions: ({ navigation }) => ({
-    //     title: `${navigation.state.routeName}`,
-    //     headerStyle: {
-    //       backgroundColor: '#1f3954'
-    //     },
+// const WorkoutStackNavigator = createStackNavigator(
+//   {
+//     Workouts: {
+//       screen: WorkoutPage,
+//       navigationOptions: {
+//         header: null
+//       }
+//     }
+//     // WorkoutDetail: {
+//     //   screen: WorkOutDetailPage,
+//     //   navigationOptions: ({ navigation }) => ({
+//     //     title: `${navigation.state.routeName}`,
+//     //     headerStyle: {
+//     //       backgroundColor: '#1f3954'
+//     //     },
 
-    //     headerTintColor: '#fffff'
-    //   })
-    // }
-  },
-  {
-    defaultNavigationOptions: () => ({
-      headerBackTitle: null
-    })
-  }
-);
+//     //     headerTintColor: '#fffff'
+//     //   })
+//     // }
+//   },
+//   {
+//     defaultNavigationOptions: () => ({
+//       headerBackTitle: null
+//     })
+//   }
+// );
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
@@ -107,7 +109,7 @@ const BottomTabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor, focusd }) => (
           <MaterialCommunityIcons
-            name="food"
+            name="food-apple"
             size={28}
             style={{ color: tintColor }}
           />
@@ -116,6 +118,7 @@ const BottomTabNavigator = createBottomTabNavigator(
     }
   },
   {
+    lazy: true,
     tabBarOptions: {
       activeTintColor: '#ffffff',
       style: {
@@ -134,6 +137,36 @@ const BottomTabNavigator = createBottomTabNavigator(
   }
 );
 
+const SettingNavigator = createStackNavigator(
+  {
+    Setting: {
+      screen: SettingPage,
+      navigationOptions: ({ navigation }) => ({
+        header: null
+      })
+    },
+    PasswordChange: {
+      screen: PasswordChangePage,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Setting'
+      })
+    }
+  },
+  {
+    defaultNavigationOptions: () => ({
+      headerBackTitle: null,
+      headerTintColor: '#ffffff',
+      headerStyle: {
+        backgroundColor: '#1f3954',
+        color: '#ffffff'
+      },
+
+      headerTitleStyle: {
+        fontFamily: 'Georgia'
+      }
+    })
+  }
+);
 const DrawerNavigator = createDrawerNavigator(
   {
     Home: {
@@ -159,7 +192,7 @@ const DrawerNavigator = createDrawerNavigator(
       }
     },
     Setting: {
-      screen: SettingPage,
+      screen: SettingNavigator,
       navigationOptions: {
         drawerLabel: 'Setting',
         drawerIcon: ({ tintColor }) => (
@@ -180,9 +213,11 @@ const DrawerNavigator = createDrawerNavigator(
   {
     initialRouteName: 'Home',
     drawerWidth: 200,
+    drawerBackgroundColor: 'transparent',
     contentOptions: {
       activeTintColor: '#ffffff',
       inactiveTintColor: '#8c8c8c',
+
       itemsContainerStyle: {
         backgroundColor: '#1f3954',
         flex: 1
@@ -192,6 +227,7 @@ const DrawerNavigator = createDrawerNavigator(
       },
       activeBackgroundColor: '#315574'
     },
+
     contentComponent: DrawerItemsComponent
   }
 );

@@ -2,7 +2,6 @@ import React from 'react';
 import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import PlanPageTitle from '../components/PlanPageTitle';
 export default (HeaderComponent = props => {
-  console.log();
   return (
     <Header style={{ backgroundColor: '#1f3954' }}>
       <Left>

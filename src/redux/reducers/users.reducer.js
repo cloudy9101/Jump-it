@@ -3,7 +3,8 @@ import {
   ERROR_MSG,
   LOG_OUT,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  GET_USER_INFO
 } from '../actiontypes';
 
 const initState = {
@@ -33,6 +34,13 @@ export const users = (state = initState, action) => {
       return { token: action.token, isFinished: true };
     case LOGIN_FAIL:
       return { error: action.error };
+    case GET_USER_INFO:
+      return {
+        ...action.payload,
+        isFinished: true,
+        token: action.token
+      };
+
     default:
       return state;
   }

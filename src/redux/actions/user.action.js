@@ -3,9 +3,10 @@ import {
   SIGN_UP,
   LOG_OUT,
   ERROR_MSG,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  GET_USER_INFO
 } from '../actiontypes';
-import { post } from '../../API';
+import { post, get } from '../../API';
 
 function registerFailure(error) {
   return { type: ERROR_MSG, error };
@@ -20,8 +21,12 @@ function loginSuccess(token) {
 function loginFail(error) {
   return { type: LOGIN_FAIL, error };
 }
-export const logout = () => ({ type: LOG_OUT });
 
+function getUserInfo(payload) {
+  return { type: GET_USER_INFO, payload };
+}
+
+export const logout = () => ({ type: LOG_OUT });
 export const register = userInfo => {
   return dispatch => {
     post('/api/users/signup', userInfo).then(res => {
@@ -33,6 +38,7 @@ export const register = userInfo => {
     });
   };
 };
+
 export const login = userInfo => {
   return dispatch => {
     post('/api/users/signin', userInfo).then(res => {
@@ -40,6 +46,19 @@ export const login = userInfo => {
         dispatch(loginSuccess(res.data.token));
       } else {
         dispatch(loginFail(res));
+      }
+    });
+  };
+};
+
+export const findUseInfo = token => {
+  return dispatch => {
+    get('/api/users/find', token).then(res => {
+      console.log(res, 'ddddd');
+      if (res.code === 0) {
+        dispatch(getUserInfo(res.data));
+      } else {
+        console.log('wrong ......');
       }
     });
   };

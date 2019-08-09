@@ -12,14 +12,17 @@ import {
   Toast,
   Icon
 } from 'native-base';
+
 import KeyboardShift from '../components/KeyboardShift';
 import { connect } from 'react-redux';
-import { login } from '../redux/actions';
+import { login, findUseInfo } from '../redux/actions';
 import ValidationUtil from '../utils/ValidationUtil';
 import AsyncStorage from '@react-native-community/async-storage';
 export class SignInPage extends Component {
   constructor(props) {
     super(props);
+    this.textInput1 = React.createRef();
+    this.textInput2 = React.createRef();
     this.state = {
       email: '',
       password: ''
@@ -33,7 +36,7 @@ export class SignInPage extends Component {
         text: 'All Fields Are Required..',
         buttonText: 'Cancel',
         type: 'danger',
-        duration: 2500
+        duration: 2000
       });
       return;
     }
@@ -42,14 +45,17 @@ export class SignInPage extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.users.isFinished) {
       AsyncStorage.setItem('token', nextProps.users.token);
+      this.props.findUseInfo(nextProps.users.token);
       this.props.navigation.navigate('home');
     } else {
       Toast.show({
         text: nextProps.users.error,
         buttonText: 'Cancel',
         type: 'danger',
-        duration: 2500
+        duration: 2000
       });
+      this.textInput2.current._root.clear();
+      this.textInput1.current._root.clear();
     }
   }
 
@@ -61,14 +67,14 @@ export class SignInPage extends Component {
             <View
               style={{
                 alignItems: 'center',
-                margin: 10
+                height: '40%'
               }}
             >
               <Image
-                source={require('../../assets/jump.jpg')}
+                source={require('../../assets/jump.png')}
                 style={{
-                  width: '90%',
-                  borderRadius: 50
+                  width: '100%',
+                  height: '100%'
                 }}
               />
             </View>
@@ -90,6 +96,7 @@ export class SignInPage extends Component {
                 Email
               </Label>
               <Input
+                ref={this.textInput1}
                 style={{ color: '#ffffff', flex: 1, fontSize: 16 }}
                 onChangeText={text => this.setState({ email: text })}
               />
@@ -113,28 +120,59 @@ export class SignInPage extends Component {
                 Password
               </Label>
               <Input
+                ref={this.textInput2}
                 style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
               />
             </Item>
-
+            <Button
+              block
+              rounded
+              bordered
+              onPress={this.btnHandler}
+              style={{
+                marginTop: 30,
+                marginLeft: 15,
+                marginRight: 15,
+                borderColor: '#fff'
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontFamily: 'Helvetica',
+                  color: '#fff'
+                }}
+              >
+                Sign In
+              </Text>
+            </Button>
             <View style={styles.buttonStyle}>
               <Button
-                bordered
+                transparent
                 onPress={() => {
                   this.props.navigation.navigate('SignUp');
                 }}
                 light
+                style={{ borderWidth: 0 }}
               >
-                <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
+                <Text
+                  style={{
+                    fontSize: 19,
+                    fontFamily: 'Helvetica',
+                    color: '#58a4d1'
+                  }}
+                >
+                  <Icon
+                    name="registered"
+                    type="FontAwesome"
+                    style={{
+                      fontSize: 20,
+                      color: '#58a4d1'
+                    }}
+                  />
                   Sign Up
-                </Text>
-              </Button>
-
-              <Button bordered onPress={this.btnHandler} light>
-                <Text style={{ fontSize: 18, fontFamily: 'Helvetica' }}>
-                  Sign In
                 </Text>
               </Button>
             </View>
@@ -147,7 +185,7 @@ export class SignInPage extends Component {
 const mapStateToProps = state => ({
   users: state.users
 });
-const mapDispatchToProps = { login };
+const mapDispatchToProps = { login, findUseInfo };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -162,7 +200,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     flexDirection: 'row',
-    marginTop: 20,
-    justifyContent: 'space-around'
+    marginTop: 115,
+    justifyContent: 'center'
   }
 });

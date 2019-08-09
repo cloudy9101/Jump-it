@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { Button, Text } from 'native-base';
 
 export default class PlanPageTitle extends Component {
@@ -13,7 +13,6 @@ export default class PlanPageTitle extends Component {
   }
 
   pressHandler(index) {
-    this.setState({ btnIndex: index });
     this.props.navigation.navigate(this.routes[index]);
   }
 
@@ -27,7 +26,7 @@ export default class PlanPageTitle extends Component {
           first
           active
           style={{
-            width: 85,
+            width: Platform.OS === 'ios' ? 85 : null,
             fontSize: 18,
             borderRadius: 0,
             backgroundColor: '#315574',
@@ -44,8 +43,7 @@ export default class PlanPageTitle extends Component {
           bordered
           last
           style={{
-            width: 85,
-            //marginRight: -1,
+            width: Platform.OS === 'ios' ? 85 : null,
             borderRadius: 0,
             backgroundColor: '#315574'
           }}
