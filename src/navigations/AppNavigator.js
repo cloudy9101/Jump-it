@@ -26,7 +26,7 @@ import SignInPage from '../screens/SignInPage';
 import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
-import WorkOutDetailPage from '../screens/WorkOutDetailPage';
+
 import AuthLoading from '../screens/AuthLoading';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
@@ -79,7 +79,7 @@ const BottomTabNavigator = createBottomTabNavigator(
       }
     },
     Workouts: {
-      screen: WorkoutStackNavigator,
+      screen: WorkoutPage,
       navigationOptions: {
         tabBarIcon: ({ tintColor, focusd }) => (
           <MaterialCommunityIcons
