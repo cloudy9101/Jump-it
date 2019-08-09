@@ -68,7 +68,7 @@ export default class ProfilePage extends Component {
   render() {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
-        <HeaderComponent titleName="Profile" {...this.props} />
+        {/* <HeaderComponent titleName="Profile" {...this.props} /> */}
         <Content>
           <Form style={{ marginTop: 40 }}>
             <Item inlineLabel style={{ margin: 10 }}>

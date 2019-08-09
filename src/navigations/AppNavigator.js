@@ -27,7 +27,7 @@ import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
 import PasswordChangePage from '../screens/PasswordChangePage';
-
+import AboutPage from '../screens/AboutPage';
 import AuthLoading from '../screens/AuthLoading';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
@@ -144,10 +144,16 @@ const SettingNavigator = createStackNavigator(
         header: null
       })
     },
+    Profile: {
+      screen: ProfilePage,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Profile'
+      })
+    },
     PasswordChange: {
       screen: PasswordChangePage,
       navigationOptions: ({ navigation }) => ({
-        title: 'Setting'
+        title: 'Password'
       })
     }
   },
@@ -181,21 +187,22 @@ const DrawerNavigator = createDrawerNavigator(
         )
       }
     },
-    Profile: {
-      screen: ProfilePage,
-      navigationOptions: {
-        drawerLabel: 'Profile',
-        drawerIcon: ({ tintColor }) => (
-          <AntDesign name="profile" size={25} style={{ color: tintColor }} />
-        )
-      }
-    },
+
     Setting: {
       screen: SettingNavigator,
       navigationOptions: {
         drawerLabel: 'Setting',
         drawerIcon: ({ tintColor }) => (
           <AntDesign name="setting" size={25} style={{ color: tintColor }} />
+        )
+      }
+    },
+    About: {
+      screen: AboutPage,
+      navigationOptions: {
+        drawerLabel: 'About',
+        drawerIcon: ({ tintColor }) => (
+          <AntDesign name="profile" size={25} style={{ color: tintColor }} />
         )
       }
     },
