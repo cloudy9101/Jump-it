@@ -27,6 +27,7 @@ import SingUpPage1 from '../screens/SingUpPage1';
 import SignUpPage from '../screens/SignUpPage';
 import SignUpPage2 from '../screens/SignUpPage2';
 import PasswordChangePage from '../screens/PasswordChangePage';
+
 import AuthLoading from '../screens/AuthLoading';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
