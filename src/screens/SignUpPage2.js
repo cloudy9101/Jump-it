@@ -29,6 +29,18 @@ class SignUpPage2 extends Component {
     };
     this.btnHandler = this.btnHandler.bind(this);
     this.handleHeightAndWeight = this.handleHeightAndWeight.bind(this);
+    this.handleCheckBox = this.handleCheckBox.bind(this);
+    this.modalHandler = this.modalHandler.bind(this);
+  }
+  handleCheckBox() {
+    this.setState({
+      isCheck: !this.state.isCheck
+    });
+  }
+  modalHandler() {
+    this.setState({
+      isVisible: !this.state.isVisible
+    });
   }
 
   async btnHandler() {
@@ -47,7 +59,7 @@ class SignUpPage2 extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.users.isFinished) {
       AsyncStorage.setItem('token', nextProps.users.token);
-      
+
       this.props.findUseInfo(nextProps.users.token);
 
       setTimeout(() => {
