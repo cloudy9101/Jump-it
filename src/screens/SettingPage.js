@@ -34,6 +34,25 @@ export class SettingPage extends Component {
                 color: '#ffffff'
               }}
             >
+              Profile
+            </Text>
+            <Icon
+              name="ios-arrow-forward"
+              type="Ionicons"
+              style={{
+                color: '#ffffff'
+              }}
+              onPress={() => this.props.navigation.navigate('Profile')}
+            />
+          </ListItem>
+          <ListItem style={{ justifyContent: 'space-between' }}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontFamily: 'Helvetica',
+                color: '#ffffff'
+              }}
+            >
               Change Password
             </Text>
             <Icon
