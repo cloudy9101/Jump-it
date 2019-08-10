@@ -81,12 +81,7 @@ class ProfilePage extends Component {
         },
         token
       );
-      Toast.show({
-        text: 'Success...',
-        buttonText: 'Cancel',
-        type: 'danger',
-        duration: 2000
-      });
+      this.props.navigation.goBack();
     });
   }
   blurHandler() {
