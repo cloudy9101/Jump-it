@@ -14,7 +14,6 @@ export class AuthLoading extends Component {
     const userToken = await AsyncStorage.getItem('token');
 
     if (userToken) {
-      console.log(userToken);
       await this.props.findUseInfo(userToken);
       this.props.navigation.navigate('home');
     } else {

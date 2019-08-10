@@ -24,3 +24,16 @@ export function get(path, token = '') {
     }
   }).then(res => res.json());
 }
+
+export function put(path, body, token = '') {
+  return fetch(GATEWAY + path, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token
+    },
+    body: JSON.stringify(body)
+  })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error));
+}

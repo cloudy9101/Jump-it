@@ -4,7 +4,9 @@ import {
   LOG_OUT,
   ERROR_MSG,
   LOGIN_FAIL,
-  GET_USER_INFO
+  GET_USER_INFO,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_FAIL
 } from '../actiontypes';
 import { post, get } from '../../API';
 
@@ -54,7 +56,6 @@ export const login = userInfo => {
 export const findUseInfo = token => {
   return dispatch => {
     get('/api/users/find', token).then(res => {
-      console.log(res, 'ddddd');
       if (res.code === 0) {
         dispatch(getUserInfo(res.data));
       } else {

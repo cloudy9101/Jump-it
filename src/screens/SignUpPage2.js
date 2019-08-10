@@ -179,13 +179,14 @@ class SignUpPage2 extends Component {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              marginTop: 5
+              marginTop: 10
             }}
           >
             <CheckBox
               checked={this.state.isCheck}
               style={{ marginRight: 15 }}
               onPress={this.handleCheckBox}
+              //color="#ffffff"
             />
 
             <Text

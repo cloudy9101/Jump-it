@@ -4,7 +4,9 @@ import {
   LOG_OUT,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  GET_USER_INFO
+  GET_USER_INFO,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_FAIL
 } from '../actiontypes';
 
 const initState = {
@@ -37,8 +39,7 @@ export const users = (state = initState, action) => {
     case GET_USER_INFO:
       return {
         ...action.payload,
-        isFinished: true,
-        token: action.token
+        isFinished: true
       };
 
     default:
