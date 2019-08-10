@@ -10,6 +10,9 @@ import {
   Button,
   Toast
 } from 'native-base';
+import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
+import { changePassword } from '../redux/actions';
 import ValidationUtil from '../utils/ValidationUtil';
 class PasswordChangePage extends Component {
   constructor(props) {
@@ -53,6 +56,26 @@ class PasswordChangePage extends Component {
         duration: 2000
       });
       return;
+    }
+    AsyncStorage.getItem('token').then(token => {
+      this.props.changePassword({ password, newPassword }, token);
+    });
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.password.isValid) {
+      Toast.show({
+        text: nextProps.password.msg,
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+    } else {
+      Toast.show({
+        text: nextProps.password.msg,
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
     }
   }
   render() {
@@ -133,5 +156,11 @@ class PasswordChangePage extends Component {
     );
   }
 }
-
-export default PasswordChangePage;
+const mapStateToProps = state => ({
+  password: state.userPassword
+});
+const mapDispatchToProps = { changePassword };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PasswordChangePage);

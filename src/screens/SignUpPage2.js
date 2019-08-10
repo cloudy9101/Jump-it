@@ -158,6 +158,33 @@ class SignUpPage2 extends Component {
               handleHeightAndWeight={this.handleHeightAndWeight}
             />
           </Item>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 10
+            }}
+          >
+            <CheckBox
+              checked={this.state.isCheck}
+              style={{ marginRight: 15 }}
+              onPress={this.handleCheckBox}
+              //color="#ffffff"
+            />
+
+            <Text
+              style={{
+                fontSize: 19,
+                fontFamily: 'Helvetica',
+                color: '#58a4d1'
+              }}
+              onPress={this.modalHandler}
+            >
+              Accept policy
+            </Text>
+          </View>
           <Button
             block
             rounded
