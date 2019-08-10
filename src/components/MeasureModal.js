@@ -74,8 +74,8 @@ class MeasureModal extends Component {
       <Modal
         isVisible={this.props.isVisible}
         backdropOpacity={0.8}
-        animationInTiming={360}
-        animationOutTiming={400}
+        animationOutTiming={500}
+        animationInTiming={700}
       >
         <Content>
           <View style={{ marginTop: '10%' }}>

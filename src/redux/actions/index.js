@@ -1,4 +1,4 @@
-import { register, login, findUseInfo } from './user.action';
+import { register, login, findUseInfo, updateUser } from './user.action';
 import { changePassword } from './password.action';
 import { fetchExercises, fetchDiets, addDiet } from './plan.action';
 export {
@@ -8,5 +8,6 @@ export {
   fetchDiets,
   addDiet,
   findUseInfo,
-  changePassword
+  changePassword,
+  updateUser
 };

@@ -55,7 +55,7 @@ export default class SignUpPage1 extends Component {
     ImagePicker.showImagePicker(options, response => {
       if (response.uri) {
         let source = { uri: response.uri };
-        console.log(response.uri);
+
         this.setState({
           avator: source
         });
