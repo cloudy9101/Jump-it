@@ -6,7 +6,8 @@ import {
   LOGIN_FAIL,
   GET_USER_INFO,
   CHANGE_PASSWORD,
-  CHANGE_PASSWORD_FAIL
+  CHANGE_PASSWORD_FAIL,
+  UPDATE_USER
 } from '../actiontypes';
 
 const initState = {
@@ -41,7 +42,11 @@ export const users = (state = initState, action) => {
         ...action.payload,
         isFinished: true
       };
-
+    case UPDATE_USER:
+      return {
+        ...action.payload,
+        isFinished: true
+      };
     default:
       return state;
   }

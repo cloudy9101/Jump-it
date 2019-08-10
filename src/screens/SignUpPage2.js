@@ -44,7 +44,17 @@ class SignUpPage2 extends Component {
   }
 
   async btnHandler() {
-    const { weight, height, date } = this.state;
+    const { weight, height, date, isCheck } = this.state;
+
+    if (!isCheck) {
+      Toast.show({
+        text: 'You need accept policy',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+      return;
+    }
     const timestamp = moment(date, 'DD-MM-YYYY').toDate();
 
     let payload = await AsyncStorage.getItem('payload');
@@ -77,11 +87,13 @@ class SignUpPage2 extends Component {
   handleHeightAndWeight(value) {
     if (value.trim().includes('cm')) {
       this.setState({
-        height: value
+        height: parseInt(value),
+        isShow: true
       });
     } else {
       this.setState({
-        weight: value
+        weight: parseInt(value),
+        isShow: true
       });
     }
   }

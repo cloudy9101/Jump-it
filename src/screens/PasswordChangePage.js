@@ -63,12 +63,7 @@ class PasswordChangePage extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.password.isValid) {
-      Toast.show({
-        text: nextProps.password.msg,
-        buttonText: 'Cancel',
-        type: 'danger',
-        duration: 2000
-      });
+      this.props.navigation.goBack();
     } else {
       Toast.show({
         text: nextProps.password.msg,
