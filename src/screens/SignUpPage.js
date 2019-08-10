@@ -66,7 +66,7 @@ export default class SignUpPage extends Component {
     // }
     // if (!ValidationUtil.passwordMatch(password, repassword)) {
     //   Toast.show({
-    //     text: 'Use The Same Passwords',
+    //     text: 'Password Not Matched',
     //     buttonText: 'Cancel',
     //     type: 'danger',
     //     duration: 2500

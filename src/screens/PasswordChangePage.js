@@ -7,9 +7,54 @@ import {
   Label,
   Input,
   Icon,
-  Button
+  Button,
+  Toast
 } from 'native-base';
+import ValidationUtil from '../utils/ValidationUtil';
 class PasswordChangePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      password: '',
+      newPassword: '',
+      rePassword: ''
+    };
+    this.btnHandler = this.btnHandler.bind(this);
+  }
+  btnHandler() {
+    const { password, newPassword, rePassword } = this.state;
+    if (
+      ValidationUtil.isEmpty(password) ||
+      ValidationUtil.isEmpty(newPassword) ||
+      ValidationUtil.isEmpty(rePassword)
+    ) {
+      Toast.show({
+        text: 'All Fields Are Required..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+      return;
+    }
+    if (ValidationUtil.validPassword(newPassword)) {
+      Toast.show({
+        text: 'Minimum 8 Characters',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+      return;
+    }
+    if (!ValidationUtil.passwordMatch(newPassword, rePassword)) {
+      Toast.show({
+        text: 'Password Not Matched',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+      return;
+    }
+  }
   render() {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
@@ -24,7 +69,10 @@ class PasswordChangePage extends Component {
             >
               Password
             </Label>
-            <Input style={{ flex: 1, fontSize: 16, color: '#ffffff' }} />
+            <Input
+              onChangeText={text => this.setState({ password: text })}
+              style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
+            />
           </Item>
           <Item floatingLabel>
             <Label
@@ -37,6 +85,7 @@ class PasswordChangePage extends Component {
               New Password
             </Label>
             <Input
+              onChangeText={text => this.setState({ newPassword: text })}
               style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
               secureTextEntry={true}
             />
@@ -52,6 +101,7 @@ class PasswordChangePage extends Component {
               Confirm Password
             </Label>
             <Input
+              onChangeText={text => this.setState({ rePassword: text })}
               style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
               secureTextEntry={true}
             />
@@ -59,7 +109,7 @@ class PasswordChangePage extends Component {
           <Button
             block
             rounded
-            onPress={() => this.props.navigation.navigate('Setting')}
+            onPress={this.btnHandler}
             success
             style={{
               marginTop: 40,
