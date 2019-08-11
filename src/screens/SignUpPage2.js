@@ -199,7 +199,7 @@ class SignUpPage2 extends Component {
               }}
               onPress={this.modalHandler}
             >
-              Accept policy
+              Terms of Conditionst
             </Text>
           </View>
           <Button
