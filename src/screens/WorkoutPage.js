@@ -27,19 +27,105 @@ class WorkoutPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date()
+      date: new Date(),
+      isToday: true
     };
 
     this.dateSelected = this.dateSelected.bind(this);
   }
   dateSelected(date) {
     const newDate = date.toDate();
-    this.setState({ date: newDate });
+    const today = new Date();
+    if (newDate > today) {
+      this.setState({
+        isToday: false
+      });
+      return;
+    }
+    this.setState({ date: newDate, isToday: true });
     // AsyncStorage.getItem('token').then(token => {
     //   this.props.fetchExercises(newDate, token);
     // });
   }
-
+  renderNodata() {
+    return (
+      <View style={{ marginTop: 30 }}>
+        <Text
+          style={{
+            color: '#ffffff',
+            fontFamily: 'Verdana',
+            fontSize: 35,
+            paddingLeft: 15
+          }}
+        >
+          No data
+        </Text>
+      </View>
+    );
+  }
+  renderData() {
+    return (
+      <>
+        <View style={{ marginTop: 20 }}>
+          <Text
+            style={{
+              color: '#ffffff',
+              fontFamily: 'Verdana',
+              fontSize: 22,
+              paddingLeft: 8
+            }}
+          >
+            Activity
+          </Text>
+        </View>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%'
+          }}
+        >
+          <WorkoutCard
+            bkColor={'#35652c'}
+            name={'Working+Running Distance'}
+            num={
+              Data.distance
+                ? (parseInt(Data.distance.value) / 1000).toFixed(1)
+                : '5.8'
+            }
+            unit={'km'}
+            time={
+              Data.distance
+                ? moment(Date.parse(Data.distance.endDate)).format('HH:mm')
+                : '19:00'
+            }
+          />
+          <WorkoutCard
+            bkColor={'#6e61a8'}
+            name={'Steps'}
+            num={Data.step ? Data.step.value : '5500'}
+            unit={'steps'}
+            time={
+              Data.step
+                ? moment(Date.parse(Data.step.endDate)).format('HH:mm')
+                : '19:00'
+            }
+          />
+          <WorkoutCard
+            bkColor={'#3d7ea4'}
+            name={'Flights Climebed'}
+            num={Data.flightsClimed ? Data.flightsClimed.value : '5'}
+            unit={'floor'}
+            time={
+              Data.flightsClimed
+                ? moment(Date.parse(Data.flightsClimed.endDate)).format('HH:mm')
+                : '19:00'
+            }
+          />
+        </View>
+      </>
+    );
+  }
   render() {
     const { navigation } = this.props;
 
@@ -66,65 +152,7 @@ class WorkoutPage extends Component {
           onDateSelected={this.dateSelected}
         />
         <Content>
-          <View style={{ marginTop: 20 }}>
-            <Text
-              style={{
-                color: '#ffffff',
-                fontFamily: 'Verdana',
-                fontSize: 22,
-                paddingLeft: 8
-              }}
-            >
-              Activity
-            </Text>
-          </View>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%'
-            }}
-          >
-            <WorkoutCard
-              bkColor={'#35652c'}
-              name={'Working+Running Distance'}
-              num={
-                Data.distance
-                  ? (parseInt(Data.distance.value) / 1000).toFixed(1)
-                  : '5.8'
-              }
-              unit={'km'}
-              time={
-                Data.distance
-                  ? moment(Date.parse(Data.distance.endDate)).format('HH:mm')
-                  : '19:00'
-              }
-            />
-            <WorkoutCard
-              bkColor={'#6e61a8'}
-              name={'Steps'}
-              num={Data.step ? Data.step.value : '5500'}
-              unit={'steps'}
-              time={
-                Data.step
-                  ? moment(Date.parse(Data.step.endDate)).format('HH:mm')
-                  : '19:00'
-              }
-            />
-            <WorkoutCard
-              bkColor={'#3d7ea4'}
-              name={'Flights Climebed'}
-              num={Data.flightsClimed ? Data.flightsClimed.value : '5'}
-              unit={'floor'}
-              time={
-                Data.flightsClimed
-                  ? moment(Date.parse(Data.flightsClimed.endDate)).format(
-                      'HH:mm'
-                    )
-                  : '19:00'
-              }
-            />
-          </View>
+          {this.state.isToday ? this.renderData() : this.renderNodata()}
         </Content>
       </Container>
     );

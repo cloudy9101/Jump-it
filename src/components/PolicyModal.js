@@ -33,7 +33,7 @@ function PolicyModal(props) {
                 fontWeight: 'bold'
               }}
             >
-              Policy of This app
+              Terms of Conditions
             </Text>
           </View>
           <View style={{ marginTop: '8%' }}>
@@ -44,7 +44,7 @@ function PolicyModal(props) {
                 fontSize: 19
               }}
             >
-              {'\t'}I am the modal content!
+              {'\t'}eat more
             </Text>
           </View>
         </View>
