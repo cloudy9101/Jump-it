@@ -87,13 +87,11 @@ class SignUpPage2 extends Component {
   handleHeightAndWeight(value) {
     if (value.trim().includes('cm')) {
       this.setState({
-        height: parseInt(value),
-        isShow: true
+        height: parseInt(value)
       });
     } else {
       this.setState({
-        weight: parseInt(value),
-        isShow: true
+        weight: parseInt(value)
       });
     }
   }
@@ -194,7 +192,7 @@ class SignUpPage2 extends Component {
               }}
               onPress={this.modalHandler}
             >
-              Terms of Conditionst
+              Terms of Conditions
             </Text>
           </View>
           <Button
