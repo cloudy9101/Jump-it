@@ -3,7 +3,6 @@ import {
   Container,
   Content,
   Icon,
-  Button,
   ListItem,
   Left,
   Body,
@@ -15,12 +14,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { fetchDiets, addDiet } from '../redux/actions';
 import DietPlanItem from '../components/DietPlanItem';
 import HeaderComponent from '../components/HeaderComponent';
-
-const planData = [
-  { key: 1, name: 'sugar', value: '10g' },
-  { key: 2, name: 'blood pressure', value: '120/80 mmHg' },
-  { key: 3, name: 'mediacation', value: '10g' }
-];
 
 class DietPlanPage extends Component {
   constructor(props) {
