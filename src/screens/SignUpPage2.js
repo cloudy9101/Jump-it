@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+
 import { connect } from 'react-redux';
 import { register, findUseInfo } from '../redux/actions';
 import { UserHeightData, UserWeightData } from '../commons/UserData';
@@ -13,13 +14,15 @@ import {
   Text,
   Toast,
   Spinner,
-  CheckBox
+  CheckBox,
+  Icon
 } from 'native-base';
+
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
 import HeightAndWeightPicker from '../components/HeightAndWeightPicker';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import PolicyModal from '../components/PolicyModal';
 class SignUpPage2 extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +30,7 @@ class SignUpPage2 extends Component {
       date: moment().format('DD-MM-YYYY'),
       weight: '75kg',
       height: '175cm',
+      isCheck: false,
       isVisible: false
     };
     this.btnHandler = this.btnHandler.bind(this);
@@ -44,7 +48,6 @@ class SignUpPage2 extends Component {
       isVisible: !this.state.isVisible
     });
   }
-
   async btnHandler() {
     const { weight, height, date, isCheck } = this.state;
 
@@ -218,12 +221,10 @@ class SignUpPage2 extends Component {
             </Text>
           </Button>
         </Form>
-        {/* {!this.props.users.isFinished ? null : (
-          <Spinner
-            color="#ffffff"
-            style={{ position: 'absolute', top: '2%', left: '46%' }}
-          />
-        )} */}
+        <PolicyModal
+          isVisible={this.state.isVisible}
+          modalHandler={this.modalHandler}
+        />
       </Container>
     );
   }
