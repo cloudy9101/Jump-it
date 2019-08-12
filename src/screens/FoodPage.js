@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { TextInput } from 'react-native';
 import { Container, Content, View, ListItem, Text, Icon, Button, Left, Body, Right } from 'native-base';
 import { SwipeListView } from 'react-native-swipe-list-view';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import HeaderComponent from '../components/HeaderComponent';
 import FoodItem from '../components/FoodItem';
-import { addFood, updateFoodValue, updateFoodName, deleteFood } from '../redux/actions';
+import { addFood, updateFoodValue, updateFoodName, deleteFood, fetchFoods } from '../redux/actions';
 
 class FoodPage extends Component {
   constructor(props) {
@@ -18,46 +19,57 @@ class FoodPage extends Component {
     this.deleteFood = this.deleteFood.bind(this);
   }
 
+  componentDidMount() {
+    AsyncStorage.getItem('token').then(token => {
+      this.props.fetchFoods(token);
+    });
+  }
+
   updateName(id, name) {
-    this.props.updateFoodName(id, name);
+    AsyncStorage.getItem('token').then(token => {
+      this.props.updateFoodName(token, id, name);
+    });
   }
 
   addFood() {
-    this.props.addFood(this.props.foods.data[this.props.foods.data.length - 1].id + 1, this.state.name, 0);
-    this.setState({ name: "" })
+    AsyncStorage.getItem('token').then(token => {
+      this.props.addFood(token, this.state.name, 0);
+      this.setState({ name: "" })
+    });
   }
 
   updateValue(id, value) {
     if(value < 0) { return; }
-    this.props.updateFoodValue(id, value);
+    AsyncStorage.getItem('token').then(token => {
+      this.props.updateFoodValue(token, id, value);
+    });
   }
 
   deleteFood(id) {
-    this.props.deleteFood(id);
+    AsyncStorage.getItem('token').then(token => {
+      this.props.deleteFood(token, id);
+    });
   }
 
   render() {
     const { navigation } = this.props;
-    const items = this.props.foods.data.sort((a, b) => { return a.id > b.id }).map((item) => {
-      return <FoodItem key={item.id} name={item.name} value={item.value} nameChangeHandler={(name) => this.updateName(item.id, name)} valueChangeHandler={(value) => this.updateValue(item.id, value)} />;
-    });
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
         <Content>
           <SwipeListView
-            data={this.props.foods.data.sort((a, b) => { return a.id > b.id })}
+            data={this.props.foods.data.sort((a, b) => { return a._id > b._id })}
             renderItem={ (data) => {
               const item = data.item;
               return(
                 <View style={styles.rowFront}>
-                  <FoodItem key={item.id} name={item.name} value={item.value} nameChangeHandler={(name) => this.updateName(item.id, name)} valueChangeHandler={(value) => this.updateValue(item.id, value)} />
+                  <FoodItem key={item._id} name={item.name} value={item.value} nameChangeHandler={(name) => this.updateName(item._id, name)} valueChangeHandler={(value) => this.updateValue(item._id, value)} />
                 </View>
               )
             }}
             renderHiddenItem={ (data, rowMap) => (
               <View style={styles.rowBack}>
-                <Button onPress={() => this.deleteFood(data.item.id)} style={{ backgroundColor: '#ff6666' }}>
+                <Button onPress={() => this.deleteFood(data.item._id)} style={{ backgroundColor: '#ff6666' }}>
                   <Icon name="trash" />
                 </Button>
               </View>
@@ -104,7 +116,7 @@ const styles = {
 const mapStateToProps = state => ({
   foods: state.foods
 });
-const mapDispatchToProps = { addFood, updateFoodValue, updateFoodName, deleteFood };
+const mapDispatchToProps = { addFood, updateFoodValue, updateFoodName, deleteFood, fetchFoods };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
