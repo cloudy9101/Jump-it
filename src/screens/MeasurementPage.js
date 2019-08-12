@@ -12,6 +12,7 @@ import {
   Tabs,
   TabHeading
 } from 'native-base';
+
 import ChartScreen from './ChartScreen';
 import HeaderComponent from '../components/HeaderComponent';
 import MeasureModal from '../components/MeasureModal';
