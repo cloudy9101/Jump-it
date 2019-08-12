@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-native-modal';
-import { View, TextInput } from 'react-native';
-import { Content, Icon, Text, Toast, Label, Button } from 'native-base';
+import { View } from 'react-native';
+import { Content, Icon, Input as TextInput, Text, Toast, Label, Button } from 'native-base';
 import ValidationUtil from '../utils/ValidationUtil';
 class MeasureModal extends Component {
   constructor(props) {
