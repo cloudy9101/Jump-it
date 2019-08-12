@@ -1,5 +1,18 @@
 import AppleHealthKit from 'rn-apple-healthkit';
-import { HealthOptions } from '../commons/HealthOptions';
+
+const PERMS = AppleHealthKit.Constants.Permissions;
+const HealthOptions = {
+  permissions: {
+    read: [
+      PERMS.StepCount,
+      PERMS.BodyMassIndex,
+      PERMS.DistanceWalkingRunning,
+      PERMS.FlightsClimbed,
+      PERMS.Steps
+    ]
+  }
+};
+
 let Data = {};
 const initHeathKit = () => {
   AppleHealthKit.initHealthKit(HealthOptions, (err, results) => {
@@ -27,7 +40,6 @@ const initHeathKit = () => {
         console.log('getDistanceWalkingRunning: ', err);
         return;
       }
-
       Data.distance = results;
     });
   });
