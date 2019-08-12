@@ -12,7 +12,8 @@ import {
   Button,
   Text,
   Toast,
-  Spinner
+  Spinner,
+  CheckBox
 } from 'native-base';
 import moment from 'moment';
 import DatePicker from 'react-native-datepicker';
@@ -25,7 +26,8 @@ class SignUpPage2 extends Component {
     this.state = {
       date: moment().format('DD-MM-YYYY'),
       weight: '75kg',
-      height: '175cm'
+      height: '175cm',
+      isVisible: false
     };
     this.btnHandler = this.btnHandler.bind(this);
     this.handleHeightAndWeight = this.handleHeightAndWeight.bind(this);
