@@ -12,7 +12,6 @@ import {
   Toast,
   Icon
 } from 'native-base';
-
 import KeyboardShift from '../components/KeyboardShift';
 import { connect } from 'react-redux';
 import { login, findUseInfo } from '../redux/actions';

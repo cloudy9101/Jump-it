@@ -4,9 +4,10 @@ import {
   LOG_OUT,
   ERROR_MSG,
   LOGIN_FAIL,
-  GET_USER_INFO
+  GET_USER_INFO,
+  UPDATE_USER
 } from '../actiontypes';
-import { post, get } from '../../API';
+import { post, get, put } from '../../API';
 
 function registerFailure(error) {
   return { type: ERROR_MSG, error };
@@ -24,6 +25,9 @@ function loginFail(error) {
 
 function getUserInfo(payload) {
   return { type: GET_USER_INFO, payload };
+}
+function userUpdate(payload) {
+  return { type: UPDATE_USER, payload };
 }
 
 export const logout = () => ({ type: LOG_OUT });
@@ -54,11 +58,21 @@ export const login = userInfo => {
 export const findUseInfo = token => {
   return dispatch => {
     get('/api/users/find', token).then(res => {
-      console.log(res, 'ddddd');
       if (res.code === 0) {
         dispatch(getUserInfo(res.data));
       } else {
         console.log('wrong ......');
+      }
+    });
+  };
+};
+
+export const updateUser = (body, token) => {
+  return dispatch => {
+    put('/api/users/update', body, token).then(res => {
+      console.log(res);
+      if (res.code === 0) {
+        dispatch(userUpdate(res.data));
       }
     });
   };

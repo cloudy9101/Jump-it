@@ -12,8 +12,10 @@ import {
   Tabs,
   TabHeading
 } from 'native-base';
+
 import ChartScreen from './ChartScreen';
 import HeaderComponent from '../components/HeaderComponent';
+import MeasureModal from '../components/MeasureModal';
 const data = {
   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   datasets: [
@@ -26,10 +28,15 @@ export default class MeasurementPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false
+      isVisible: false
     };
+    this.modelhandler = this.modelhandler.bind(this);
   }
-
+  modelhandler() {
+    this.setState({
+      isVisible: !this.state.isVisible
+    });
+  }
   render() {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
@@ -188,25 +195,22 @@ export default class MeasurementPage extends Component {
         </Tabs>
 
         <Fab
-          active={this.state.active}
           direction="up"
           containerStyle={{}}
           style={{
             backgroundColor: '#3d7ea4',
-            width: 45,
-            height: 45
+            width: 50,
+            height: 50,
+            opacity: 0.8
           }}
-          onPress={() => this.setState({ active: !this.state.active })}
+          onPress={this.modelhandler}
         >
           <Icon name="pencil" type="FontAwesome" />
-
-          <Button style={{ backgroundColor: '#2c6439' }}>
-            <Icon name="coffee" type="FontAwesome" />
-          </Button>
-          <Button style={{ backgroundColor: '#DD5144' }}>
-            <Icon name="heart" />
-          </Button>
         </Fab>
+        <MeasureModal
+          isVisible={this.state.isVisible}
+          modalHandler={this.modelhandler}
+        />
       </Container>
     );
   }

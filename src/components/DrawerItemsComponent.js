@@ -6,12 +6,18 @@ import { Container, Thumbnail, Text, Content, Header, Body } from 'native-base';
 
 class DrawerItemsComponent extends Component {
   render() {
-    //console.log(this.props.users);
+    const { username, avator } = this.props.users;
+
     return (
       <Container>
         <Header style={styles.headerStyle}>
           <Body>
-            <Thumbnail large source={require('../../assets/images.png')} />
+            {avator === null ? (
+              <Thumbnail large source={require('../../assets/images.png')} />
+            ) : (
+              <Thumbnail large source={{ uri: avator }} />
+            )}
+
             <Text
               style={{
                 color: '#ffffff',
@@ -20,7 +26,7 @@ class DrawerItemsComponent extends Component {
                 paddingTop: 10
               }}
             >
-              {this.props.users.username}
+              {username}
             </Text>
           </Body>
         </Header>

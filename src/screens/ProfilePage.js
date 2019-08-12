@@ -9,34 +9,96 @@ import {
   Button,
   Text,
   Content,
-  Thumbnail
+  Thumbnail,
+  Toast
 } from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage';
+import { connect } from 'react-redux';
+import { updateUser } from '../redux/actions';
 import HeaderComponent from '../components/DrawerHeaderComponent';
 import ImagePicker from 'react-native-image-picker';
 import HeightAndWeightPicker from '../components/HeightAndWeightPicker';
 import { UserHeightData, UserWeightData } from '../commons/UserData';
-export default class ProfilePage extends Component {
+import ValidationUtil from '../utils/ValidationUtil';
+class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      avator: null,
-      weight: '75kg',
-      height: '175cm',
-      firstName: '',
-      lastName: '',
-      username: ''
+      isShow: false,
+      avator: this.props.users.avator,
+      weight: this.props.users.weight,
+      height: this.props.users.height,
+      firstName: this.props.users.firstName,
+      lastName: this.props.users.lastName,
+      username: this.props.users.username
     };
+
     this.handleImagePicker = this.handleImagePicker.bind(this);
     this.handleHeightAndWeight = this.handleHeightAndWeight.bind(this);
+    this.blurHandler = this.blurHandler.bind(this);
+    this.btnHandler = this.btnHandler.bind(this);
+  }
+  btnHandler() {
+    const {
+      weight,
+      height,
+      firstName,
+      lastName,
+      username,
+      avator
+    } = this.state;
+    if (
+      ValidationUtil.isEmpty(username) ||
+      ValidationUtil.isEmpty(lastName) ||
+      ValidationUtil.isEmpty(firstName)
+    ) {
+      Toast.show({
+        text: 'All Fields Are Required..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+      return;
+    }
+    AsyncStorage.getItem('token').then(token => {
+      const obj = {
+        avator: avator,
+        username,
+        firstName,
+        lastName,
+        height,
+        weight
+      };
+
+      this.props.updateUser(
+        {
+          avator: avator,
+          username,
+          firstName,
+          lastName,
+          height,
+          weight
+        },
+        token
+      );
+      this.props.navigation.goBack();
+    });
+  }
+  blurHandler() {
+    this.setState({
+      isShow: true
+    });
   }
   handleHeightAndWeight(value) {
     if (value.trim().includes('cm')) {
       this.setState({
-        height: value
+        height: parseInt(value),
+        isShow: true
       });
     } else {
       this.setState({
-        weight: value
+        weight: parseInt(value),
+        isShow: true
       });
     }
   }
@@ -58,17 +120,21 @@ export default class ProfilePage extends Component {
     ImagePicker.showImagePicker(options, response => {
       if (response.uri) {
         let source = { uri: response.uri };
-        console.log(response.uri);
+        console.log(source);
+
         this.setState({
-          avator: source
+          avator: source.uri,
+          isShow: true
         });
+        console.log(this.state.avator);
       }
     });
   }
   render() {
+    console.log(this.state.avator);
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
-        <HeaderComponent titleName="Profile" {...this.props} />
+        {/* <HeaderComponent titleName="Profile" {...this.props} /> */}
         <Content>
           <Form style={{ marginTop: 40 }}>
             <Item inlineLabel style={{ margin: 10 }}>
@@ -92,7 +158,7 @@ export default class ProfilePage extends Component {
                   <Thumbnail
                     large
                     style={{ marginLeft: 30, top: -19 }}
-                    source={this.state.avator}
+                    source={{ uri: this.state.avator }}
                   />
                 )}
               </Button>
@@ -108,6 +174,8 @@ export default class ProfilePage extends Component {
                 User Name
               </Label>
               <Input
+                onBlur={this.blurHandler}
+                value={this.state.username}
                 style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 onChangeText={text => this.setState({ username: text })}
               />
@@ -123,6 +191,8 @@ export default class ProfilePage extends Component {
                 First Name
               </Label>
               <Input
+                onBlur={this.blurHandler}
+                value={this.state.firstName}
                 style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 onChangeText={text => this.setState({ firstName: text })}
               />
@@ -138,6 +208,8 @@ export default class ProfilePage extends Component {
                 Last Name
               </Label>
               <Input
+                onBlur={this.blurHandler}
+                value={this.state.lastName}
                 style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
                 onChangeText={text => this.setState({ lastName: text })}
               />
@@ -175,24 +247,20 @@ export default class ProfilePage extends Component {
                 handleHeightAndWeight={this.handleHeightAndWeight}
               />
             </Item>
-            {this.state.username !== '' &&
-            this.state.firstName !== '' &&
-            this.state.lastName !== '' ? (
+            {this.state.isShow ? (
               <Button
+                onPress={this.btnHandler}
                 block
                 rounded
-                // bordered
                 success
                 style={{
                   marginTop: 30,
                   marginLeft: 10,
                   marginRight: 10
-                  //  borderColor: '#fff'
                 }}
               >
                 <Text
                   style={{
-                    // color: '#ffffff',
                     fontFamily: 'Helvetica',
                     fontSize: 18
                   }}
@@ -207,3 +275,11 @@ export default class ProfilePage extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  users: state.users
+});
+const mapDispatchToProps = { updateUser };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfilePage);
