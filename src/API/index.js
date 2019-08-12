@@ -2,8 +2,14 @@ import { Platform } from 'react-native';
 
 const GATEWAY =
   Platform.OS === 'android'
+<<<<<<< HEAD
     ? 'http://192.168.1.6:3000'
     : 'http://localhost:3000';
+=======
+    ? 'http://156.59.132.11:3000'
+    : 'http://192.168.1.100:3000';
+//192.168.1.100
+>>>>>>> date changer is done
 export function post(path, body, token = '') {
   return fetch(GATEWAY + path, {
     method: 'POST',
