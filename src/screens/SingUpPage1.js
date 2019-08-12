@@ -14,6 +14,7 @@ import {
   Thumbnail,
   Toast
 } from 'native-base';
+import moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
 import KeyboardShift from '../components/KeyboardShift';
 import ValidationUtil from '../utils/ValidationUtil';

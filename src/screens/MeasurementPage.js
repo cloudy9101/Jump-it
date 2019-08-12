@@ -7,15 +7,21 @@ import {
   Text,
   Button,
   Icon,
+  Left,
+  Right,
+  Body,
   Fab,
   Tab,
   Tabs,
   TabHeading
 } from 'native-base';
-
+import moment from 'moment';
 import ChartScreen from './ChartScreen';
 import HeaderComponent from '../components/HeaderComponent';
 import MeasureModal from '../components/MeasureModal';
+import DateUtils from '../utils/DateUtils';
+import DatechangeComponet from '../components/DatechangeComponet';
+
 const data = {
   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   datasets: [
@@ -24,13 +30,94 @@ const data = {
     }
   ]
 };
+
 export default class MeasurementPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: false
+      isVisible: false,
+      date: moment(),
+      color: '#222'
     };
+
     this.modelhandler = this.modelhandler.bind(this);
+    this.backwardHandler = this.backwardHandler.bind(this);
+    this.forwardHandler = this.forwardHandler.bind(this);
+  }
+  backwardHandler(e) {
+    const { date } = this.state;
+    switch (e) {
+      case 'WEEK': {
+        const value = date.subtract(7, 'days');
+        this.setState({
+          date: value,
+          color: '#fff'
+        });
+        break;
+      }
+      case 'MONTH': {
+        const value = date.subtract(1, 'months');
+        this.setState({
+          date: value,
+          color: '#fff'
+        });
+      }
+      case 'YEAR': {
+        const value = date.subtract(1, 'years');
+        this.setState({
+          date: value,
+          color: '#fff'
+        });
+        break;
+      }
+    }
+  }
+  forwardHandler(e) {
+    const { date } = this.state;
+    const current = new Date();
+    switch (e) {
+      case 'WEEK': {
+        if (date.toDate() <= current) {
+          const value = date.add(7, 'days');
+          this.setState({
+            date: value,
+            color: '#fff'
+          });
+        } else {
+          this.setState({
+            color: '#222'
+          });
+        }
+
+        break;
+      }
+      case 'MONTH': {
+        if (date.toDate().getMonth() <= current.getMonth()) {
+          const value = date.add(1, 'months');
+          this.setState({
+            date: value,
+            color: '#fff'
+          });
+        } else {
+          this.setState({
+            color: '#222'
+          });
+        }
+      }
+      case 'YEAR': {
+        if (date.toDate().getFullYear() <= current.getFullYear()) {
+          const value = date.add(1, 'years');
+          this.setState({
+            date: value,
+            color: '#fff'
+          });
+        } else {
+          this.setState({
+            color: '#222'
+          });
+        }
+      }
+    }
   }
   modelhandler() {
     this.setState({
@@ -62,6 +149,12 @@ export default class MeasurementPage extends Component {
               </TabHeading>
             }
           >
+            <DatechangeComponet
+              data={DateUtils.showWeek(this.state.date)}
+              color={this.state.color}
+              backwardHandler={() => this.backwardHandler('WEEK')}
+              forwardHandler={() => this.forwardHandler('WEEK')}
+            />
             <Content style={{ marginTop: 1 }}>
               <ChartScreen
                 dividerColor="#DD5144"
@@ -112,6 +205,12 @@ export default class MeasurementPage extends Component {
               </TabHeading>
             }
           >
+            <DatechangeComponet
+              data={DateUtils.showMonth(this.state.date)}
+              color={this.state.color}
+              backwardHandler={() => this.backwardHandler('MONTH')}
+              forwardHandler={() => this.forwardHandler('MONTH')}
+            />
             <Content>
               <ChartScreen
                 dividerColor="#DD5144"
@@ -161,6 +260,12 @@ export default class MeasurementPage extends Component {
               </TabHeading>
             }
           >
+            <DatechangeComponet
+              data={DateUtils.showYear(this.state.date)}
+              color={this.state.color}
+              backwardHandler={() => this.backwardHandler('YEAR')}
+              forwardHandler={() => this.forwardHandler('YEAR')}
+            />
             <Content>
               <ChartScreen
                 dividerColor="#DD5144"
