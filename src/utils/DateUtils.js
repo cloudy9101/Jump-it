@@ -49,7 +49,7 @@ export default class DateUtils {
       'Nov',
       'Dec'
     ];
-    return weekArr[d.month()] + ' ' + new Date().getFullYear();
+    return weekArr[d.month()] + ' ' + d.year();
   }
 
   static showYear(d) {
