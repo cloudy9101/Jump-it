@@ -12,16 +12,24 @@ import {
   Header,
   Body,
   Right,
-  Button
+  Button,
+  Spinner
 } from 'native-base';
+import { connect } from 'react-redux';
+import { getStepCount, getDistance, getFloor } from '../redux/actions';
 import CalendarStrip from 'react-native-calendar-strip';
 import HeaderComponent from '../components/HeaderComponent';
 import { mockData } from '../commons/MockData';
 import WorkoutCard from '../components/WorkoutCard';
 import moment from 'moment';
-import { initHeathKit, Data } from '../utils/AppleHealthUtil';
+import { initHeathKit } from '../utils/AppleHealthUtil';
 
 Platform.OS === 'ios' ? initHeathKit() : null;
+// let date = null;
+// let options = {
+//   date: date === null ? new Date().toISOString() : date.toISOString()
+// };
+let obj = {};
 
 class WorkoutPage extends Component {
   constructor(props) {
@@ -30,12 +38,23 @@ class WorkoutPage extends Component {
       date: new Date(),
       isToday: true
     };
+    //console.log(this.props, this.props.workout);
 
     this.dateSelected = this.dateSelected.bind(this);
   }
+  componentDidMount() {
+    this.props.getStepCount({ date: new Date().toISOString() });
+    this.props.getDistance({ date: new Date().toISOString() });
+    this.props.getFloor({ date: new Date().toISOString() });
+  }
   dateSelected(date) {
     const newDate = date.toDate();
+    date = newDate;
+    this.props.getStepCount({ date: date.toISOString() });
+    this.props.getDistance({ date: date.toISOString() });
+    this.props.getFloor({ date: date.toISOString() });
     const today = new Date();
+
     if (newDate > today) {
       this.setState({
         isToday: false
@@ -86,41 +105,27 @@ class WorkoutPage extends Component {
           }}
         >
           <WorkoutCard
-            bkColor={'#35652c'}
-            name={'Working+Running Distance'}
-            num={
-              Data.distance
-                ? (parseInt(Data.distance.value) / 1000).toFixed(1)
-                : '5.8'
-            }
-            unit={'km'}
-            time={
-              Data.distance
-                ? moment(Date.parse(Data.distance.endDate)).format('HH:mm')
-                : '19:00'
-            }
-          />
-          <WorkoutCard
             bkColor={'#6e61a8'}
             name={'Steps'}
-            num={Data.step ? Data.step.value : '5500'}
+            num={this.props.step.value}
             unit={'steps'}
-            time={
-              Data.step
-                ? moment(Date.parse(Data.step.endDate)).format('HH:mm')
-                : '19:00'
-            }
+            time={moment(Date.parse(this.props.step.endDate)).format('HH:mm')}
+          />
+          <WorkoutCard
+            bkColor={'#35652c'}
+            name={'Working+Running Distance'}
+            num={(parseInt(this.props.distance.value) / 1000).toFixed(1)}
+            unit={'km'}
+            time={moment(Date.parse(this.props.distance.endDate)).format(
+              'HH:mm'
+            )}
           />
           <WorkoutCard
             bkColor={'#3d7ea4'}
             name={'Flights Climebed'}
-            num={Data.flightsClimed ? Data.flightsClimed.value : '5'}
+            num={this.props.floor.value}
             unit={'floor'}
-            time={
-              Data.flightsClimed
-                ? moment(Date.parse(Data.flightsClimed.endDate)).format('HH:mm')
-                : '19:00'
-            }
+            time={moment(Date.parse(this.props.floor.endDate)).format('HH:mm')}
           />
         </View>
       </>
@@ -158,4 +163,13 @@ class WorkoutPage extends Component {
     );
   }
 }
-export default WorkoutPage;
+const mapStateToProps = state => ({
+  step: state.stepCount,
+  distance: state.distance,
+  floor: state.floor
+});
+const mapDispatchToProps = { getStepCount, getDistance, getFloor };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WorkoutPage);

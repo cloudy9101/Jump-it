@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import Modal from 'react-native-modal';
-import { View } from 'react-native';
-import { Content, Icon, Input as TextInput, Text, Toast, Label, Button } from 'native-base';
+import { View, Platform } from 'react-native';
+import {
+  Content,
+  Icon,
+  Input as TextInput,
+  Text,
+  Toast,
+  Label,
+  Button
+} from 'native-base';
 import ValidationUtil from '../utils/ValidationUtil';
 class MeasureModal extends Component {
   constructor(props) {
@@ -132,7 +140,7 @@ class MeasureModal extends Component {
                     style={{
                       borderColor: '#fff',
                       borderWidth: 1,
-                      width: 49,
+                      width: Platform.OS === 'ios' ? 20 : 49,
                       height: 38,
                       fontFamily: 'Helvetica',
                       fontSize: 20,
@@ -160,7 +168,7 @@ class MeasureModal extends Component {
                     style={{
                       borderColor: '#fff',
                       borderWidth: 1,
-                      width: 49,
+                      width: Platform.OS === 'ios' ? 20 : 49,
                       height: 38,
                       fontFamily: 'Helvetica',
                       fontSize: 20,
@@ -203,7 +211,7 @@ class MeasureModal extends Component {
                   style={{
                     borderColor: '#fff',
                     borderWidth: 1,
-                    width: 70,
+                    width: Platform.OS === 'ios' ? 40 : 70,
                     height: 38,
                     fontFamily: 'Helvetica',
                     fontSize: 20,
