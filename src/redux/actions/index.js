@@ -1,7 +1,14 @@
 import { register, login, findUseInfo, updateUser } from './user.action';
 import { changePassword } from './password.action';
 import { fetchExercises, fetchDiets, addDiet } from './plan.action';
-import { addFood, updateFoodValue, updateFoodName, deleteFood, fetchFoods } from './foods.action';
+import { getStepCount, getFloor, getDistance } from './workout.action';
+import {
+  addFood,
+  updateFoodValue,
+  updateFoodName,
+  deleteFood,
+  fetchFoods
+} from './foods.action';
 export {
   register,
   login,
@@ -16,4 +23,7 @@ export {
   updateFoodName,
   deleteFood,
   fetchFoods,
+  getStepCount,
+  getFloor,
+  getDistance
 };

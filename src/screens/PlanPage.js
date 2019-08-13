@@ -36,8 +36,14 @@ class PlanPage extends Component {
   render() {
     const { navigation } = this.props;
     const items = this.props.exercisesPlan.data.map((item, i) => {
-      console.log(item);
-      return <PlanItemComponent key={i} name={item.name} value={item.value} backgroundImg={item.backgroundImg} />;
+      return (
+        <PlanItemComponent
+          key={i}
+          name={item.name}
+          value={item.value}
+          backgroundImg={item.backgroundImg}
+        />
+      );
     });
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>

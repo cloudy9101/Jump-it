@@ -4,7 +4,7 @@ import { Icon } from 'native-base';
 import { CalendarList } from 'react-native-calendars';
 const screenWidth = Math.round(Dimensions.get('window').width);
 function CalendarModal(props) {
-  console.log(screenWidth, props.isCalenderVisible);
+  // console.log(screenWidth, props.isCalenderVisible);
   return (
     <Modal
       visible={props.isCalenderVisible}
@@ -26,7 +26,7 @@ function CalendarModal(props) {
       /> */}
       <CalendarList
         onVisibleMonthsChange={months => {
-          console.log('now these months are visible', months);
+          //console.log('now these months are visible', months);
         }}
         pastScrollRange={50}
         futureScrollRange={50}
