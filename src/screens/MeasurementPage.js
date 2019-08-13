@@ -21,7 +21,7 @@ import HeaderComponent from '../components/HeaderComponent';
 import MeasureModal from '../components/MeasureModal';
 import DateUtils from '../utils/DateUtils';
 import DatechangeComponet from '../components/DatechangeComponet';
-
+import CalendarModal from '../components/CalendarModal';
 const data = {
   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   datasets: [
@@ -37,12 +37,19 @@ export default class MeasurementPage extends Component {
     this.state = {
       isVisible: false,
       date: moment(),
-      color: '#222'
+      color: '#222',
+      isCalenderVisible: false
     };
 
     this.modelhandler = this.modelhandler.bind(this);
     this.backwardHandler = this.backwardHandler.bind(this);
     this.forwardHandler = this.forwardHandler.bind(this);
+    this.canlanderModalHandler = this.canlanderModalHandler.bind(this);
+  }
+  canlanderModalHandler(e) {
+    this.setState({
+      isCalenderVisible: e
+    });
   }
   backwardHandler(e) {
     const { date } = this.state;
@@ -77,7 +84,7 @@ export default class MeasurementPage extends Component {
     const current = new Date();
     switch (e) {
       case 'WEEK': {
-        if (date.toDate() <= current) {
+        if (date.toDate() < current) {
           const value = date.add(7, 'days');
           this.setState({
             date: value,
@@ -92,7 +99,7 @@ export default class MeasurementPage extends Component {
         break;
       }
       case 'MONTH': {
-        if (date.toDate().getMonth() <= current.getMonth()) {
+        if (date.toDate().getMonth() < current.getMonth()) {
           const value = date.add(1, 'months');
           this.setState({
             date: value,
@@ -105,7 +112,7 @@ export default class MeasurementPage extends Component {
         }
       }
       case 'YEAR': {
-        if (date.toDate().getFullYear() <= current.getFullYear()) {
+        if (date.toDate().getFullYear() < current.getFullYear()) {
           const value = date.add(1, 'years');
           this.setState({
             date: value,
@@ -154,6 +161,7 @@ export default class MeasurementPage extends Component {
               color={this.state.color}
               backwardHandler={() => this.backwardHandler('WEEK')}
               forwardHandler={() => this.forwardHandler('WEEK')}
+              txtPress={this.canlanderModalHandler}
             />
             <Content style={{ marginTop: 1 }}>
               <ChartScreen
@@ -298,7 +306,7 @@ export default class MeasurementPage extends Component {
             </Content>
           </Tab>
         </Tabs>
-
+        <CalendarModal isCalenderVisible={this.state.isCalenderVisible} />
         <Fab
           direction="up"
           containerStyle={{}}
