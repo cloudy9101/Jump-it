@@ -18,7 +18,7 @@ import {
 import moment from 'moment';
 import ChartScreen from './ChartScreen';
 import HeaderComponent from '../components/HeaderComponent';
-import MeasureModal from '../components/MeasureModal';
+import MeasureModal from './MeasureModal';
 import DateUtils from '../utils/DateUtils';
 import DatechangeComponet from '../components/DatechangeComponet';
 import CalendarModal from '../components/CalendarModal';
@@ -45,8 +45,16 @@ export default class MeasurementPage extends Component {
     this.backwardHandler = this.backwardHandler.bind(this);
     this.forwardHandler = this.forwardHandler.bind(this);
     this.canlanderModalHandler = this.canlanderModalHandler.bind(this);
+    this.selectDate = this.selectDate.bind(this);
   }
+  selectDate(day, flag) {
+    const { date } = this.state;
 
+    this.setState({
+      isCalenderVisible: flag,
+      date: moment(day.timestamp)
+    });
+  }
   canlanderModalHandler(e) {
     console.log(e);
     this.setState({
@@ -220,6 +228,7 @@ export default class MeasurementPage extends Component {
               color={this.state.color}
               backwardHandler={() => this.backwardHandler('MONTH')}
               forwardHandler={() => this.forwardHandler('MONTH')}
+              txtPress={this.canlanderModalHandler}
             />
             <Content>
               <ChartScreen
@@ -275,6 +284,7 @@ export default class MeasurementPage extends Component {
               color={this.state.color}
               backwardHandler={() => this.backwardHandler('YEAR')}
               forwardHandler={() => this.forwardHandler('YEAR')}
+              txtPress={this.canlanderModalHandler}
             />
             <Content>
               <ChartScreen
@@ -311,6 +321,8 @@ export default class MeasurementPage extends Component {
         <CalendarModal
           isCalenderVisible={this.state.isCalenderVisible}
           close={this.canlanderModalHandler}
+          selectDate={this.selectDate}
+          title={this.state.date.year()}
         />
         <Fab
           direction="up"

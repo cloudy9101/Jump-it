@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Dimensions, Modal, Platform } from 'react-native';
-import { Text, Header, Right, Button } from 'native-base';
+import { Text, Header, Right, Button, Body, Left } from 'native-base';
 import { CalendarList } from 'react-native-calendars';
 const screenWidth = Math.round(Dimensions.get('window').width);
 function CalendarModal(props) {
@@ -10,18 +10,28 @@ function CalendarModal(props) {
       visible={props.isCalenderVisible}
       animationType={'slide'}
       transparent={false}
-
-      // backdropOpacity={0.8}
-      // animationInTiming={360}
     >
       <Header style={{ backgroundColor: '#1f3954', borderBottomWidth: 0.2 }}>
+        <Left />
+        <Body>
+          <Text
+            style={{
+              color: '#ffffff',
+              fontFamily: 'Helvetica',
+              fontSize: 19,
+              fontWeight: 'bold'
+            }}
+          >
+            {props.title}
+          </Text>
+        </Body>
         <Right>
           <Button transparent onPress={() => props.close(false)}>
             <Text
               style={{
                 color: '#ffffff',
                 fontFamily: 'Helvetica',
-                fontSize: 18,
+                fontSize: 17,
                 fontWeight: 'bold'
               }}
             >
@@ -32,8 +42,11 @@ function CalendarModal(props) {
         </Right>
       </Header>
       <CalendarList
-        onVisibleMonthsChange={months => {
-          //console.log('now these months are visible', months);
+        // onVisibleMonthsChange={months => {
+        //   // console.log('now these months are visible', months);
+        // }}
+        onDayPress={day => {
+          props.selectDate(day, false);
         }}
         pastScrollRange={50}
         futureScrollRange={50}

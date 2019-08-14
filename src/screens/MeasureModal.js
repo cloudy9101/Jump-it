@@ -1,34 +1,50 @@
 import React, { Component } from 'react';
-import Modal from 'react-native-modal';
-import { View, Platform, TextInput } from 'react-native';
-import { Content, Icon, Input, Text, Toast, Label, Button } from 'native-base';
+
+import { View, Platform, TextInput, Modal } from 'react-native';
+import {
+  Content,
+  Icon,
+  Input,
+  Text,
+  Toast,
+  Label,
+  Button,
+  Header,
+  Left,
+  Right,
+  Body
+} from 'native-base';
+import moment from 'moment';
+import AsyncStorage from '@react-native-community/async-storage';
+import { connect } from 'react-redux';
+import { saveMeasure } from '../redux/actions';
 import ValidationUtil from '../utils/ValidationUtil';
 class MeasureModal extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      sugar: '',
+      value: '',
       high: '',
       low: '',
       isShow: false,
-      msg: ''
+      msg: '',
+      timestamp: Date.parse(new Date())
     };
 
     this.btnHandler = this.btnHandler.bind(this);
   }
 
   btnHandler() {
-    const { high, low, sugar } = this.state;
+    const { high, low, value, timestamp } = this.state;
 
-    if (isNaN(high) || isNaN(low) || isNaN(sugar)) {
+    if (isNaN(high) || isNaN(low) || isNaN(value)) {
       this.textInput1.clear();
       this.textInput2.clear();
       this.textInput.clear();
       this.setState(
         {
           isShow: true,
-
           msg: 'Must enter number..'
         },
         () => {
@@ -36,17 +52,15 @@ class MeasureModal extends Component {
             this.setState({
               isShow: false
             });
-          }, 3000);
+          }, 2000);
         }
       );
-
       return;
     }
-
     if (
       ValidationUtil.isEmpty(high) ||
       ValidationUtil.isEmpty(low) ||
-      ValidationUtil.isEmpty(sugar)
+      ValidationUtil.isEmpty(value)
     ) {
       this.textInput1.clear();
       this.textInput2.clear();
@@ -61,36 +75,55 @@ class MeasureModal extends Component {
             this.setState({
               isShow: false
             });
-          }, 3000);
+          }, 2000);
         }
       );
-
       return;
     }
+
+    AsyncStorage.getItem('token').then(token => {
+      this.props.saveMeasure({ low, high, value, timestamp }, token);
+      this.props.modalHandler();
+    });
   }
 
   render() {
     return (
       <Modal
-        isVisible={this.props.isVisible}
-        backdropOpacity={0.8}
-        animationOutTiming={500}
-        animationInTiming={700}
+        visible={this.props.isVisible}
+        animationType={'slide'}
+        transparent={false}
+        style={{ backgroundColor: '#1f3954' }}
       >
-        <Content>
+        <Header style={{ backgroundColor: '#1f3954', borderBottomWidth: 0.2 }}>
+          <Left />
+          <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <Text
+              style={{
+                color: '#fff',
+                fontFamily: 'Helvetica',
+                fontSize: 20,
+                fontWeight: 'bold'
+              }}
+            >
+              {moment().format('DD-MM-YYYY')}
+            </Text>
+          </Body>
+          <Right>
+            <Icon
+              name="cross"
+              type="Entypo"
+              style={{
+                color: '#ffffff',
+                fontFamily: 'Helvetica',
+                fontSize: 33
+              }}
+              onPress={this.props.modalHandler}
+            />
+          </Right>
+        </Header>
+        <View style={{ backgroundColor: '#1f3954', flex: 1 }}>
           <View style={{ marginTop: '10%' }}>
-            <View style={{ alignItems: 'flex-end' }}>
-              <Icon
-                name="cross"
-                type="Entypo"
-                style={{
-                  color: '#ffffff',
-                  fontFamily: 'Helvetica',
-                  fontSize: 36
-                }}
-                onPress={this.props.modalHandler}
-              />
-            </View>
             <View style={{ alignItems: 'center' }}>
               {this.state.isShow ? (
                 <Text
@@ -139,7 +172,7 @@ class MeasureModal extends Component {
                         fontSize: 20,
                         textAlign: 'center'
                       }}
-                      onChangeText={text => this.setState({ high: text })}
+                      onChangeText={text => this.setState({ low: text })}
                     />
                   ) : (
                     <Input
@@ -158,7 +191,7 @@ class MeasureModal extends Component {
                         fontSize: 20,
                         textAlign: 'center'
                       }}
-                      onChangeText={text => this.setState({ high: text })}
+                      onChangeText={text => this.setState({ low: text })}
                     />
                   )}
                   <Text
@@ -174,7 +207,7 @@ class MeasureModal extends Component {
                   {Platform.OS === 'ios' ? (
                     <TextInput
                       ref={input => {
-                        this.textInput1 = input;
+                        this.textInput2 = input;
                       }}
                       placeholder="120"
                       placeholderTextColor="#888"
@@ -193,7 +226,7 @@ class MeasureModal extends Component {
                   ) : (
                     <Input
                       ref={input => {
-                        this.textInput1 = input;
+                        this.textInput2 = input;
                       }}
                       placeholder="120"
                       placeholderTextColor="#888"
@@ -238,7 +271,7 @@ class MeasureModal extends Component {
                 {Platform.OS === 'ios' ? (
                   <TextInput
                     ref={input => {
-                      this.textInput1 = input;
+                      this.textInput = input;
                     }}
                     placeholder="120"
                     placeholderTextColor="#888"
@@ -252,12 +285,12 @@ class MeasureModal extends Component {
                       fontSize: 20,
                       textAlign: 'center'
                     }}
-                    onChangeText={text => this.setState({ high: text })}
+                    onChangeText={text => this.setState({ value: text })}
                   />
                 ) : (
                   <Input
                     ref={input => {
-                      this.textInput1 = input;
+                      this.textInput = input;
                     }}
                     placeholder="120"
                     placeholderTextColor="#888"
@@ -271,7 +304,7 @@ class MeasureModal extends Component {
                       fontSize: 20,
                       textAlign: 'center'
                     }}
-                    onChangeText={text => this.setState({ high: text })}
+                    onChangeText={text => this.setState({ value: text })}
                   />
                 )}
 
@@ -291,7 +324,8 @@ class MeasureModal extends Component {
                 style={{
                   color: '#fff',
                   fontFamily: 'Helvetica',
-                  fontSize: 17
+                  fontSize: 17,
+                  textAlign: 'center'
                 }}
               >
                 Start with your calories, and use the first 3 numbers for the 10
@@ -321,10 +355,14 @@ class MeasureModal extends Component {
               </Text>
             </Button>
           </View>
-        </Content>
+        </View>
       </Modal>
     );
   }
 }
+const mapDispatchToProps = { saveMeasure };
 
-export default MeasureModal;
+export default connect(
+  null,
+  mapDispatchToProps
+)(MeasureModal);
