@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Dimensions, Modal, Platform } from 'react-native';
-import { Icon } from 'native-base';
+import { Text, Header, Right, Button } from 'native-base';
 import { CalendarList } from 'react-native-calendars';
 const screenWidth = Math.round(Dimensions.get('window').width);
 function CalendarModal(props) {
@@ -10,20 +10,27 @@ function CalendarModal(props) {
       visible={props.isCalenderVisible}
       animationType={'slide'}
       transparent={false}
-      style={{ backgroundColor: '#000' }}
+
       // backdropOpacity={0.8}
       // animationInTiming={360}
     >
-      {/* <Icon
-        name="cross"
-        type="Entypo"
-        style={{
-          color: '#ffffff',
-          fontFamily: 'Helvetica',
-          fontSize: 36
-        }}
-        //onPress={props.modalHandler}
-      /> */}
+      <Header style={{ backgroundColor: '#1f3954', borderBottomWidth: 0.2 }}>
+        <Right>
+          <Button transparent onPress={() => props.close(false)}>
+            <Text
+              style={{
+                color: '#ffffff',
+                fontFamily: 'Helvetica',
+                fontSize: 18,
+                fontWeight: 'bold'
+              }}
+            >
+              {' '}
+              Done{' '}
+            </Text>
+          </Button>
+        </Right>
+      </Header>
       <CalendarList
         onVisibleMonthsChange={months => {
           //console.log('now these months are visible', months);
@@ -33,23 +40,20 @@ function CalendarModal(props) {
         scrollEnabled={true}
         showScrollIndicator={true}
         calendarWidth={screenWidth}
-        style={{
-          marginTop: Platform.OS === 'ios' ? '13%' : '8%'
-        }}
         theme={{
-          backgroundColor: 'red',
+          'stylesheet.calendar.header': {
+            header: {
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 20
+            }
+          },
           calendarBackground: '#1f3954',
           textSectionTitleColor: '#fff', // title of week
-          selectedDayBackgroundColor: 'red',
-          selectedDayTextColor: '#111',
-          todayTextColor: '#fff',
+          todayTextColor: '#010',
           dayTextColor: '#fff',
-          textDisabledColor: 'red',
-          dotColor: 'red',
-          selectedDotColor: 'red',
-          arrowColor: 'orange',
           monthTextColor: '#fff', //  title of month
-          indicatorColor: '#111',
           textDayFontFamily: 'Helvetica',
           textMonthFontFamily: 'Helvetica',
           textDayHeaderFontFamily: 'Helvetica',
@@ -58,7 +62,8 @@ function CalendarModal(props) {
           textDayHeaderFontWeight: '300',
           textDayFontSize: 18,
           textMonthFontSize: 18,
-          textDayHeaderFontSize: 15
+          textDayHeaderFontSize: 15,
+          indicatorColor: '#fff'
         }}
       />
     </Modal>

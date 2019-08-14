@@ -16,6 +16,7 @@ import {
   Spinner
 } from 'native-base';
 import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 import { getStepCount, getDistance, getFloor } from '../redux/actions';
 import CalendarStrip from 'react-native-calendar-strip';
 import HeaderComponent from '../components/HeaderComponent';
@@ -38,21 +39,25 @@ class WorkoutPage extends Component {
       date: new Date(),
       isToday: true
     };
-    //console.log(this.props, this.props.workout);
 
     this.dateSelected = this.dateSelected.bind(this);
   }
   componentDidMount() {
-    this.props.getStepCount({ date: new Date().toISOString() });
-    this.props.getDistance({ date: new Date().toISOString() });
-    this.props.getFloor({ date: new Date().toISOString() });
+    AsyncStorage.getItem('token').then(token => {
+      this.props.getStepCount({ date: new Date().toISOString() }, token);
+      this.props.getDistance({ date: new Date().toISOString() }, token);
+      this.props.getFloor({ date: new Date().toISOString() }, token);
+    });
   }
   dateSelected(date) {
     const newDate = date.toDate();
     date = newDate;
-    this.props.getStepCount({ date: date.toISOString() });
-    this.props.getDistance({ date: date.toISOString() });
-    this.props.getFloor({ date: date.toISOString() });
+    AsyncStorage.getItem('token').then(token => {
+      //console.log(Date.parse(this.props.step.endDate));
+      this.props.getStepCount({ date: date.toISOString() }, token);
+      this.props.getDistance({ date: date.toISOString() }, token);
+      this.props.getFloor({ date: date.toISOString() }, token);
+    });
     const today = new Date();
 
     if (newDate > today) {

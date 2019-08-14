@@ -5,25 +5,31 @@ import { ListItem, Text, Icon, Button, Left, Body, Right } from 'native-base';
 class FoodItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: props.name, value: props.value, valueText: props.value + "" }
+    this.state = {
+      name: props.name,
+      value: props.value,
+      valueText: props.value + ''
+    };
     this.nameChangeHandler = this.nameChangeHandler.bind(this);
     this.valueChangeHandler = this.valueChangeHandler.bind(this);
   }
 
   nameChangeHandler(text) {
     this.props.nameChangeHandler(text);
-    this.setState({ name: text })
+    this.setState({ name: text });
   }
 
   valueChangeHandler(value) {
-    if(value < 0) { return; }
+    if (value < 0) {
+      return;
+    }
     this.props.valueChangeHandler(value);
-    const valueText = isNaN(value) ? "" : value + "";
-    this.setState({ value: isNaN(value) ? 0 : value, valueText: valueText })
+    const valueText = isNaN(value) ? '' : value + '';
+    this.setState({ value: isNaN(value) ? 0 : value, valueText: valueText });
   }
 
   render() {
-    return(
+    return (
       <ListItem icon>
         <Left>
           <Icon
@@ -33,15 +39,33 @@ class FoodItem extends Component {
           />
         </Left>
         <Body>
-          <TextInput style={{ color: '#ffffff' }} value={this.state.name} onChangeText={(text) => this.nameChangeHandler(text)} />
+          <TextInput
+            style={{ color: '#ffffff' }}
+            value={this.state.name}
+            onChangeText={text => this.nameChangeHandler(text)}
+          />
         </Body>
         <Right>
-          <Button onPress={() => this.valueChangeHandler(this.state.value + 1)} iconLeft transparent style={{ marginRight: 5 }}>
-            <Icon name='plus' type="EvilIcons" style={{ color: "#ffffff" }} />
+          <Button
+            onPress={() => this.valueChangeHandler(this.state.value + 1)}
+            iconLeft
+            transparent
+            style={{ marginRight: 5 }}
+          >
+            <Icon name="plus" type="EvilIcons" style={{ color: '#ffffff' }} />
           </Button>
-          <TextInput style={{ color: '#ffffff' }} value={this.state.valueText} onChangeText={(text) => this.valueChangeHandler(parseInt(text, 0))} />
-          <Button onPress={() => this.valueChangeHandler(this.state.value - 1)} iconRight transparent style={{ marginLeft: 5 }}>
-            <Icon name='minus' type="EvilIcons" style={{ color: "#ffffff" }} />
+          <TextInput
+            style={{ color: '#ffffff' }}
+            value={this.state.valueText}
+            onChangeText={text => this.valueChangeHandler(parseInt(text, 0))}
+          />
+          <Button
+            onPress={() => this.valueChangeHandler(this.state.value - 1)}
+            iconRight
+            transparent
+            style={{ marginLeft: 5 }}
+          >
+            <Icon name="minus" type="EvilIcons" style={{ color: '#ffffff' }} />
           </Button>
         </Right>
       </ListItem>

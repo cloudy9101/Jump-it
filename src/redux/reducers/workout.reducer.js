@@ -2,8 +2,8 @@ import { STEP_COUNT, DISTANCE, FLIGHT_CLIME } from '../actiontypes';
 
 initState = {
   value: '5500',
-  startDate: '',
-  endDate: '19:00'
+  startDate: 'Wed Aug 14 2019 19:26:18 GMT+1200',
+  endDate: 'Wed Aug 14 2019 19:26:18 GMT+1200'
 };
 
 const stepCount = (state = initState, action) => {
