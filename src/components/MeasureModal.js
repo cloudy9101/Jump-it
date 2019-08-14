@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-native-modal';
-import { View, Platform } from 'react-native';
-import {
-  Content,
-  Icon,
-  Input as TextInput,
-  Text,
-  Toast,
-  Label,
-  Button
-} from 'native-base';
+import { View, Platform, TextInput } from 'react-native';
+import { Content, Icon, Input, Text, Toast, Label, Button } from 'native-base';
 import ValidationUtil from '../utils/ValidationUtil';
 class MeasureModal extends Component {
   constructor(props) {
@@ -130,24 +122,45 @@ class MeasureModal extends Component {
                     alignItems: 'center'
                   }}
                 >
-                  <TextInput
-                    ref={input => {
-                      this.textInput1 = input;
-                    }}
-                    placeholder="120"
-                    placeholderTextColor="#888"
-                    color="#fff"
-                    style={{
-                      borderColor: '#fff',
-                      borderWidth: 1,
-                      width: Platform.OS === 'ios' ? 20 : 49,
-                      height: 38,
-                      fontFamily: 'Helvetica',
-                      fontSize: 20,
-                      textAlign: 'center'
-                    }}
-                    onChangeText={text => this.setState({ high: text })}
-                  />
+                  {Platform.OS === 'ios' ? (
+                    <TextInput
+                      ref={input => {
+                        this.textInput1 = input;
+                      }}
+                      placeholder="120"
+                      placeholderTextColor="#888"
+                      color="#fff"
+                      style={{
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        width: 49,
+                        height: 38,
+                        fontFamily: 'Helvetica',
+                        fontSize: 20,
+                        textAlign: 'center'
+                      }}
+                      onChangeText={text => this.setState({ high: text })}
+                    />
+                  ) : (
+                    <Input
+                      ref={input => {
+                        this.textInput1 = input;
+                      }}
+                      placeholder="120"
+                      placeholderTextColor="#888"
+                      color="#fff"
+                      style={{
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        width: 49,
+                        height: 38,
+                        fontFamily: 'Helvetica',
+                        fontSize: 20,
+                        textAlign: 'center'
+                      }}
+                      onChangeText={text => this.setState({ high: text })}
+                    />
+                  )}
                   <Text
                     style={{
                       paddingLeft: 5,
@@ -158,24 +171,45 @@ class MeasureModal extends Component {
                   >
                     /
                   </Text>
-                  <TextInput
-                    ref={input => {
-                      this.textInput2 = input;
-                    }}
-                    placeholder="80"
-                    placeholderTextColor="#888"
-                    color="#fff"
-                    style={{
-                      borderColor: '#fff',
-                      borderWidth: 1,
-                      width: Platform.OS === 'ios' ? 20 : 49,
-                      height: 38,
-                      fontFamily: 'Helvetica',
-                      fontSize: 20,
-                      textAlign: 'center'
-                    }}
-                    onChangeText={text => this.setState({ low: text })}
-                  />
+                  {Platform.OS === 'ios' ? (
+                    <TextInput
+                      ref={input => {
+                        this.textInput1 = input;
+                      }}
+                      placeholder="120"
+                      placeholderTextColor="#888"
+                      color="#fff"
+                      style={{
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        width: 49,
+                        height: 38,
+                        fontFamily: 'Helvetica',
+                        fontSize: 20,
+                        textAlign: 'center'
+                      }}
+                      onChangeText={text => this.setState({ high: text })}
+                    />
+                  ) : (
+                    <Input
+                      ref={input => {
+                        this.textInput1 = input;
+                      }}
+                      placeholder="120"
+                      placeholderTextColor="#888"
+                      color="#fff"
+                      style={{
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        width: 49,
+                        height: 38,
+                        fontFamily: 'Helvetica',
+                        fontSize: 20,
+                        textAlign: 'center'
+                      }}
+                      onChangeText={text => this.setState({ high: text })}
+                    />
+                  )}
                   <Text
                     style={{
                       paddingLeft: 5,
@@ -201,24 +235,46 @@ class MeasureModal extends Component {
                 Sugar Intake
               </Label>
               <View style={{ flexDirection: 'row', marginBottom: 20 }}>
-                <TextInput
-                  ref={input => {
-                    this.textInput = input;
-                  }}
-                  placeholder="10"
-                  placeholderTextColor="#888"
-                  color="#fff"
-                  style={{
-                    borderColor: '#fff',
-                    borderWidth: 1,
-                    width: Platform.OS === 'ios' ? 40 : 70,
-                    height: 38,
-                    fontFamily: 'Helvetica',
-                    fontSize: 20,
-                    textAlign: 'center'
-                  }}
-                  onChangeText={text => this.setState({ sugar: text })}
-                />
+                {Platform.OS === 'ios' ? (
+                  <TextInput
+                    ref={input => {
+                      this.textInput1 = input;
+                    }}
+                    placeholder="120"
+                    placeholderTextColor="#888"
+                    color="#fff"
+                    style={{
+                      borderColor: '#fff',
+                      borderWidth: 1,
+                      width: 49,
+                      height: 38,
+                      fontFamily: 'Helvetica',
+                      fontSize: 20,
+                      textAlign: 'center'
+                    }}
+                    onChangeText={text => this.setState({ high: text })}
+                  />
+                ) : (
+                  <Input
+                    ref={input => {
+                      this.textInput1 = input;
+                    }}
+                    placeholder="120"
+                    placeholderTextColor="#888"
+                    color="#fff"
+                    style={{
+                      borderColor: '#fff',
+                      borderWidth: 1,
+                      width: 70,
+                      height: 38,
+                      fontFamily: 'Helvetica',
+                      fontSize: 20,
+                      textAlign: 'center'
+                    }}
+                    onChangeText={text => this.setState({ high: text })}
+                  />
+                )}
+
                 <Text
                   style={{
                     paddingLeft: 5,

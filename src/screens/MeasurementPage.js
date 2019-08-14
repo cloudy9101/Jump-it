@@ -46,7 +46,9 @@ export default class MeasurementPage extends Component {
     this.forwardHandler = this.forwardHandler.bind(this);
     this.canlanderModalHandler = this.canlanderModalHandler.bind(this);
   }
+
   canlanderModalHandler(e) {
+    console.log(e);
     this.setState({
       isCalenderVisible: e
     });
@@ -306,7 +308,10 @@ export default class MeasurementPage extends Component {
             </Content>
           </Tab>
         </Tabs>
-        <CalendarModal isCalenderVisible={this.state.isCalenderVisible} />
+        <CalendarModal
+          isCalenderVisible={this.state.isCalenderVisible}
+          close={this.canlanderModalHandler}
+        />
         <Fab
           direction="up"
           containerStyle={{}}
