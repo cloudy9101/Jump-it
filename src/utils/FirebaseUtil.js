@@ -1,4 +1,5 @@
 import firebase from 'react-native-firebase';
+import DeviceInfo from 'react-native-device-info';
 import { Alert } from 'react-native';
 
 const Firebase = {};
@@ -14,6 +15,7 @@ firebase.messaging().hasPermission().then(enabled => {
 firebase.messaging().getToken().then((fcmToken) => {
   if (fcmToken) {
     console.log(fcmToken);
+    console.log(DeviceInfo.getUniqueID());
   } else {
       // user doesn't have a device token yet
     console.log("user doesn't have a device token yet");

@@ -3,13 +3,32 @@ platform :ios, '9.0'
 
 target 'jumpit' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+  # use_frameworks!
 
   # Pods for jumpit
   # Required by RNFirebase
   pod 'Firebase/Core', '~> 6.3.0'
   pod 'GoogleIDFASupport', '~> 3.14.0'
   pod 'Firebase/Messaging', '~> 6.3.0'
+
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+  pod 'React', :path => '../node_modules/react-native'
+  # Explicitly include Yoga if you are using RN >= 0.42.0
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  # React-Native is not great about React double-including from the Podfile
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.name == "React"
+        target.remove_from_project
+      end
+
+      # It removes React & Yoga from the Pods project, as it is already included in the main project.
+      targets_to_ignore = %w(React yoga)
+      if targets_to_ignore.include? target.name
+        target.remove_from_project
+      end
+    end
+  end
 
   target 'jumpitTests' do
     inherit! :search_paths

@@ -25,11 +25,11 @@
 		13E49DF21FBC4261BC193C10 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3999655C66D4BA0888D5BCD /* Ionicons.ttf */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		1B285A8E7E93EC11771D5F95 /* libPods-jumpit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FC9BC632AF962ABD87CB70 /* libPods-jumpit.a */; };
 		1B3E292022E2A00C00535263 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3E291F22E2A00C00535263 /* HealthKit.framework */; };
 		1B40C05B22CB4D7D0046B413 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B40C05822CB4D570046B413 /* libRNVectorIcons.a */; };
 		1B73EDB02310B194007EF514 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B73ED7F2310B194007EF514 /* LaunchScreen.xib */; };
 		1FC2237FD0604385A088595A /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D151E162872643FF9E88B920 /* MaterialCommunityIcons.ttf */; };
-		20009DE1BA3A8FDAD6006D90 /* Pods_jumpit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D581CB9B84C98751518F71 /* Pods_jumpit.framework */; };
 		2B913FBC08D44BCB8EE03D91 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA70279E30534B01A332AE96 /* libRNCAsyncStorage.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -45,9 +45,10 @@
 		2DCD954D1E0B4F2C00145EB5 /* jumpitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* jumpitTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		35561681B08F49459388CF25 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC8F541B82C940069582900C /* Roboto.ttf */; };
+		477232C575B76CD36554E03A /* libPods-jumpitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 451E75BE677AEA3B69E49402 /* libPods-jumpitTests.a */; };
 		4A6E89C9A09349868FDE6DA7 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BE9333A8D744D749E4806CB /* libRNSVG.a */; };
+		5109C730230412270025DCE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5109C6FF230412270025DCE9 /* GoogleService-Info.plist */; };
 		51AD1379502E434C810990CA /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4A0AC8C88F45718CABAB7F /* libRNSVG-tvOS.a */; };
-		57926E7B2829CC7334252DD4 /* Pods_jumpitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CE123AEFEEF93C8E21FA74 /* Pods_jumpitTests.framework */; };
 		62B558FC40FBCBB4F39A6D19 /* Pods_jumpit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6E8F3DAFA7BCD5A2F1D7833 /* Pods_jumpit_tvOS.framework */; };
 		63ABD4E9618941DD98A3B78B /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E43DD0B83DAF48C2A666931F /* FontAwesome5_Brands.ttf */; };
 		65A38610956E4F3E9F484844 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BABC4D486C4444BB8BE128E6 /* libRNGestureHandler.a */; };
@@ -438,7 +439,6 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* jumpitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jumpitTests.m; sourceTree = "<group>"; };
 		05AF2C3638B253E11BBD9D64 /* Pods-jumpit-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jumpit-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-jumpit-tvOS/Pods-jumpit-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		08CE123AEFEEF93C8E21FA74 /* Pods_jumpitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jumpitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CD0E116831A40738C4D65F1 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -480,8 +480,10 @@
 		3487070EC4C043B58F8C863A /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		3ABBBA6858A71D2E219ABAEB /* Pods-jumpitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jumpitTests.debug.xcconfig"; path = "Target Support Files/Pods-jumpitTests/Pods-jumpitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F5D3C67AA68427E8F35B39B /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		451E75BE677AEA3B69E49402 /* libPods-jumpitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jumpitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD5EE48ACA657A3748A064A /* Pods-jumpit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jumpit.debug.xcconfig"; path = "Target Support Files/Pods-jumpit/Pods-jumpit.debug.xcconfig"; sourceTree = "<group>"; };
 		4DE24121EB834FEF9873837C /* libRCTAppleHealthKit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTAppleHealthKit.a; sourceTree = "<group>"; };
+		5109C6FF230412270025DCE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55F534A1FDA4410EB5D13222 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; };
 		59866AB0984147948E587FD1 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -500,9 +502,9 @@
 		AA4A0AC8C88F45718CABAB7F /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; };
 		AA70279E30534B01A332AE96 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		B2D581CB9B84C98751518F71 /* Pods_jumpit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jumpit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4446FEE64AD4440B5603C4B /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		B99B3646086945B1A8A78CAB /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/native-base/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		B9FC9BC632AF962ABD87CB70 /* libPods-jumpit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-jumpit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABC4D486C4444BB8BE128E6 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		BC195F56992B4F08B13C57D5 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		C27D5822E4ED4CFB9DAE1983 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -528,7 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				57926E7B2829CC7334252DD4 /* Pods_jumpitTests.framework in Frameworks */,
+				477232C575B76CD36554E03A /* libPods-jumpitTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +559,7 @@
 				E1635D5A13B54AF7AB2DE6DA /* libRCTAppleHealthKit.a in Frameworks */,
 				4A6E89C9A09349868FDE6DA7 /* libRNSVG.a in Frameworks */,
 				85438C4DEE8E4036838A6EA3 /* libRNFirebase.a in Frameworks */,
-				20009DE1BA3A8FDAD6006D90 /* Pods_jumpit.framework in Frameworks */,
+				1B285A8E7E93EC11771D5F95 /* libPods-jumpit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +677,7 @@
 			isa = PBXGroup;
 			children = (
 				1B73ED7E2310B194007EF514 /* Base.lproj */,
+				5109C6FF230412270025DCE9 /* GoogleService-Info.plist */,
 				1B3E291622E2714700535263 /* jumpit.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -824,10 +827,10 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				B2D581CB9B84C98751518F71 /* Pods_jumpit.framework */,
 				E6E8F3DAFA7BCD5A2F1D7833 /* Pods_jumpit_tvOS.framework */,
 				29F6DABD1FC4BBA36543F024 /* Pods_jumpit_tvOSTests.framework */,
-				08CE123AEFEEF93C8E21FA74 /* Pods_jumpitTests.framework */,
+				B9FC9BC632AF962ABD87CB70 /* libPods-jumpit.a */,
+				451E75BE677AEA3B69E49402 /* libPods-jumpitTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -977,7 +980,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				EA7D6EEB0A23608D37338645 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1538,6 +1540,7 @@
 				C0A7CD7555314CD082D614E7 /* rubicon-icon-font.ttf in Resources */,
 				0A767F89A95A4951835B4E3C /* SimpleLineIcons.ttf in Resources */,
 				7F46D87B26764FF696654585 /* Zocial.ttf in Resources */,
+				5109C730230412270025DCE9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1673,28 +1676,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA7D6EEB0A23608D37338645 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-jumpit/Pods-jumpit-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-jumpit/Pods-jumpit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
