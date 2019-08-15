@@ -4,7 +4,7 @@ import { userPassword } from './userPassword.reducer';
 import { exercisesPlan, dietPlan } from './plan.reducer';
 import { foods } from './foods.reducer';
 import { stepCount, floor, distance } from './workout.reducer';
-import { highblood } from './measure.reducer';
+import { highblood, sugar } from './measure.reducer';
 
 const rootReducer = combineReducers({
   users,
@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   stepCount,
   floor,
   distance,
-  highblood
+  highblood,
+  sugar
 });
 export default rootReducer;
