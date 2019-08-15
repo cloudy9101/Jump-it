@@ -25,7 +25,6 @@ function getSugarData(payload) {
 export const readSugar = (date, type, token) => {
   return dispatch => {
     get(`/api/users/measure/sugar/${date}/${type}`, token).then(res => {
-      console.log(res.data);
       if (res.code === 0) {
         dispatch(getSugarData(res.data));
       }

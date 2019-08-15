@@ -66,6 +66,7 @@ class MeasurementPage extends Component {
   componentDidMount() {
     AsyncStorage.getItem('token').then(token => {
       const today = moment().format('DD-MM-YYYY');
+
       this.props.readHighBlood(today, 'week', token);
       this.props.readSugar(today, 'week', token);
     });
@@ -76,7 +77,12 @@ class MeasurementPage extends Component {
 
     this.setState({
       isCalenderVisible: flag,
-      date: moment(day.timestamp)
+      date: moment(day.dateString, 'YYYY-MM-DD')
+    });
+    AsyncStorage.getItem('token').then(token => {
+      const today = this.state.date.format('DD-MM-YYYY');
+      this.props.readHighBlood(today, 'week', token);
+      this.props.readSugar(today, 'week', token);
     });
   }
   canlanderModalHandler(e) {
@@ -86,6 +92,7 @@ class MeasurementPage extends Component {
   }
   backwardHandler(e) {
     const { date } = this.state;
+
     switch (e) {
       case 'WEEK': {
         const value = date.subtract(7, 'days');
@@ -93,6 +100,12 @@ class MeasurementPage extends Component {
           date: value,
           color: '#fff'
         });
+        AsyncStorage.getItem('token').then(token => {
+          const today = this.state.date.format('DD-MM-YYYY');
+          this.props.readHighBlood(today, 'week', token);
+          this.props.readSugar(today, 'week', token);
+        });
+
         break;
       }
       case 'MONTH': {
@@ -128,6 +141,11 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
+        AsyncStorage.getItem('token').then(token => {
+          const today = this.state.date.format('DD-MM-YYYY');
+          this.props.readHighBlood(today, 'week', token);
+          this.props.readSugar(today, 'week', token);
+        });
 
         break;
       }
