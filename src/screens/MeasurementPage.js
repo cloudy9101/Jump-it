@@ -13,25 +13,35 @@ import {
   Fab,
   Tab,
   Tabs,
-  TabHeading
+  TabHeading,
+  Spinner
 } from 'native-base';
 import moment from 'moment';
-import ChartScreen from './ChartScreen';
+import AsyncStorage from '@react-native-community/async-storage';
+import ChartScreen from '../components/ChartScreen';
 import HeaderComponent from '../components/HeaderComponent';
 import MeasureModal from './MeasureModal';
 import DateUtils from '../utils/DateUtils';
 import DatechangeComponet from '../components/DatechangeComponet';
 import CalendarModal from '../components/CalendarModal';
-const data = {
+import LineGraph from '../components/LineGraph';
+import { connect } from 'react-redux';
+import { readHighBlood } from '../redux/actions';
+
+const data1 = {
   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   datasets: [
+    //data: [500, 45, 28, 80, 1000, 43],
     {
-      data: [500, 45, 28, 80, 1000, 43]
+      data: [20]
+    },
+    {
+      data: [50]
     }
   ]
 };
 
-export default class MeasurementPage extends Component {
+class MeasurementPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,6 +57,13 @@ export default class MeasurementPage extends Component {
     this.canlanderModalHandler = this.canlanderModalHandler.bind(this);
     this.selectDate = this.selectDate.bind(this);
   }
+  componentDidMount() {
+    AsyncStorage.getItem('token').then(token => {
+      const today = moment().format('DD-MM-YYYY');
+      this.props.readHighBlood(today, 'week', token);
+    });
+  }
+
   selectDate(day, flag) {
     const { date } = this.state;
 
@@ -145,7 +162,12 @@ export default class MeasurementPage extends Component {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={'Measure'} {...this.props} />
-        <Tabs tabBarUnderlineStyle={{ backgroundColor: '#bbb', height: 1 }}>
+        <Tabs
+          tabBarUnderlineStyle={{ backgroundColor: '#bbb', height: 1 }}
+          onChangeTab={e => {
+            console.log(e);
+          }}
+        >
           <Tab
             style={{ backgroundColor: '#1f3954' }}
             heading={
@@ -174,7 +196,19 @@ export default class MeasurementPage extends Component {
               txtPress={this.canlanderModalHandler}
             />
             <Content style={{ marginTop: 1 }}>
-              <ChartScreen
+              {this.props.highblood.isLoading ? (
+                <LineGraph
+                  dividerColor="#DD5144"
+                  name="High Blood Pressure"
+                  GradientFrom="#DD5144"
+                  GradientTo="#a82216"
+                  data={this.props.highblood}
+                />
+              ) : (
+                <Spinner color="#fff" />
+              )}
+
+              {/* <ChartScreen
                 dividerColor="#DD5144"
                 name="High Blood Pressure"
                 GradientFrom="#DD5144"
@@ -201,7 +235,7 @@ export default class MeasurementPage extends Component {
                 GradientFrom="#35652c"
                 GradientTo="#163d0f"
                 data={data}
-              />
+              /> */}
             </Content>
           </Tab>
           <Tab
@@ -231,7 +265,7 @@ export default class MeasurementPage extends Component {
               txtPress={this.canlanderModalHandler}
             />
             <Content>
-              <ChartScreen
+              {/* <ChartScreen
                 dividerColor="#DD5144"
                 name="High Blood Pressure"
                 GradientFrom="#DD5144"
@@ -258,7 +292,7 @@ export default class MeasurementPage extends Component {
                 GradientFrom="#35652c"
                 GradientTo="#163d0f"
                 data={data}
-              />
+              /> */}
             </Content>
           </Tab>
           <Tab
@@ -287,7 +321,7 @@ export default class MeasurementPage extends Component {
               txtPress={this.canlanderModalHandler}
             />
             <Content>
-              <ChartScreen
+              {/* <ChartScreen
                 dividerColor="#DD5144"
                 name="High Blood Pressure"
                 GradientFrom="#DD5144"
@@ -314,7 +348,7 @@ export default class MeasurementPage extends Component {
                 GradientFrom="#35652c"
                 GradientTo="#163d0f"
                 data={data}
-              />
+              /> */}
             </Content>
           </Tab>
         </Tabs>
@@ -345,3 +379,12 @@ export default class MeasurementPage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  highblood: state.highblood
+});
+const mapDispatchToProps = { readHighBlood };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MeasurementPage);

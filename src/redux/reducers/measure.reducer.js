@@ -1,20 +1,24 @@
-import { SUGAR_INTAKE, HIGH_BLOOD } from '../actiontypes';
+import { GET_HIGHBLOOD_DATA } from '../actiontypes';
 
-initState = {
-  low:'',
-  high:'',
-  value:''
-  timestamp:''
+const initState = {
+  labels: [],
+  datasets: [],
+  isLoading: false
 };
 
-const  measure = (state = initState, action) => {
+export const highblood = (state = initState, action) => {
   switch (action.type) {
-    case HIGH_BLOOD: {
-      return { ...initState, ...action.payload };
+    case GET_HIGHBLOOD_DATA: {
+      const { datasets, labels, startIndex } = action.payload;
+      datasets.forEach(arr => {
+        for (let i = 0; i < startIndex; i++) {
+          arr.data.unshift(0);
+        }
+      });
+
+      return { ...initState, datasets, labels, isLoading: true };
     }
-    case SUGAR_INTAKE: {
-      return { ...initState, ...action.payload };
-    }
+
     default:
       return state;
   }
