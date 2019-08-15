@@ -41,7 +41,8 @@ class ChartScreen extends Component {
             backgroundGradientFrom: colorfrom,
             backgroundGradientTo: colorTo,
             decimalPlaces: 1,
-            color: (opacity = 1) => `rgba(238, 238, 238 ,${opacity})`
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            strokeWidth: 3
           }}
         />
       </View>
