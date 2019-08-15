@@ -1,26 +1,30 @@
 import firebase from 'react-native-firebase';
-import DeviceInfo from 'react-native-device-info';
 import { Alert } from 'react-native';
+import { deviceReg } from '../redux/actions';
 
 const Firebase = {};
 
-firebase.messaging().hasPermission().then(enabled => {
-  if (!enabled) {
-    firebase.messaging().requestPermission().catch(error => {
-      console.log(error);
-    });
-  }
-});
+Firebase.setup = function() {
+  firebase.messaging().hasPermission().then(enabled => {
+    if (!enabled) {
+      firebase.messaging().requestPermission().catch(error => {
+        console.log(error);
+      });
+    }
+  });
+};
 
-firebase.messaging().getToken().then((fcmToken) => {
-  if (fcmToken) {
-    console.log(fcmToken);
-    console.log(DeviceInfo.getUniqueID());
-  } else {
-      // user doesn't have a device token yet
-    console.log("user doesn't have a device token yet");
-  }
-});
+Firebase.onTokenRefreshListener = function() {
+  return firebase.messaging().onTokenRefresh(() => {
+    AsyncStorage.getItem('token').then(token => {
+      dispatch(deviceReg(token));
+    });
+  });
+};
+
+Firebase.getToken = function() {
+  return firebase.messaging().getToken();
+}
 
 Firebase.notificationChannel = new firebase.notifications.Android.Channel('Default', 'Default', firebase.notifications.Android.Importance.High).setDescription('Default notification channel');
 firebase.notifications().android.createChannel(Firebase.notificationChannel);

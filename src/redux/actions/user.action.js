@@ -8,6 +8,9 @@ import {
   UPDATE_USER
 } from '../actiontypes';
 import { post, get, put } from '../../API';
+import DeviceInfo from 'react-native-device-info';
+import Firebase from '../../utils/FirebaseUtil';
+import firebase from 'react-native-firebase';
 
 function registerFailure(error) {
   return { type: ERROR_MSG, error };
@@ -36,6 +39,7 @@ export const register = userInfo => {
     post('/api/users/signup', userInfo).then(res => {
       if (res.code === 0) {
         dispatch(registerSuccess(res.data.token));
+        dispatch(deviceReg(res.data.token));
       } else {
         dispatch(registerFailure(res));
       }
@@ -48,6 +52,7 @@ export const login = userInfo => {
     post('/api/users/signin', userInfo).then(res => {
       if (res.code === 0) {
         dispatch(loginSuccess(res.data.token));
+        dispatch(deviceReg(res.data.token));
       } else {
         dispatch(loginFail(res));
       }
@@ -76,3 +81,33 @@ export const updateUser = (body, token) => {
     });
   };
 };
+
+export const deviceReg = (token) => {
+  return () => {
+    Firebase.getToken().then((fcmToken) => {
+      if (fcmToken) {
+        const deviceId = DeviceInfo.getUniqueID();
+        console.log(fcmToken);
+        console.log(deviceId);
+        post('/api/users/deviceReg', { deviceId, regToken: fcmToken }, token).then(res => {
+          console.log(res);
+        }).catch(error => {
+          console.log(error);
+        });
+      } else {
+        console.log("user doesn't have a device token yet");
+      }
+    });
+  };
+}
+
+export const deviceUnreg = (token) => {
+  return () => {
+    const deviceId = DeviceInfo.getUniqueID();
+    post('/api/users/deviceUnreg', { deviceId }, token).then(res => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+}

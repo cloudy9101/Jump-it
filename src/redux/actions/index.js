@@ -3,6 +3,8 @@ import {
   login,
   findUseInfo,
   updateUser,
+  deviceReg,
+  deviceUnreg,
   logout
 } from './user.action';
 import { changePassword } from './password.action';
@@ -33,6 +35,8 @@ export {
   register,
   login,
   logout,
+  deviceReg,
+  deviceUnreg,
   fetchExercises,
   fetchDiets,
   addDiet,
