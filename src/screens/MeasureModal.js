@@ -29,14 +29,14 @@ class MeasureModal extends Component {
       low: '',
       isShow: false,
       msg: '',
-      timestamp: Date.parse(new Date())
+      date: moment().format('DD-MM-YYYY')
     };
 
     this.btnHandler = this.btnHandler.bind(this);
   }
 
   btnHandler() {
-    const { high, low, value, timestamp } = this.state;
+    const { high, low, value, date } = this.state;
 
     if (isNaN(high) || isNaN(low) || isNaN(value)) {
       this.textInput1.clear();
@@ -82,7 +82,7 @@ class MeasureModal extends Component {
     }
 
     AsyncStorage.getItem('token').then(token => {
-      this.props.saveMeasure({ low, high, value, timestamp }, token);
+      this.props.saveMeasure({ low, high, value, date }, token);
       this.props.modalHandler();
     });
   }
@@ -106,7 +106,7 @@ class MeasureModal extends Component {
                 fontWeight: 'bold'
               }}
             >
-              {moment().format('DD-MM-YYYY')}
+              {this.state.date}
             </Text>
           </Body>
           <Right>

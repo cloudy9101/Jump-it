@@ -2,7 +2,7 @@ import { register, login, findUseInfo, updateUser } from './user.action';
 import { changePassword } from './password.action';
 import { fetchExercises, fetchDiets, addDiet } from './plan.action';
 import { getStepCount, getFloor, getDistance } from './workout.action';
-import { saveMeasure } from './measure.action';
+import { saveMeasure, readHighBlood } from './measure.action';
 import {
   addFood,
   updateFoodValue,
@@ -27,5 +27,6 @@ export {
   getStepCount,
   getFloor,
   getDistance,
-  saveMeasure
+  saveMeasure,
+  readHighBlood
 };
