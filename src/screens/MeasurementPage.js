@@ -114,6 +114,7 @@ class MeasurementPage extends Component {
           date: value,
           color: '#fff'
         });
+        break;
       }
       case 'YEAR': {
         const value = date.subtract(1, 'years');
@@ -161,6 +162,7 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
+        break;
       }
       case 'YEAR': {
         if (date.toDate().getFullYear() < current.getFullYear()) {
@@ -174,6 +176,7 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
+        break;
       }
     }
   }

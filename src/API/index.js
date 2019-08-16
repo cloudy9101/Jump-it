@@ -37,3 +37,15 @@ export function put(path, body, token = '') {
     .then(res => res.json())
     .catch(error => console.error('Error:', error));
 }
+
+export function del(path, token = '') {
+  return fetch(GATEWAY + path, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token
+    }
+  })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error));
+}

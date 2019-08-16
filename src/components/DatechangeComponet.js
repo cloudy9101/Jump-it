@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Icon } from 'native-base';
+import { View, Text, Icon, Button } from 'native-base';
 
 class DatechangeComponet extends Component {
   render() {
@@ -14,13 +14,13 @@ class DatechangeComponet extends Component {
           marginBottom: 5
         }}
       >
-        <Icon
-          name="angle-left"
-          type="FontAwesome"
-          style={{ color: '#ffffff' }}
-          onPress={this.props.backwardHandler}
-        />
-
+        <Button light transparent onPress={this.props.backwardHandler}>
+          <Icon
+            name="angle-left"
+            type="FontAwesome"
+            style={{ color: '#ffffff' }}
+          />
+        </Button>
         <Text
           style={{
             fontSize: 18,
@@ -31,13 +31,14 @@ class DatechangeComponet extends Component {
         >
           {this.props.data}
         </Text>
-
-        <Icon
-          name="angle-right"
-          type="FontAwesome"
-          style={{ color: color }}
-          onPress={this.props.forwardHandler}
-        />
+        <Button light transparent onPress={this.props.forwardHandler}>
+          <Icon
+            name="angle-right"
+            type="FontAwesome"
+            style={{ color: color }}
+            onPress={this.props.forwardHandler}
+          />
+        </Button>
       </View>
     );
   }
