@@ -1,8 +1,20 @@
-import { register, login, findUseInfo, updateUser } from './user.action';
+import {
+  register,
+  login,
+  findUseInfo,
+  updateUser,
+  logout
+} from './user.action';
 import { changePassword } from './password.action';
 import { fetchExercises, fetchDiets, addDiet } from './plan.action';
 import { getStepCount, getFloor, getDistance } from './workout.action';
-import { saveMeasure, readHighBlood, readSugar } from './measure.action';
+import {
+  saveMeasure,
+  readHighBlood,
+  readSugar,
+  clearHighBloodState,
+  clearSugarState
+} from './measure.action';
 import {
   addFood,
   updateFoodValue,
@@ -13,6 +25,7 @@ import {
 export {
   register,
   login,
+  logout,
   fetchExercises,
   fetchDiets,
   addDiet,
@@ -29,5 +42,7 @@ export {
   getDistance,
   saveMeasure,
   readHighBlood,
-  readSugar
+  readSugar,
+  clearSugarState,
+  clearHighBloodState
 };

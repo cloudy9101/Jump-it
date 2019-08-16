@@ -1,4 +1,9 @@
-import { GET_HIGHBLOOD_DATA, GET_SUGAR_DATA } from '../actiontypes';
+import {
+  GET_HIGHBLOOD_DATA,
+  GET_SUGAR_DATA,
+  CLEAR_HIGHBLOOD,
+  CLEAR_SUGAR
+} from '../actiontypes';
 import { post, get } from '../../API';
 
 export const saveMeasure = (body, token) => {
@@ -31,3 +36,6 @@ export const readSugar = (date, type, token) => {
     });
   };
 };
+
+export const clearHighBloodState = () => ({ type: CLEAR_HIGHBLOOD });
+export const clearSugarState = () => ({ type: CLEAR_SUGAR });

@@ -26,7 +26,12 @@ import DatechangeComponet from '../components/DatechangeComponet';
 import CalendarModal from '../components/CalendarModal';
 import LineGraph from '../components/LineGraph';
 import { connect } from 'react-redux';
-import { readHighBlood, readSugar } from '../redux/actions';
+import {
+  readHighBlood,
+  readSugar,
+  clearSugarState,
+  clearHighBloodState
+} from '../redux/actions';
 
 const data1 = {
   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -62,6 +67,7 @@ class MeasurementPage extends Component {
     this.forwardHandler = this.forwardHandler.bind(this);
     this.canlanderModalHandler = this.canlanderModalHandler.bind(this);
     this.selectDate = this.selectDate.bind(this);
+    this.tabChangeHandler = this.tabChangeHandler.bind(this);
   }
   componentDidMount() {
     AsyncStorage.getItem('token').then(token => {
@@ -70,13 +76,46 @@ class MeasurementPage extends Component {
       this.props.readSugar(today, 'week', token);
     });
   }
+  async tabChangeHandler(v) {
+    if (v.i === 1) {
+      await this.props.clearHighBloodState();
+      await this.props.clearSugarState();
+
+      AsyncStorage.getItem('token').then(token => {
+        const today = this.state.date.format('DD-MM-YYYY');
+        this.props.readHighBlood(today, 'month', token);
+        this.props.readSugar(today, 'month', token);
+      });
+    } else if (v.i === 2) {
+      await this.props.clearHighBloodState();
+      await this.props.clearSugarState();
+      AsyncStorage.getItem('token').then(token => {
+        const today = this.state.date.format('DD-MM-YYYY');
+        this.props.readHighBlood(today, 'year', token);
+        this.props.readSugar(today, 'year', token);
+      });
+    } else {
+      await this.props.clearHighBloodState();
+      await this.props.clearSugarState();
+      AsyncStorage.getItem('token').then(token => {
+        const today = this.state.date.format('DD-MM-YYYY');
+        this.props.readHighBlood(today, 'week', token);
+        this.props.readSugar(today, 'week', token);
+      });
+    }
+  }
 
   selectDate(day, flag) {
     const { date } = this.state;
-
+    const selected = moment(day.dateString, 'YYYY-MM-DD');
+    if (selected.toDate().getTime() < new Date().getTime()) {
+      this.setState({
+        color: '#fff'
+      });
+    }
     this.setState({
       isCalenderVisible: flag,
-      date: moment(day.dateString, 'YYYY-MM-DD')
+      date: selected
     });
     AsyncStorage.getItem('token').then(token => {
       const today = this.state.date.format('DD-MM-YYYY');
@@ -89,7 +128,7 @@ class MeasurementPage extends Component {
       isCalenderVisible: e
     });
   }
-  backwardHandler(e) {
+  async backwardHandler(e) {
     const { date } = this.state;
     switch (e) {
       case 'WEEK': {
@@ -98,6 +137,8 @@ class MeasurementPage extends Component {
           date: value,
           color: '#fff'
         });
+        await this.props.clearHighBloodState();
+        await this.props.clearSugarState();
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'week', token);
@@ -112,6 +153,13 @@ class MeasurementPage extends Component {
           date: value,
           color: '#fff'
         });
+        await this.props.clearHighBloodState();
+        await this.props.clearSugarState();
+        AsyncStorage.getItem('token').then(token => {
+          const today = this.state.date.format('DD-MM-YYYY');
+          this.props.readHighBlood(today, 'month', token);
+          this.props.readSugar(today, 'month', token);
+        });
         break;
       }
       case 'YEAR': {
@@ -120,11 +168,18 @@ class MeasurementPage extends Component {
           date: value,
           color: '#fff'
         });
+        await this.props.clearHighBloodState();
+        await this.props.clearSugarState();
+        AsyncStorage.getItem('token').then(token => {
+          const today = this.state.date.format('DD-MM-YYYY');
+          this.props.readHighBlood(today, 'year', token);
+          this.props.readSugar(today, 'year', token);
+        });
         break;
       }
     }
   }
-  forwardHandler(e) {
+  async forwardHandler(e) {
     const { date } = this.state;
     const current = new Date();
     switch (e) {
@@ -140,6 +195,8 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
+        await this.props.clearHighBloodState();
+        await this.props.clearSugarState();
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'week', token);
@@ -160,6 +217,13 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
+        await this.props.clearHighBloodState();
+        await this.props.clearSugarState();
+        AsyncStorage.getItem('token').then(token => {
+          const today = this.state.date.format('DD-MM-YYYY');
+          this.props.readHighBlood(today, 'month', token);
+          this.props.readSugar(today, 'month', token);
+        });
         break;
       }
       case 'YEAR': {
@@ -174,6 +238,13 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
+        await this.props.clearHighBloodState();
+        await this.props.clearSugarState();
+        AsyncStorage.getItem('token').then(token => {
+          const today = this.state.date.format('DD-MM-YYYY');
+          this.props.readHighBlood(today, 'year', token);
+          this.props.readSugar(today, 'year', token);
+        });
         break;
       }
     }
@@ -184,15 +255,12 @@ class MeasurementPage extends Component {
     });
   }
   render() {
-    //console.log(this.props.sugar);
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={'Measure'} {...this.props} />
         <Tabs
           tabBarUnderlineStyle={{ backgroundColor: '#bbb', height: 1 }}
-          onChangeTab={e => {
-            console.log(e);
-          }}
+          onChangeTab={this.tabChangeHandler}
         >
           <Tab
             style={{ backgroundColor: '#1f3954' }}
@@ -231,7 +299,8 @@ class MeasurementPage extends Component {
                     GradientTo="#a82216"
                     data={this.props.highblood ? this.props.highblood : data1}
                   />
-                  <ChartScreen
+
+                  <LineGraph
                     dividerColor="#b38b27"
                     name="Sugar Taken"
                     GradientFrom="#b38b27"
@@ -285,20 +354,28 @@ class MeasurementPage extends Component {
               txtPress={this.canlanderModalHandler}
             />
             <Content>
-              {/* <ChartScreen
-                dividerColor="#DD5144"
-                name="High Blood Pressure"
-                GradientFrom="#DD5144"
-                GradientTo="#a82216"
-                data={data}
-              />
-              <ChartScreen
-                dividerColor="#b38b27"
-                name="Sugar Taken"
-                GradientFrom="#b38b27"
-                GradientTo="#946d0d"
-                data={data}
-              />
+              {this.props.highblood.isLoading && this.props.sugar.isLoading ? (
+                <>
+                  <LineGraph
+                    dividerColor="#DD5144"
+                    name="High Blood Pressure"
+                    GradientFrom="#DD5144"
+                    GradientTo="#a82216"
+                    data={this.props.highblood ? this.props.highblood : data1}
+                  />
+                  <LineGraph
+                    dividerColor="#b38b27"
+                    name="Sugar Taken"
+                    GradientFrom="#b38b27"
+                    GradientTo="#946d0d"
+                    data={this.props.sugar ? this.props.sugar : data}
+                  />
+                </>
+              ) : (
+                <Spinner color="#fff" />
+              )}
+
+              {/* 
               <ChartScreen
                 name="Steps"
                 dividerColor="#6e61a8"
@@ -341,20 +418,28 @@ class MeasurementPage extends Component {
               txtPress={this.canlanderModalHandler}
             />
             <Content>
-              {/* <ChartScreen
-                dividerColor="#DD5144"
-                name="High Blood Pressure"
-                GradientFrom="#DD5144"
-                GradientTo="#a82216"
-                data={data}
-              />
-              <ChartScreen
-                dividerColor="#b38b27"
-                name="Sugar Taken"
-                GradientFrom="#b38b27"
-                GradientTo="#946d0d"
-                data={data}
-              />
+              {this.props.highblood.isLoading && this.props.sugar.isLoading ? (
+                <>
+                  <LineGraph
+                    dividerColor="#DD5144"
+                    name="High Blood Pressure"
+                    GradientFrom="#DD5144"
+                    GradientTo="#a82216"
+                    data={this.props.highblood ? this.props.highblood : data1}
+                  />
+                  <ChartScreen
+                    dividerColor="#b38b27"
+                    name="Sugar Taken"
+                    GradientFrom="#b38b27"
+                    GradientTo="#946d0d"
+                    data={this.props.sugar ? this.props.sugar : data}
+                  />
+                </>
+              ) : (
+                <Spinner color="#fff" />
+              )}
+
+              {/* 
               <ChartScreen
                 name="Steps"
                 dividerColor="#6e61a8"
@@ -404,7 +489,12 @@ const mapStateToProps = state => ({
   highblood: state.highblood,
   sugar: state.sugar
 });
-const mapDispatchToProps = { readHighBlood, readSugar };
+const mapDispatchToProps = {
+  readHighBlood,
+  readSugar,
+  clearSugarState,
+  clearHighBloodState
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
