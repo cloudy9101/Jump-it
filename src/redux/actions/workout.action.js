@@ -15,7 +15,7 @@ export const getStepCount = (config, token) => {
       dispatch(getStep(results));
       post(
         '/api/users/workout/save',
-        { step: results, timestamp: Date.parse(new Date()) },
+        { step: results, date: new Date() },
         token
       );
     });
@@ -36,7 +36,7 @@ export const getDistance = (config, token) => {
       dispatch(getDistanceSample(results));
       post(
         '/api/users/workout/save',
-        { distance: results, timestamp: Date.parse(new Date()) },
+        { distance: results, date: new Date() },
         token
       );
     });
@@ -56,7 +56,7 @@ export const getFloor = (config, token) => {
       dispatch(getFloorSample(results));
       post(
         '/api/users/workout/save',
-        { floor: results, timestamp: Date.parse(new Date()) },
+        { floor: results, date: new Date() },
         token
       );
     });

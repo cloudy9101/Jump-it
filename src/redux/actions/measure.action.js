@@ -2,7 +2,13 @@ import {
   GET_HIGHBLOOD_DATA,
   GET_SUGAR_DATA,
   CLEAR_HIGHBLOOD,
-  CLEAR_SUGAR
+  CLEAR_SUGAR,
+  READ_STEPS,
+  READ_FLOORS,
+  READ_DISTANCE,
+  CLEAR_STEPS,
+  CLEAR_FLOORS,
+  CLEAR_DISTANCE
 } from '../actiontypes';
 import { post, get } from '../../API';
 
@@ -39,3 +45,44 @@ export const readSugar = (date, type, token) => {
 
 export const clearHighBloodState = () => ({ type: CLEAR_HIGHBLOOD });
 export const clearSugarState = () => ({ type: CLEAR_SUGAR });
+
+function getSteps(payload) {
+  return { type: READ_STEPS, payload };
+}
+export const readStep = (date, type, token) => {
+  return dispatch => {
+    get(`/api/users/measure/step/${date}/${type}`, token).then(res => {
+      if (res.code === 0) {
+        dispatch(getSteps(res.data));
+      }
+    });
+  };
+};
+function getDistances(payload) {
+  return { type: READ_DISTANCE, payload };
+}
+export const readDistance = (date, type, token) => {
+  return dispatch => {
+    get(`/api/users/measure/distance/${date}/${type}`, token).then(res => {
+      if (res.code === 0) {
+        dispatch(getDistances(res.data));
+      }
+    });
+  };
+};
+function getFloor(payload) {
+  return { type: READ_FLOORS, payload };
+}
+export const readFloor = (date, type, token) => {
+  return dispatch => {
+    get(`/api/users/measure/floor/${date}/${type}`, token).then(res => {
+      if (res.code === 0) {
+        dispatch(getFloor(res.data));
+      }
+    });
+  };
+};
+
+export const clearStep = () => ({ type: CLEAR_STEPS });
+export const clearDistance = () => ({ type: CLEAR_DISTANCE });
+export const clearFloor = () => ({ type: CLEAR_FLOORS });

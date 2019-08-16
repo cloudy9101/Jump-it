@@ -114,23 +114,21 @@ class WorkoutPage extends Component {
             name={'Steps'}
             num={this.props.step.value}
             unit={'steps'}
-            time={moment(Date.parse(this.props.step.endDate)).format('HH:mm')}
+            time={moment(this.props.step.endDate).format('HH:mm')}
           />
           <WorkoutCard
             bkColor={'#35652c'}
             name={'Working+Running Distance'}
             num={(parseInt(this.props.distance.value) / 1000).toFixed(1)}
             unit={'km'}
-            time={moment(Date.parse(this.props.distance.endDate)).format(
-              'HH:mm'
-            )}
+            time={moment(this.props.distance.endDate).format('HH:mm')}
           />
           <WorkoutCard
             bkColor={'#3d7ea4'}
             name={'Flights Climebed'}
             num={this.props.floor.value}
             unit={'floor'}
-            time={moment(Date.parse(this.props.floor.endDate)).format('HH:mm')}
+            time={moment(this.props.floor.endDate).format('HH:mm')}
           />
         </View>
       </>

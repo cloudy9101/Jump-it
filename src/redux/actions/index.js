@@ -13,7 +13,13 @@ import {
   readHighBlood,
   readSugar,
   clearHighBloodState,
-  clearSugarState
+  clearSugarState,
+  readStep,
+  readDistance,
+  readFloor,
+  clearStep,
+  clearDistance,
+  clearFloor
 } from './measure.action';
 import {
   addFood,
@@ -44,5 +50,11 @@ export {
   readHighBlood,
   readSugar,
   clearSugarState,
-  clearHighBloodState
+  clearHighBloodState,
+  readStep,
+  readDistance,
+  readFloor,
+  clearStep,
+  clearDistance,
+  clearFloor
 };

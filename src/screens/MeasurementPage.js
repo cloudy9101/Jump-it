@@ -30,7 +30,13 @@ import {
   readHighBlood,
   readSugar,
   clearSugarState,
-  clearHighBloodState
+  clearHighBloodState,
+  readStep,
+  readDistance,
+  readFloor,
+  clearStep,
+  clearDistance,
+  clearFloor
 } from '../redux/actions';
 
 const data1 = {
@@ -74,33 +80,54 @@ class MeasurementPage extends Component {
       const today = moment().format('DD-MM-YYYY');
       this.props.readHighBlood(today, 'week', token);
       this.props.readSugar(today, 'week', token);
+      this.props.readStep(today, 'week', token);
+      this.props.readFloor(today, 'week', token);
+      this.props.readDistance(today, 'week', token);
     });
   }
   async tabChangeHandler(v) {
     if (v.i === 1) {
       await this.props.clearHighBloodState();
       await this.props.clearSugarState();
+      await this.props.clearStep();
+      await this.props.clearDistance();
+      await this.props.clearFloor();
 
       AsyncStorage.getItem('token').then(token => {
         const today = this.state.date.format('DD-MM-YYYY');
         this.props.readHighBlood(today, 'month', token);
         this.props.readSugar(today, 'month', token);
+        this.props.readStep(today, 'month', token);
+        this.props.readFloor(today, 'month', token);
+        this.props.readDistance(today, 'month', token);
       });
     } else if (v.i === 2) {
       await this.props.clearHighBloodState();
       await this.props.clearSugarState();
+      await this.props.clearStep();
+      await this.props.clearDistance();
+      await this.props.clearFloor();
       AsyncStorage.getItem('token').then(token => {
         const today = this.state.date.format('DD-MM-YYYY');
         this.props.readHighBlood(today, 'year', token);
         this.props.readSugar(today, 'year', token);
+        this.props.readStep(today, 'year', token);
+        this.props.readFloor(today, 'year', token);
+        this.props.readDistance(today, 'year', token);
       });
     } else {
       await this.props.clearHighBloodState();
       await this.props.clearSugarState();
+      await this.props.clearStep();
+      await this.props.clearDistance();
+      await this.props.clearFloor();
       AsyncStorage.getItem('token').then(token => {
         const today = this.state.date.format('DD-MM-YYYY');
         this.props.readHighBlood(today, 'week', token);
         this.props.readSugar(today, 'week', token);
+        this.props.readStep(today, 'week', token);
+        this.props.readFloor(today, 'week', token);
+        this.props.readDistance(today, 'week', token);
       });
     }
   }
@@ -139,10 +166,16 @@ class MeasurementPage extends Component {
         });
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
+        await this.props.clearStep();
+        await this.props.clearDistance();
+        await this.props.clearFloor();
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'week', token);
           this.props.readSugar(today, 'week', token);
+          this.props.readStep(today, 'week', token);
+          this.props.readFloor(today, 'week', token);
+          this.props.readDistance(today, 'week', token);
         });
 
         break;
@@ -155,10 +188,16 @@ class MeasurementPage extends Component {
         });
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
+        await this.props.clearStep();
+        await this.props.clearDistance();
+        await this.props.clearFloor();
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'month', token);
           this.props.readSugar(today, 'month', token);
+          this.props.readStep(today, 'month', token);
+          this.props.readFloor(today, 'month', token);
+          this.props.readDistance(today, 'month', token);
         });
         break;
       }
@@ -170,10 +209,16 @@ class MeasurementPage extends Component {
         });
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
+        await this.props.clearStep();
+        await this.props.clearDistance();
+        await this.props.clearFloor();
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'year', token);
           this.props.readSugar(today, 'year', token);
+          this.props.readStep(today, 'year', token);
+          this.props.readFloor(today, 'year', token);
+          this.props.readDistance(today, 'year', token);
         });
         break;
       }
@@ -197,10 +242,16 @@ class MeasurementPage extends Component {
         }
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
+        await this.props.clearStep();
+        await this.props.clearDistance();
+        await this.props.clearFloor();
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'week', token);
           this.props.readSugar(today, 'week', token);
+          this.props.readStep(today, 'week', token);
+          this.props.readFloor(today, 'week', token);
+          this.props.readDistance(today, 'week', token);
         });
 
         break;
@@ -219,10 +270,16 @@ class MeasurementPage extends Component {
         }
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
+        await this.props.clearStep();
+        await this.props.clearDistance();
+        await this.props.clearFloor();
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'month', token);
           this.props.readSugar(today, 'month', token);
+          this.props.readStep(today, 'month', token);
+          this.props.readFloor(today, 'month', token);
+          this.props.readDistance(today, 'month', token);
         });
         break;
       }
@@ -240,10 +297,16 @@ class MeasurementPage extends Component {
         }
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
+        await this.props.clearStep();
+        await this.props.clearDistance();
+        await this.props.clearFloor();
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'year', token);
           this.props.readSugar(today, 'year', token);
+          this.props.readStep(today, 'year', token);
+          this.props.readFloor(today, 'year', token);
+          this.props.readDistance(today, 'year', token);
         });
         break;
       }
@@ -290,7 +353,10 @@ class MeasurementPage extends Component {
               txtPress={this.canlanderModalHandler}
             />
             <Content style={{ marginTop: 1 }}>
-              {this.props.highblood.isLoading && this.props.sugar.isLoading ? (
+              {this.props.highblood.isLoading &&
+              this.props.sugar.isLoading &&
+              this.props.steps.isLoading &&
+              this.props.distances.isLoading ? (
                 <>
                   <LineGraph
                     dividerColor="#DD5144"
@@ -307,24 +373,31 @@ class MeasurementPage extends Component {
                     GradientTo="#946d0d"
                     data={this.props.sugar ? this.props.sugar : data}
                   />
+                  <ChartScreen
+                    name="Steps"
+                    dividerColor="#6e61a8"
+                    GradientFrom="#6e61a8"
+                    GradientTo="#453687"
+                    data={this.props.steps ? this.props.steps : data}
+                  />
+                  <ChartScreen
+                    dividerColor="#35652c"
+                    name="Flight Climbed"
+                    GradientFrom="#35652c"
+                    GradientTo="#163d0f"
+                    data={this.props.floors ? this.props.floors : data}
+                  />
+                  <ChartScreen
+                    dividerColor="#3d7ea4"
+                    name="Working+Running Distance"
+                    GradientFrom="#35652c"
+                    GradientTo="#163d0f"
+                    data={this.props.distances ? this.props.distances : data}
+                  />
                 </>
               ) : (
                 <Spinner color="#fff" />
               )}
-              {/* <ChartScreen
-                name="Steps"
-                dividerColor="#6e61a8"
-                GradientFrom="#6e61a8"
-                GradientTo="#453687"
-                data={data}
-              />
-              <ChartScreen
-                dividerColor="#35652c"
-                name="Working+Running Distance"
-                GradientFrom="#35652c"
-                GradientTo="#163d0f"
-                data={data}
-              /> */}
             </Content>
           </Tab>
           <Tab
@@ -354,7 +427,10 @@ class MeasurementPage extends Component {
               txtPress={this.canlanderModalHandler}
             />
             <Content>
-              {this.props.highblood.isLoading && this.props.sugar.isLoading ? (
+              {this.props.highblood.isLoading &&
+              this.props.sugar.isLoading &&
+              this.props.steps.isLoading &&
+              this.props.distances.isLoading ? (
                 <>
                   <LineGraph
                     dividerColor="#DD5144"
@@ -363,6 +439,7 @@ class MeasurementPage extends Component {
                     GradientTo="#a82216"
                     data={this.props.highblood ? this.props.highblood : data1}
                   />
+
                   <LineGraph
                     dividerColor="#b38b27"
                     name="Sugar Taken"
@@ -370,26 +447,31 @@ class MeasurementPage extends Component {
                     GradientTo="#946d0d"
                     data={this.props.sugar ? this.props.sugar : data}
                   />
+                  <ChartScreen
+                    name="Steps"
+                    dividerColor="#6e61a8"
+                    GradientFrom="#6e61a8"
+                    GradientTo="#453687"
+                    data={this.props.steps ? this.props.steps : data}
+                  />
+                  <ChartScreen
+                    dividerColor="#35652c"
+                    name="Flight Climbed"
+                    GradientFrom="#35652c"
+                    GradientTo="#163d0f"
+                    data={this.props.floors ? this.props.floors : data}
+                  />
+                  <ChartScreen
+                    dividerColor="#3d7ea4"
+                    name="Working+Running Distance"
+                    GradientFrom="#35652c"
+                    GradientTo="#163d0f"
+                    data={this.props.distances ? this.props.distances : data}
+                  />
                 </>
               ) : (
                 <Spinner color="#fff" />
               )}
-
-              {/* 
-              <ChartScreen
-                name="Steps"
-                dividerColor="#6e61a8"
-                GradientFrom="#6e61a8"
-                GradientTo="#453687"
-                data={data}
-              />
-              <ChartScreen
-                dividerColor="#35652c"
-                name="Working+Running Distance"
-                GradientFrom="#35652c"
-                GradientTo="#163d0f"
-                data={data}
-              /> */}
             </Content>
           </Tab>
           <Tab
@@ -418,7 +500,10 @@ class MeasurementPage extends Component {
               txtPress={this.canlanderModalHandler}
             />
             <Content>
-              {this.props.highblood.isLoading && this.props.sugar.isLoading ? (
+              {this.props.highblood.isLoading &&
+              this.props.sugar.isLoading &&
+              this.props.steps.isLoading &&
+              this.props.distances.isLoading ? (
                 <>
                   <LineGraph
                     dividerColor="#DD5144"
@@ -427,33 +512,39 @@ class MeasurementPage extends Component {
                     GradientTo="#a82216"
                     data={this.props.highblood ? this.props.highblood : data1}
                   />
-                  <ChartScreen
+
+                  <LineGraph
                     dividerColor="#b38b27"
                     name="Sugar Taken"
                     GradientFrom="#b38b27"
                     GradientTo="#946d0d"
                     data={this.props.sugar ? this.props.sugar : data}
                   />
+                  <ChartScreen
+                    name="Steps"
+                    dividerColor="#6e61a8"
+                    GradientFrom="#6e61a8"
+                    GradientTo="#453687"
+                    data={this.props.steps ? this.props.steps : data}
+                  />
+                  <ChartScreen
+                    dividerColor="#35652c"
+                    name="Flight Climbed"
+                    GradientFrom="#35652c"
+                    GradientTo="#163d0f"
+                    data={this.props.floors ? this.props.floors : data}
+                  />
+                  <ChartScreen
+                    dividerColor="#3d7ea4"
+                    name="Working+Running Distance"
+                    GradientFrom="#35652c"
+                    GradientTo="#163d0f"
+                    data={this.props.distances ? this.props.distances : data}
+                  />
                 </>
               ) : (
                 <Spinner color="#fff" />
               )}
-
-              {/* 
-              <ChartScreen
-                name="Steps"
-                dividerColor="#6e61a8"
-                GradientFrom="#6e61a8"
-                GradientTo="#453687"
-                data={data}
-              />
-              <ChartScreen
-                dividerColor="#35652c"
-                name="Working+Running Distance"
-                GradientFrom="#35652c"
-                GradientTo="#163d0f"
-                data={data}
-              /> */}
             </Content>
           </Tab>
         </Tabs>
@@ -487,13 +578,22 @@ class MeasurementPage extends Component {
 
 const mapStateToProps = state => ({
   highblood: state.highblood,
-  sugar: state.sugar
+  sugar: state.sugar,
+  steps: state.steps,
+  floors: state.floors,
+  distances: state.distances
 });
 const mapDispatchToProps = {
   readHighBlood,
   readSugar,
   clearSugarState,
-  clearHighBloodState
+  clearHighBloodState,
+  readStep,
+  readDistance,
+  readFloor,
+  clearStep,
+  clearDistance,
+  clearFloor
 };
 export default connect(
   mapStateToProps,
