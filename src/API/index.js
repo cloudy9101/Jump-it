@@ -37,7 +37,6 @@ export function put(path, body, token = '') {
     .then(res => res.json())
     .catch(error => console.error('Error:', error));
 }
-<<<<<<< HEAD
 
 export function del(path, token = '') {
   return fetch(GATEWAY + path, {
@@ -50,5 +49,3 @@ export function del(path, token = '') {
     .then(res => res.json())
     .catch(error => console.error('Error:', error));
 }
-=======
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
