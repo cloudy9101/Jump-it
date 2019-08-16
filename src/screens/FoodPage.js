@@ -58,7 +58,7 @@ class FoodPage extends Component {
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
         <Content>
           <SwipeListView
-            data={this.props.foods.data.sort((a, b) => { return a._id > b._id })}
+            data={this.props.foods.data.sort((a, b) => { return a._id.localeCompare(b._id) })}
             renderItem={ (data) => {
               const item = data.item;
               return(
