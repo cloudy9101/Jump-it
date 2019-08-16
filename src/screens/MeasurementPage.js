@@ -36,7 +36,6 @@ const data1 = {
     },
     {
       data: [50]
-<<<<<<< HEAD
     }
   ]
 };
@@ -48,19 +47,6 @@ const data = {
     }
   ]
 };
-=======
-    }
-  ]
-};
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-  datasets: [
-    {
-      data: [20, 45, 28, 80, 99, 43]
-    }
-  ]
-};
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
 class MeasurementPage extends Component {
   constructor(props) {
     super(props);
@@ -80,10 +66,6 @@ class MeasurementPage extends Component {
   componentDidMount() {
     AsyncStorage.getItem('token').then(token => {
       const today = moment().format('DD-MM-YYYY');
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
       this.props.readHighBlood(today, 'week', token);
       this.props.readSugar(today, 'week', token);
     });
@@ -94,16 +76,12 @@ class MeasurementPage extends Component {
 
     this.setState({
       isCalenderVisible: flag,
-<<<<<<< HEAD
       date: moment(day.dateString, 'YYYY-MM-DD')
     });
     AsyncStorage.getItem('token').then(token => {
       const today = this.state.date.format('DD-MM-YYYY');
       this.props.readHighBlood(today, 'week', token);
       this.props.readSugar(today, 'week', token);
-=======
-      date: moment(day.timestamp)
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
     });
   }
   canlanderModalHandler(e) {
@@ -113,10 +91,6 @@ class MeasurementPage extends Component {
   }
   backwardHandler(e) {
     const { date } = this.state;
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
     switch (e) {
       case 'WEEK': {
         const value = date.subtract(7, 'days');
@@ -124,15 +98,12 @@ class MeasurementPage extends Component {
           date: value,
           color: '#fff'
         });
-<<<<<<< HEAD
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'week', token);
           this.props.readSugar(today, 'week', token);
         });
 
-=======
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
         break;
       }
       case 'MONTH': {
@@ -141,10 +112,7 @@ class MeasurementPage extends Component {
           date: value,
           color: '#fff'
         });
-<<<<<<< HEAD
         break;
-=======
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
       }
       case 'YEAR': {
         const value = date.subtract(1, 'years');
@@ -172,14 +140,11 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
-<<<<<<< HEAD
         AsyncStorage.getItem('token').then(token => {
           const today = this.state.date.format('DD-MM-YYYY');
           this.props.readHighBlood(today, 'week', token);
           this.props.readSugar(today, 'week', token);
         });
-=======
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
 
         break;
       }
@@ -195,10 +160,7 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
-<<<<<<< HEAD
         break;
-=======
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
       }
       case 'YEAR': {
         if (date.toDate().getFullYear() < current.getFullYear()) {
@@ -212,10 +174,7 @@ class MeasurementPage extends Component {
             color: '#222'
           });
         }
-<<<<<<< HEAD
         break;
-=======
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
       }
     }
   }

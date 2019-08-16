@@ -78,11 +78,7 @@ class FoodPage extends Component {
         <Content>
           <SwipeListView
             data={this.props.foods.data.sort((a, b) => {
-<<<<<<< HEAD
               return a._id.localeCompare(b._id);
-=======
-              return a._id > b._id;
->>>>>>> 9cc202ac13d8276061f0b6fed77ddf5a4c5c70a4
             })}
             renderItem={data => {
               const item = data.item;
