@@ -52,8 +52,11 @@ function getSteps(payload) {
 export const readStep = (date, type, token) => {
   return dispatch => {
     get(`/api/users/measure/step/${date}/${type}`, token).then(res => {
+      console.log(res.data);
       if (res.code === 0) {
         dispatch(getSteps(res.data));
+      } else {
+        console.log('readStep  error...');
       }
     });
   };
@@ -64,8 +67,11 @@ function getDistances(payload) {
 export const readDistance = (date, type, token) => {
   return dispatch => {
     get(`/api/users/measure/distance/${date}/${type}`, token).then(res => {
+      console.log(res.data);
       if (res.code === 0) {
         dispatch(getDistances(res.data));
+      } else {
+        console.log('readDistance  error...');
       }
     });
   };
@@ -76,8 +82,11 @@ function getFloor(payload) {
 export const readFloor = (date, type, token) => {
   return dispatch => {
     get(`/api/users/measure/floor/${date}/${type}`, token).then(res => {
+      console.log(res.data);
       if (res.code === 0) {
         dispatch(getFloor(res.data));
+      } else {
+        console.log('floor  error...');
       }
     });
   };

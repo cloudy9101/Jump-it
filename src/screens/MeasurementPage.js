@@ -132,7 +132,7 @@ class MeasurementPage extends Component {
     }
   }
 
-  selectDate(day, flag) {
+  async selectDate(day, flag) {
     const { date } = this.state;
     const selected = moment(day.dateString, 'YYYY-MM-DD');
     if (selected.toDate().getTime() < new Date().getTime()) {
@@ -144,10 +144,20 @@ class MeasurementPage extends Component {
       isCalenderVisible: flag,
       date: selected
     });
+
+    await this.props.clearHighBloodState();
+    await this.props.clearSugarState();
+    await this.props.clearStep();
+    await this.props.clearDistance();
+    await this.props.clearFloor();
     AsyncStorage.getItem('token').then(token => {
+      console.log(this.state.date);
       const today = this.state.date.format('DD-MM-YYYY');
       this.props.readHighBlood(today, 'week', token);
       this.props.readSugar(today, 'week', token);
+      this.props.readStep(today, 'week', token);
+      this.props.readFloor(today, 'week', token);
+      this.props.readDistance(today, 'week', token);
     });
   }
   canlanderModalHandler(e) {
@@ -239,6 +249,7 @@ class MeasurementPage extends Component {
           this.setState({
             color: '#222'
           });
+          return;
         }
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
@@ -267,6 +278,7 @@ class MeasurementPage extends Component {
           this.setState({
             color: '#222'
           });
+          return;
         }
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
@@ -294,6 +306,7 @@ class MeasurementPage extends Component {
           this.setState({
             color: '#222'
           });
+          return;
         }
         await this.props.clearHighBloodState();
         await this.props.clearSugarState();
@@ -356,14 +369,15 @@ class MeasurementPage extends Component {
               {this.props.highblood.isLoading &&
               this.props.sugar.isLoading &&
               this.props.steps.isLoading &&
-              this.props.distances.isLoading ? (
+              this.props.distances.isLoading &&
+              this.props.floors.isLoading ? (
                 <>
                   <LineGraph
                     dividerColor="#DD5144"
                     name="High Blood Pressure"
                     GradientFrom="#DD5144"
                     GradientTo="#a82216"
-                    data={this.props.highblood ? this.props.highblood : data1}
+                    data={this.props.highblood}
                   />
 
                   <LineGraph
@@ -371,28 +385,34 @@ class MeasurementPage extends Component {
                     name="Sugar Taken"
                     GradientFrom="#b38b27"
                     GradientTo="#946d0d"
-                    data={this.props.sugar ? this.props.sugar : data}
+                    data={this.props.sugar}
                   />
                   <ChartScreen
                     name="Steps"
                     dividerColor="#6e61a8"
                     GradientFrom="#6e61a8"
                     GradientTo="#453687"
-                    data={this.props.steps ? this.props.steps : data}
-                  />
-                  <ChartScreen
-                    dividerColor="#35652c"
-                    name="Flight Climbed"
-                    GradientFrom="#35652c"
-                    GradientTo="#163d0f"
-                    data={this.props.floors ? this.props.floors : data}
+                    width={32}
+                    index={new Date().getMilliseconds()}
+                    data={this.props.steps}
                   />
                   <ChartScreen
                     dividerColor="#3d7ea4"
+                    name="Flight Climbed"
+                    GradientFrom="#3d7ea4"
+                    GradientTo="#225d80"
+                    width={32}
+                    index={new Date().getMilliseconds()}
+                    data={this.props.floors}
+                  />
+                  <ChartScreen
+                    dividerColor="#35652c"
                     name="Working+Running Distance"
                     GradientFrom="#35652c"
                     GradientTo="#163d0f"
-                    data={this.props.distances ? this.props.distances : data}
+                    width={32}
+                    index={new Date().getMilliseconds()}
+                    data={this.props.distances}
                   />
                 </>
               ) : (
@@ -430,14 +450,15 @@ class MeasurementPage extends Component {
               {this.props.highblood.isLoading &&
               this.props.sugar.isLoading &&
               this.props.steps.isLoading &&
-              this.props.distances.isLoading ? (
+              this.props.distances.isLoading &&
+              this.props.floors.isLoading ? (
                 <>
                   <LineGraph
                     dividerColor="#DD5144"
                     name="High Blood Pressure"
                     GradientFrom="#DD5144"
                     GradientTo="#a82216"
-                    data={this.props.highblood ? this.props.highblood : data1}
+                    data={this.props.highblood}
                   />
 
                   <LineGraph
@@ -445,28 +466,31 @@ class MeasurementPage extends Component {
                     name="Sugar Taken"
                     GradientFrom="#b38b27"
                     GradientTo="#946d0d"
-                    data={this.props.sugar ? this.props.sugar : data}
+                    data={this.props.sugar}
                   />
                   <ChartScreen
                     name="Steps"
                     dividerColor="#6e61a8"
                     GradientFrom="#6e61a8"
                     GradientTo="#453687"
-                    data={this.props.steps ? this.props.steps : data}
-                  />
-                  <ChartScreen
-                    dividerColor="#35652c"
-                    name="Flight Climbed"
-                    GradientFrom="#35652c"
-                    GradientTo="#163d0f"
-                    data={this.props.floors ? this.props.floors : data}
+                    data={this.props.steps}
+                    width={6}
                   />
                   <ChartScreen
                     dividerColor="#3d7ea4"
+                    name="Flight Climbed"
+                    GradientFrom="#3d7ea4"
+                    GradientTo="#225d80"
+                    data={this.props.floors}
+                    width={6}
+                  />
+                  <ChartScreen
+                    dividerColor="#35652c"
                     name="Working+Running Distance"
                     GradientFrom="#35652c"
                     GradientTo="#163d0f"
-                    data={this.props.distances ? this.props.distances : data}
+                    data={this.props.distances}
+                    width={6}
                   />
                 </>
               ) : (
@@ -503,14 +527,15 @@ class MeasurementPage extends Component {
               {this.props.highblood.isLoading &&
               this.props.sugar.isLoading &&
               this.props.steps.isLoading &&
-              this.props.distances.isLoading ? (
+              this.props.distances.isLoading &&
+              this.props.floors.isLoading ? (
                 <>
                   <LineGraph
                     dividerColor="#DD5144"
                     name="High Blood Pressure"
                     GradientFrom="#DD5144"
                     GradientTo="#a82216"
-                    data={this.props.highblood ? this.props.highblood : data1}
+                    data={this.props.highblood}
                   />
 
                   <LineGraph
@@ -518,28 +543,31 @@ class MeasurementPage extends Component {
                     name="Sugar Taken"
                     GradientFrom="#b38b27"
                     GradientTo="#946d0d"
-                    data={this.props.sugar ? this.props.sugar : data}
+                    data={this.props.sugar}
                   />
                   <ChartScreen
                     name="Steps"
                     dividerColor="#6e61a8"
                     GradientFrom="#6e61a8"
                     GradientTo="#453687"
-                    data={this.props.steps ? this.props.steps : data}
-                  />
-                  <ChartScreen
-                    dividerColor="#35652c"
-                    name="Flight Climbed"
-                    GradientFrom="#35652c"
-                    GradientTo="#163d0f"
-                    data={this.props.floors ? this.props.floors : data}
+                    data={this.props.steps}
+                    width={1.5}
                   />
                   <ChartScreen
                     dividerColor="#3d7ea4"
+                    name="Flight Climbed"
+                    GradientFrom="#3d7ea4"
+                    GradientTo="#225d80"
+                    data={this.props.floors}
+                    width={1.5}
+                  />
+                  <ChartScreen
+                    dividerColor="#35652c"
                     name="Working+Running Distance"
                     GradientFrom="#35652c"
                     GradientTo="#163d0f"
-                    data={this.props.distances ? this.props.distances : data}
+                    data={this.props.distances}
+                    width={1.5}
                   />
                 </>
               ) : (

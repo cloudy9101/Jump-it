@@ -27,6 +27,11 @@ class LineGraph extends Component {
         <LineChart
           data={this.props.data}
           width={Dimensions.get('window').width}
+          withDots={false}
+          withShadow={false}
+          withInnerLines={false}
+          withOuterLines={false}
+          bezier
           style={{
             marginVertical: 20,
             borderRadius: 2,
