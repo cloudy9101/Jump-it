@@ -5,6 +5,7 @@ import { CalendarList } from 'react-native-calendars';
 const screenWidth = Math.round(Dimensions.get('window').width);
 function CalendarModal(props) {
   // console.log(screenWidth, props.isCalenderVisible);
+  const title = props.title;
   return (
     <Modal
       visible={props.isCalenderVisible}
@@ -22,7 +23,7 @@ function CalendarModal(props) {
               fontWeight: 'bold'
             }}
           >
-            {props.title}
+            {Platform.OS === 'ios' ? title : null}
           </Text>
         </Body>
         <Right>
@@ -35,7 +36,6 @@ function CalendarModal(props) {
                 fontWeight: 'bold'
               }}
             >
-              {' '}
               Done{' '}
             </Text>
           </Button>
