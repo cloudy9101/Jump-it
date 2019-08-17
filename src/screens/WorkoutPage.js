@@ -25,19 +25,48 @@ import WorkoutCard from '../components/WorkoutCard';
 import moment from 'moment';
 import { initHeathKit } from '../utils/AppleHealthUtil';
 import MyCalendarStrip from '../components/MyCalendarStrip';
+import CalendarModal from '../components/CalendarModal';
 Platform.OS === 'ios' ? initHeathKit() : null;
 class WorkoutPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isToday: true,
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      isCalenderVisible: false
     };
     this.dateSelected = this.dateSelected.bind(this);
     this.goBackToday = this.dateSelected.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.selectDate = this.selectDate.bind(this);
+  }
+  selectDate(day, flag) {
+    const { selectedDate } = this.state;
+    const selected = moment(day.dateString, 'YYYY-MM-DD').toDate();
+
+    this.setState({
+      isCalenderVisible: flag,
+      selectedDate: selected
+    });
+    AsyncStorage.getItem('token').then(token => {
+      this.props.getStepCount({ date: new Date().toISOString() }, token);
+      this.props.getDistance({ date: new Date().toISOString() }, token);
+      this.props.getFloor({ date: new Date().toISOString() }, token);
+    });
   }
   goBackToday(today) {
     this.setState({ selectedDate: today });
+  }
+  closeModal(e) {
+    this.setState({
+      isCalenderVisible: e
+    });
+  }
+  openModal(e) {
+    this.setState({
+      isCalenderVisible: e
+    });
   }
   componentDidMount() {
     AsyncStorage.getItem('token').then(token => {
@@ -47,7 +76,6 @@ class WorkoutPage extends Component {
     });
   }
   dateSelected(date) {
-    console.log(date);
     //const newDate = date.toDate();
 
     AsyncStorage.getItem('token').then(token => {
@@ -66,9 +94,6 @@ class WorkoutPage extends Component {
       return;
     }
     this.setState({ selectedDate: date, isToday: true });
-    // AsyncStorage.getItem('token').then(token => {
-    //   this.props.fetchExercises(newDate, token);
-    // });
   }
   renderNodata() {
     return (
@@ -153,6 +178,12 @@ class WorkoutPage extends Component {
         <Content>
           {this.state.isToday ? this.renderData() : this.renderNodata()}
         </Content>
+        <CalendarModal
+          isCalenderVisible={this.state.isCalenderVisible}
+          close={this.closeModal}
+          selectDate={this.selectDate}
+          title={moment(this.state.selectedDate).year()}
+        />
       </Container>
     );
   }

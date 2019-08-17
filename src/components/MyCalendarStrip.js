@@ -211,11 +211,13 @@ class MyCalendarStrip extends Component {
       showWeekNumber
     } = this.props;
 
-    const dateFormatted = format(selectedDate, 'MMMM YYYY  ddd');
+    const dateFormatted = format(selectedDate, 'MMMM YYYY');
     const weekNumber = getISOWeek(selectedDate);
     return (
       <View style={styles.header}>
-        <Text style={styles.headerDate}>{dateFormatted}</Text>
+        <TouchableOpacity onPress={() => this.props.openModal(true)}>
+          <Text style={styles.headerDate}>{dateFormatted}</Text>
+        </TouchableOpacity>
         {showWeekNumber && (
           <Text style={styles.headerDateWeek}>{` W${weekNumber}`}</Text>
         )}
