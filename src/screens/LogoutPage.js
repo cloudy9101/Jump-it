@@ -3,12 +3,16 @@ import { Text, View } from 'react-native';
 import { Container, Button } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import HeaderComponent from '../components/DrawerHeaderComponent';
-export default class LogoutPage extends Component {
+import { connect } from 'react-redux';
+import { logout } from '../redux/actions';
+class LogoutPage extends Component {
   constructor(props) {
     super(props);
     this.logoutHandler = this.logoutHandler.bind(this);
   }
   async logoutHandler() {
+    await this.props.logout();
+
     await AsyncStorage.removeItem('token');
     this.props.navigation.navigate('SignIn');
   }
@@ -37,3 +41,11 @@ export default class LogoutPage extends Component {
     );
   }
 }
+const mapStateToProps = state => ({ user: state.users });
+const mapDispatchToProps = {
+  logout
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LogoutPage);

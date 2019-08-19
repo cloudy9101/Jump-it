@@ -70,7 +70,6 @@ export const findUseInfo = token => {
 export const updateUser = (body, token) => {
   return dispatch => {
     put('/api/users/update', body, token).then(res => {
-      console.log(res);
       if (res.code === 0) {
         dispatch(userUpdate(res.data));
       }

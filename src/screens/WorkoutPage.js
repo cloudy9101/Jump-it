@@ -12,40 +12,93 @@ import {
   Header,
   Body,
   Right,
-  Button
+  Button,
+  Spinner
 } from 'native-base';
-import CalendarStrip from 'react-native-calendar-strip';
+import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
+import { getStepCount, getDistance, getFloor } from '../redux/actions';
+
 import HeaderComponent from '../components/HeaderComponent';
 import { mockData } from '../commons/MockData';
 import WorkoutCard from '../components/WorkoutCard';
 import moment from 'moment';
-import { initHeathKit, Data } from '../utils/AppleHealthUtil';
-
+import { initHeathKit } from '../utils/AppleHealthUtil';
+import MyCalendarStrip from '../components/MyCalendarStrip';
+import CalendarModal from '../components/CalendarModal';
 Platform.OS === 'ios' ? initHeathKit() : null;
-
 class WorkoutPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
-      isToday: true
+      isToday: true,
+      selectedDate: new Date(),
+      isCalenderVisible: false
     };
-
     this.dateSelected = this.dateSelected.bind(this);
+    this.goBackToday = this.dateSelected.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.selectDate = this.selectDate.bind(this);
+  }
+  selectDate(day, flag) {
+    const { selectedDate } = this.state;
+    const selected = moment(day.dateString, 'YYYY-MM-DD').toDate();
+
+    this.setState({
+      isCalenderVisible: flag,
+      selectedDate: selected
+    });
+    AsyncStorage.getItem('token').then(token => {
+      this.props.getStepCount({ date: new Date().toISOString() }, token);
+      this.props.getDistance({ date: new Date().toISOString() }, token);
+      this.props.getFloor({ date: new Date().toISOString() }, token);
+    });
+  }
+  goBackToday(today) {
+    this.setState({ selectedDate: today });
+    AsyncStorage.getItem('token').then(token => {
+      this.props.getStepCount({ date: new Date().toISOString() }, token);
+      this.props.getDistance({ date: new Date().toISOString() }, token);
+      this.props.getFloor({ date: new Date().toISOString() }, token);
+    });
+  }
+  closeModal(e) {
+    this.setState({
+      isCalenderVisible: e
+    });
+  }
+  openModal(e) {
+    this.setState({
+      isCalenderVisible: e
+    });
+  }
+  componentDidMount() {
+    AsyncStorage.getItem('token').then(token => {
+      this.props.getStepCount({ date: new Date().toISOString() }, token);
+      this.props.getDistance({ date: new Date().toISOString() }, token);
+      this.props.getFloor({ date: new Date().toISOString() }, token);
+    });
   }
   dateSelected(date) {
-    const newDate = date.toDate();
+    //const newDate = date.toDate();
+
+    AsyncStorage.getItem('token').then(token => {
+      //console.log(Date.parse(this.props.step.endDate));
+      this.props.getStepCount({ date: date.toISOString() }, token);
+      this.props.getDistance({ date: date.toISOString() }, token);
+      this.props.getFloor({ date: date.toISOString() }, token);
+    });
     const today = new Date();
-    if (newDate > today) {
+
+    if (date > today) {
       this.setState({
-        isToday: false
+        isToday: false,
+        selectedDate: date
       });
       return;
     }
-    this.setState({ date: newDate, isToday: true });
-    // AsyncStorage.getItem('token').then(token => {
-    //   this.props.fetchExercises(newDate, token);
-    // });
+    this.setState({ selectedDate: date, isToday: true });
   }
   renderNodata() {
     return (
@@ -64,6 +117,7 @@ class WorkoutPage extends Component {
     );
   }
   renderData() {
+    console.log(this.props.floor.value);
     return (
       <>
         <View style={{ marginTop: 20 }}>
@@ -86,41 +140,25 @@ class WorkoutPage extends Component {
           }}
         >
           <WorkoutCard
-            bkColor={'#35652c'}
-            name={'Working+Running Distance'}
-            num={
-              Data.distance
-                ? (parseInt(Data.distance.value) / 1000).toFixed(1)
-                : '5.8'
-            }
-            unit={'km'}
-            time={
-              Data.distance
-                ? moment(Date.parse(Data.distance.endDate)).format('HH:mm')
-                : '19:00'
-            }
-          />
-          <WorkoutCard
             bkColor={'#6e61a8'}
             name={'Steps'}
-            num={Data.step ? Data.step.value : '5500'}
+            num={this.props.step.value}
             unit={'steps'}
-            time={
-              Data.step
-                ? moment(Date.parse(Data.step.endDate)).format('HH:mm')
-                : '19:00'
-            }
+            time={moment(this.props.step.endDate).format('HH:mm')}
+          />
+          <WorkoutCard
+            bkColor={'#35652c'}
+            name={'Working+Running Distance'}
+            num={(parseInt(this.props.distance.value) / 1000).toFixed(1)}
+            unit={'km'}
+            time={moment(this.props.distance.endDate).format('HH:mm')}
           />
           <WorkoutCard
             bkColor={'#3d7ea4'}
             name={'Flights Climebed'}
-            num={Data.flightsClimed ? Data.flightsClimed.value : '5'}
+            num={this.props.floor.value}
             unit={'floor'}
-            time={
-              Data.flightsClimed
-                ? moment(Date.parse(Data.flightsClimed.endDate)).format('HH:mm')
-                : '19:00'
-            }
+            time={moment(this.props.floor.endDate).format('HH:mm')}
           />
         </View>
       </>
@@ -132,30 +170,37 @@ class WorkoutPage extends Component {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent title={navigation.state.routeName} {...this.props} />
-        <CalendarStrip
-          //calendarAnimation={{ type: 'sequence', duration: 150 }}
-          weekStripAnimation={{ Type: 'sequence', duration: 300 }}
-          style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
-          calendarHeaderStyle={{
-            color: '#ffffff',
-            fontFamily: 'Helvetica',
-            fontSize: 18
-          }}
-          calendarColor={'#315574'}
-          dateNumberStyle={{ color: '#ffffff' }}
-          dateNameStyle={{ color: '#ffffff' }}
-          highlightDateNumberStyle={{ color: '#1b1b1b' }}
-          highlightDateNameStyle={{ color: '#1b1b1b' }}
-          disabledDateNameStyle={{ color: '#ffffff' }}
-          disabledDateNumberStyle={{ color: '#ffffff' }}
-          iconContainer={{ flex: 0.1 }}
-          onDateSelected={this.dateSelected}
+
+        <MyCalendarStrip
+          selectedDate={this.state.selectedDate}
+          onPressDate={this.dateSelected}
+          onPressGoToday={this.goBackToday}
+          openModal={this.openModal}
+          // onSwipeDown={() => {
+          //   alert('onSwipeDown');
+          // }}
         />
+
         <Content>
           {this.state.isToday ? this.renderData() : this.renderNodata()}
         </Content>
+        <CalendarModal
+          isCalenderVisible={this.state.isCalenderVisible}
+          close={this.closeModal}
+          selectDate={this.selectDate}
+          title={moment(this.state.selectedDate).year()}
+        />
       </Container>
     );
   }
 }
-export default WorkoutPage;
+const mapStateToProps = state => ({
+  step: state.stepCount,
+  distance: state.distance,
+  floor: state.floor
+});
+const mapDispatchToProps = { getStepCount, getDistance, getFloor };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WorkoutPage);

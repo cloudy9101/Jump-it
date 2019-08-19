@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { DrawerItems } from 'react-navigation';
 import { Container, Thumbnail, Text, Content, Header, Body } from 'native-base';
@@ -23,7 +23,8 @@ class DrawerItemsComponent extends Component {
                 color: '#ffffff',
                 fontFamily: 'Helvetica',
                 fontSize: 18,
-                paddingTop: 10
+                paddingTop: 10,
+                marginLeft: Platform.OS === 'ios' ? 0 : 33
               }}
             >
               {username}

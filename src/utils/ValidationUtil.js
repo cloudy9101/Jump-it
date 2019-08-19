@@ -1,10 +1,6 @@
 export default class ValidationUtil {
   static isEmpty(str) {
-    return (
-      str.trim().toLowerCase() === null ||
-      str.trim().toLowerCase() === '' ||
-      str.trim().toLowerCase() === undefined
-    );
+    return str === null || str === '' || str === undefined;
   }
   static isEmail(email) {
     const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Switch } from 'react-native';
-import { Icon, Container, ListItem, List, Text } from 'native-base';
+import { Icon, Container, ListItem, List, Text, Button } from 'native-base';
 import HeaderComponent from '../components/DrawerHeaderComponent';
 export class SettingPage extends Component {
   constructor(props) {
@@ -22,28 +22,21 @@ export class SettingPage extends Component {
                 color: '#ffffff'
               }}
             >
-              Notification
-            </Text>
-            <Switch onValueChange={this.toggleSwitch} />
-          </ListItem>
-          <ListItem style={{ justifyContent: 'space-between' }}>
-            <Text
-              style={{
-                fontSize: 18,
-                fontFamily: 'Helvetica',
-                color: '#ffffff'
-              }}
-            >
               Profile
             </Text>
-            <Icon
-              name="ios-arrow-forward"
-              type="Ionicons"
-              style={{
-                color: '#ffffff'
-              }}
+            <Button
+              light
+              transparent
               onPress={() => this.props.navigation.navigate('Profile')}
-            />
+            >
+              <Icon
+                name="ios-arrow-forward"
+                type="Ionicons"
+                style={{
+                  color: '#ffffff'
+                }}
+              />
+            </Button>
           </ListItem>
           <ListItem style={{ justifyContent: 'space-between' }}>
             <Text
@@ -55,14 +48,32 @@ export class SettingPage extends Component {
             >
               Change Password
             </Text>
-            <Icon
-              name="ios-arrow-forward"
-              type="Ionicons"
+            <Button
+              light
+              transparent
+              onPress={() => this.props.navigation.navigate('Profile')}
+            >
+              <Icon
+                name="ios-arrow-forward"
+                type="Ionicons"
+                style={{
+                  color: '#ffffff'
+                }}
+                onPress={() => this.props.navigation.navigate('PasswordChange')}
+              />
+            </Button>
+          </ListItem>
+          <ListItem style={{ justifyContent: 'space-between' }}>
+            <Text
               style={{
+                fontSize: 18,
+                fontFamily: 'Helvetica',
                 color: '#ffffff'
               }}
-              onPress={() => this.props.navigation.navigate('PasswordChange')}
-            />
+            >
+              Notification
+            </Text>
+            <Switch onValueChange={this.toggleSwitch} />
           </ListItem>
         </List>
       </Container>

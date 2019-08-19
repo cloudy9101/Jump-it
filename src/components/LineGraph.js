@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 import { ListItem, View, Text } from 'native-base';
 import { BarChart, LineChart } from 'react-native-chart-kit';
 
-class ChartScreen extends Component {
+class LineGraph extends Component {
   render() {
     const colorfrom = this.props.GradientFrom;
     const colorTo = this.props.GradientTo;
@@ -24,24 +24,27 @@ class ChartScreen extends Component {
             {this.props.name}
           </Text>
         </ListItem>
-
-        <BarChart
+        <LineChart
           data={this.props.data}
+          width={Dimensions.get('window').width}
+          withDots={false}
+          withShadow={false}
+          withInnerLines={false}
+          withOuterLines={false}
           bezier
           style={{
             marginVertical: 20,
             borderRadius: 2,
             marginTop: 0
           }}
-          fromZero={true}
-          width={Dimensions.get('window').width}
           height={220}
           chartConfig={{
             //backgroundColor: '#3d7ea4',
             backgroundGradientFrom: colorfrom,
             backgroundGradientTo: colorTo,
             decimalPlaces: 1,
-            color: (opacity = 1) => `rgba(238, 238, 238 ,${opacity})`
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            strokeWidth: 3
           }}
         />
       </View>
@@ -49,4 +52,4 @@ class ChartScreen extends Component {
   }
 }
 
-export default ChartScreen;
+export default LineGraph;

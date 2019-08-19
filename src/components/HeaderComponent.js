@@ -1,5 +1,15 @@
 import React from 'react';
-import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import {
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Icon,
+  Title,
+  PlatForm,
+  View
+} from 'native-base';
 import PlanPageTitle from '../components/PlanPageTitle';
 export default (HeaderComponent = props => {
   return (
@@ -21,7 +31,6 @@ export default (HeaderComponent = props => {
           <PlanPageTitle navigation={props.navigation} />
         ) : (
           <Title style={{ color: '#ffffff', fontFamily: 'Georgia' }}>
-            {' '}
             {props.title}
           </Title>
         )}
