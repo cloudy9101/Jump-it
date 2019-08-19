@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GoogleFit, { Scopes } from 'react-native-google-fit';
 import { View, Platform } from 'react-native';
 import {
   Container,
@@ -30,6 +31,29 @@ Platform.OS === 'ios' ? initHeathKit() : null;
 class WorkoutPage extends Component {
   constructor(props) {
     super(props);
+
+    // The list of available scopes inside of src/scopes.js file
+    const options = {
+      scopes: [
+        Scopes.FITNESS_ACTIVITY_READ_WRITE,
+        Scopes.FITNESS_BODY_READ_WRITE,
+        Scopes.FITNESS_LOCATION_READ
+      ],
+    }
+    GoogleFit.authorize(options)
+      .then(authResult => {
+        console.log(authResult);
+        if (authResult.success) {
+          console.log(authResult);
+          // dispatch("AUTH_SUCCESS");
+        } else {
+          console.log("AUTH_DENIED", authResult.message);
+        }
+      })
+      .catch((error) => {
+        console.log("AUTH_ERROR", error);
+      })
+
     this.state = {
       isToday: true,
       selectedDate: new Date(),
