@@ -24,13 +24,7 @@ import {
   clearDistance,
   clearFloor
 } from './measure.action';
-import {
-  addFood,
-  updateFoodValue,
-  updateFoodName,
-  deleteFood,
-  fetchFoods
-} from './foods.action';
+import { addFood, updateFoodValue, updateFood, deleteFood, fetchFoods } from './foods.action';
 export {
   register,
   login,
@@ -45,7 +39,7 @@ export {
   updateUser,
   addFood,
   updateFoodValue,
-  updateFoodName,
+  updateFood,
   deleteFood,
   fetchFoods,
   getStepCount,
