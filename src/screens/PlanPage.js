@@ -38,6 +38,9 @@ class PlanPage extends Component {
   }
   goBackToday(today) {
     this.setState({ selectedDate: today });
+    AsyncStorage.getItem('token').then(token => {
+      this.props.fetchExercises(this.state.selectedDate, token);
+    });
   }
   closeModal(e) {
     this.setState({

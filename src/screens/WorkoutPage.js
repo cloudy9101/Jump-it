@@ -57,6 +57,11 @@ class WorkoutPage extends Component {
   }
   goBackToday(today) {
     this.setState({ selectedDate: today });
+    AsyncStorage.getItem('token').then(token => {
+      this.props.getStepCount({ date: new Date().toISOString() }, token);
+      this.props.getDistance({ date: new Date().toISOString() }, token);
+      this.props.getFloor({ date: new Date().toISOString() }, token);
+    });
   }
   closeModal(e) {
     this.setState({
@@ -112,6 +117,7 @@ class WorkoutPage extends Component {
     );
   }
   renderData() {
+    console.log(this.props.floor.value);
     return (
       <>
         <View style={{ marginTop: 20 }}>
