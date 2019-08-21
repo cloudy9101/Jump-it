@@ -32,6 +32,10 @@ class PasswordChangePage extends Component {
       ValidationUtil.isEmpty(rePassword)
     ) {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: 'All Fields Are Required..',
         buttonText: 'Cancel',
         type: 'danger',
@@ -41,6 +45,10 @@ class PasswordChangePage extends Component {
     }
     if (ValidationUtil.validPassword(newPassword)) {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: 'Minimum 8 Characters',
         buttonText: 'Cancel',
         type: 'danger',
@@ -50,6 +58,10 @@ class PasswordChangePage extends Component {
     }
     if (!ValidationUtil.passwordMatch(newPassword, rePassword)) {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: 'Password Not Matched',
         buttonText: 'Cancel',
         type: 'danger',

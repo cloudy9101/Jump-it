@@ -65,15 +65,19 @@ export default class SignUpPage1 extends Component {
   }
   async btnHandler() {
     const { firstName, lastName, gender, avator } = this.state;
-    // if (ValidationUtil.isEmpty(firstName) || ValidationUtil.isEmpty(lastName)) {
-    //   Toast.show({
-    //     text: 'All Fields Are Required..',
-    //     buttonText: 'Cancel',
-    //     type: 'danger',
-    //     duration: 2500
-    //   });
-    //   return;
-    // }
+    if (ValidationUtil.isEmpty(firstName) || ValidationUtil.isEmpty(lastName)) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'All Fields Are Required..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+      return;
+    }
     let payload = await AsyncStorage.getItem('payload');
 
     payload = Object.assign(JSON.parse(payload), {
@@ -196,7 +200,6 @@ export default class SignUpPage1 extends Component {
           <Button
             block
             rounded
-            // bordered
             onPress={this.btnHandler}
             success
             style={{

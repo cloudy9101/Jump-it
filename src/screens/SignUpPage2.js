@@ -53,6 +53,10 @@ class SignUpPage2 extends Component {
 
     if (!isCheck) {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: 'You need accept policy',
         buttonText: 'Cancel',
         type: 'danger',
@@ -82,6 +86,10 @@ class SignUpPage2 extends Component {
       }, 300);
     } else {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: nextProps.users.error,
         buttonText: 'Cancel',
         type: 'danger',

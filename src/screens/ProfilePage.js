@@ -47,19 +47,23 @@ class ProfilePage extends Component {
       username,
       avator
     } = this.state;
-    // if (
-    //   ValidationUtil.isEmpty(username) ||
-    //   ValidationUtil.isEmpty(lastName) ||
-    //   ValidationUtil.isEmpty(firstName)
-    // ) {
-    //   Toast.show({
-    //     text: 'All Fields Are Required..',
-    //     buttonText: 'Cancel',
-    //     type: 'danger',
-    //     duration: 2000
-    //   });
-    //   return;
-    // }
+    if (
+      ValidationUtil.isEmpty(username) ||
+      ValidationUtil.isEmpty(lastName) ||
+      ValidationUtil.isEmpty(firstName)
+    ) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'All Fields Are Required..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+      return;
+    }
     AsyncStorage.getItem('token').then(token => {
       const obj = {
         avator: avator,

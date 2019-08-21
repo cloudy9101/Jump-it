@@ -7,15 +7,34 @@ import {
   Item,
   Button,
   View,
-  Label
+  Label,
+  Toast
 } from 'native-base';
+import ValidationUtil from '../utils/ValidationUtil';
 class ForgetPasswordScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email: '',
+      code: ''
+    };
     this.forgetPasswordHandler = this.forgetPasswordHandler.bind(this);
   }
   forgetPasswordHandler() {
-    this.props.navigation.navigate('Change');
+    const { email, code } = this.state;
+    if (!ValidationUtil.isEmail(email)) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'Email Format Wrong..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+    }
+    //this.props.navigation.navigate('Change');
   }
   render() {
     return (
@@ -65,7 +84,7 @@ class ForgetPasswordScreen extends Component {
             <Input
               ref={this.textInput1}
               style={{ color: '#ffffff', flex: 1, fontSize: 16 }}
-              onChangeText={text => this.setState({ email: text })}
+              onChangeText={text => this.setState({ code: text })}
             />
           </Item>
           <Button

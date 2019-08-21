@@ -32,6 +32,10 @@ export class SignInPage extends Component {
     const { email, password } = this.state;
     if (ValidationUtil.isEmpty(email) || ValidationUtil.isEmpty(password)) {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: 'All Fields Are Required..',
         buttonText: 'Cancel',
         type: 'danger',
@@ -48,6 +52,10 @@ export class SignInPage extends Component {
       this.props.navigation.navigate('home');
     } else {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: nextProps.users.error,
         buttonText: 'Cancel',
         type: 'danger',
