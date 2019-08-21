@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+import { connect } from 'react-redux';
+import { updateNotificationEnabled } from '../redux/actions';
 import { View, Switch } from 'react-native';
 import { Icon, Container, ListItem, List, Text, Button } from 'native-base';
 import HeaderComponent from '../components/DrawerHeaderComponent';
-export class SettingPage extends Component {
+class SettingPage extends Component {
   constructor(props) {
     super(props);
 
+    this.state = { notificationEnabled: props.users.notificationEnabled }
     this.toggleSwitch = this.toggleSwitch.bind(this);
   }
-  toggleSwitch() {}
+  toggleSwitch(value) {
+    AsyncStorage.getItem('token').then(token => {
+      this.props.updateNotificationEnabled(value, token);
+    });
+    this.setState({ notificationEnabled: value });
+  }
   render() {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
@@ -85,7 +94,7 @@ export class SettingPage extends Component {
             >
               Notification
             </Text>
-            <Switch onValueChange={this.toggleSwitch} />
+            <Switch onValueChange={this.toggleSwitch} value={this.state.notificationEnabled} />
           </ListItem>
         </List>
       </Container>
@@ -93,4 +102,11 @@ export class SettingPage extends Component {
   }
 }
 
-export default SettingPage;
+const mapStateToProps = state => ({
+  users: state.users
+});
+const mapDispatchToProps = { updateNotificationEnabled };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingPage);
