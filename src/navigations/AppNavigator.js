@@ -29,6 +29,7 @@ import SignUpPage2 from '../screens/SignUpPage2';
 import PasswordChangePage from '../screens/PasswordChangePage';
 import AboutPage from '../screens/AboutPage';
 import AuthLoading from '../screens/AuthLoading';
+import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
     screen: PlanPage
@@ -37,33 +38,6 @@ const PlanSwitchNavigator = createSwitchNavigator({
     screen: DietPlanPage
   }
 });
-
-// const WorkoutStackNavigator = createStackNavigator(
-//   {
-//     Workouts: {
-//       screen: WorkoutPage,
-//       navigationOptions: {
-//         header: null
-//       }
-//     }
-//     // WorkoutDetail: {
-//     //   screen: WorkOutDetailPage,
-//     //   navigationOptions: ({ navigation }) => ({
-//     //     title: `${navigation.state.routeName}`,
-//     //     headerStyle: {
-//     //       backgroundColor: '#1f3954'
-//     //     },
-
-//     //     headerTintColor: '#fffff'
-//     //   })
-//     // }
-//   },
-//   {
-//     defaultNavigationOptions: () => ({
-//       headerBackTitle: null
-//     })
-//   }
-// );
 
 const BottomTabNavigator = createBottomTabNavigator(
   {
@@ -261,6 +235,12 @@ const UserNavigator = createStackNavigator(
       screen: SignUpPage2,
       navigationOptions: ({ navigation }) => ({
         title: 'New User'
+      })
+    },
+    Forget: {
+      screen: ForgetPasswordScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Forget Password'
       })
     }
   },
