@@ -30,6 +30,7 @@ import PasswordChangePage from '../screens/PasswordChangePage';
 import AboutPage from '../screens/AboutPage';
 import AuthLoading from '../screens/AuthLoading';
 import ForgetPasswordScreen from '../screens/ForgetPasswordScreen';
+import VerificationScreen from '../screens/VerificationScreen';
 const PlanSwitchNavigator = createSwitchNavigator({
   Exercise: {
     screen: PlanPage
@@ -239,6 +240,12 @@ const UserNavigator = createStackNavigator(
     },
     Forget: {
       screen: ForgetPasswordScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Forget Password'
+      })
+    }, //VerificationScreen
+    Verify: {
+      screen: VerificationScreen,
       navigationOptions: ({ navigation }) => ({
         title: 'Forget Password'
       })

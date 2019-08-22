@@ -45,16 +45,8 @@ export function del(path, token = '') {
     headers: {
       'Content-Type': 'application/json',
       Authorization: token
-<<<<<<< HEAD
     }
   })
     .then(res => res.json())
     .catch(error => console.error('Error:', error));
 }
-=======
-    },
-  })
-  .then(res => res.json())
-  .catch(error => console.error('Error:', error));
-}
->>>>>>> fix bug

@@ -13,61 +13,44 @@ import {
 } from 'native-base';
 import ValidationUtil from '../utils/ValidationUtil';
 import { connect } from 'react-redux';
-import { sendEmail } from '../redux/actions';
 
 class ForgetPasswordScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ''
+      code: ''
     };
-    this.forgetPasswordHandler = this.forgetPasswordHandler.bind(this);
+    this.btnHandler = this.btnHandler.bind(this);
   }
-  forgetPasswordHandler() {
-    const { email } = this.state;
-    if (ValidationUtil.isEmpty(email)) {
+  btnHandler() {
+    const { code } = this.state;
+    if (ValidationUtil.isEmpty(code)) {
       Toast.show({
         style: {
           marginTop: 65
         },
         position: 'top',
-        text: 'Email Empty',
+        text: 'Verification Empty',
         buttonText: 'Cancel',
         type: 'danger',
         duration: 2000
       });
       return;
     }
-
-    if (!ValidationUtil.isEmail(email)) {
+    if (code == this.props.email.code) {
+      this.props.navigation.navigate('Change');
+    } else {
       Toast.show({
         style: {
           marginTop: 65
         },
         position: 'top',
-        text: 'Email Format Wrong..',
+        text: 'Verification Not Pass',
         buttonText: 'Cancel',
         type: 'danger',
         duration: 2000
       });
-      return;
     }
-
-    this.props.sendEmail({ email });
-
-    Toast.show({
-      style: {
-        marginTop: 65
-      },
-      position: 'top',
-      text: 'Email sent to your box to check code.',
-      buttonText: 'Cancel',
-      type: 'danger',
-      duration: 3000
-    });
-    setTimeout(() => {
-      this.props.navigation.navigate('Verify');
-    }, 500);
   }
   render() {
     return (
@@ -93,12 +76,12 @@ class ForgetPasswordScreen extends Component {
                 fontSize: 18
               }}
             >
-              Email
+              Verification Code
             </Label>
             <Input
               ref={this.textInput1}
               style={{ color: '#ffffff', flex: 1, fontSize: 16 }}
-              onChangeText={text => this.setState({ email: text })}
+              onChangeText={text => this.setState({ code: text })}
             />
           </Item>
 
@@ -106,7 +89,7 @@ class ForgetPasswordScreen extends Component {
             block
             rounded
             // bordered
-            onPress={this.forgetPasswordHandler}
+            onPress={this.btnHandler}
             success
             style={{
               marginTop: 30,
@@ -133,8 +116,5 @@ class ForgetPasswordScreen extends Component {
 const mapStateToProps = state => ({
   email: state.email
 });
-const mapDispatchToProps = { sendEmail };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ForgetPasswordScreen);
+
+export default connect(mapStateToProps)(ForgetPasswordScreen);
