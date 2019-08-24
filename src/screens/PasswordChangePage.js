@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import { changePassword } from '../redux/actions';
 import ValidationUtil from '../utils/ValidationUtil';
+
 class PasswordChangePage extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +27,7 @@ class PasswordChangePage extends Component {
   }
   btnHandler() {
     const { password, newPassword, rePassword } = this.state;
+
     if (
       ValidationUtil.isEmpty(password) ||
       ValidationUtil.isEmpty(newPassword) ||
@@ -75,7 +77,8 @@ class PasswordChangePage extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.password.isValid) {
-      this.props.navigation.goBack();
+      AsyncStorage.removeItem('token');
+      this.props.navigation.navigate('SignIn');
     } else {
       Toast.show({
         text: nextProps.password.msg,
@@ -89,7 +92,7 @@ class PasswordChangePage extends Component {
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <Form>
-          <Item floatingLabel>
+          <Item floatingLabel style={{ marginLeft: 15, marginRight: 15 }}>
             <Label
               style={{
                 color: '#ffffff',
@@ -104,7 +107,7 @@ class PasswordChangePage extends Component {
               style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
             />
           </Item>
-          <Item floatingLabel>
+          <Item floatingLabel style={{ marginLeft: 15, marginRight: 15 }}>
             <Label
               style={{
                 color: '#ffffff',
@@ -120,7 +123,7 @@ class PasswordChangePage extends Component {
               secureTextEntry={true}
             />
           </Item>
-          <Item floatingLabel last>
+          <Item floatingLabel style={{ marginLeft: 15, marginRight: 15 }}>
             <Label
               style={{
                 color: '#ffffff',

@@ -249,12 +249,6 @@ const UserNavigator = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         title: 'Forget Password'
       })
-    },
-    Change: {
-      screen: PasswordChangePage,
-      navigationOptions: ({ navigation }) => ({
-        title: 'Forget Password'
-      })
     }
   },
   {

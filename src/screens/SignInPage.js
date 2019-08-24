@@ -144,7 +144,7 @@ export class SignInPage extends Component {
             <Button
               block
               rounded
-              bordered
+              success
               onPress={this.btnHandler}
               style={{
                 marginTop: 40,

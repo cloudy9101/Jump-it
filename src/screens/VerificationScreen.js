@@ -13,17 +13,21 @@ import {
 } from 'native-base';
 import ValidationUtil from '../utils/ValidationUtil';
 import { connect } from 'react-redux';
+import { changePassword } from '../redux/actions';
 
 class ForgetPasswordScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: ''
+      code: '',
+      isOk: false,
+      rePassword: '',
+      newPassword: ''
     };
     this.btnHandler = this.btnHandler.bind(this);
   }
   btnHandler() {
-    const { code } = this.state;
+    const { code, newPassword, rePassword } = this.state;
     if (ValidationUtil.isEmpty(code)) {
       Toast.show({
         style: {
@@ -37,8 +41,11 @@ class ForgetPasswordScreen extends Component {
       });
       return;
     }
-    if (code == this.props.email.code) {
-      this.props.navigation.navigate('Change');
+    //code == this.props.email.code
+    if (true) {
+      this.setState({
+        isOk: true
+      });
     } else {
       Toast.show({
         style: {
@@ -51,8 +58,38 @@ class ForgetPasswordScreen extends Component {
         duration: 2000
       });
     }
+
+    // if (ValidationUtil.validPassword(newPassword)) {
+    //   Toast.show({
+    //     style: {
+    //       marginTop: 65
+    //     },
+    //     position: 'top',
+    //     text: 'Minimum 8 Characters',
+    //     buttonText: 'Cancel',
+    //     type: 'danger',
+    //     duration: 2000
+    //   });
+    //   return;
+    // }
+    if (!ValidationUtil.passwordMatch(newPassword, rePassword)) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'Password Not Matched',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+      return;
+    }
+    if (isOk)
+      this.props.changePassword({ newPassword, email: this.props.email.email });
   }
   render() {
+    const { isOk } = this.state;
     return (
       <Container
         style={{
@@ -67,7 +104,7 @@ class ForgetPasswordScreen extends Component {
         >
           <Item
             floatingLabel
-            style={{ marginLeft: 15, marginRight: 15, marginBottom: 20 }}
+            style={{ marginLeft: 15, marginRight: 15, marginBottom: 10 }}
           >
             <Label
               style={{
@@ -84,18 +121,54 @@ class ForgetPasswordScreen extends Component {
               onChangeText={text => this.setState({ code: text })}
             />
           </Item>
-
+          {isOk ? (
+            <>
+              <Item floatingLabel style={{ marginLeft: 15, marginRight: 15 }}>
+                <Label
+                  style={{
+                    color: '#ffffff',
+                    fontFamily: 'Helvetica',
+                    fontSize: 18
+                  }}
+                >
+                  New Password
+                </Label>
+                <Input
+                  onChangeText={text => this.setState({ newPassword: text })}
+                  style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
+                  secureTextEntry={true}
+                />
+              </Item>
+              <Item
+                floatingLabel
+                style={{ marginLeft: 15, marginRight: 15, marginBottom: 10 }}
+              >
+                <Label
+                  style={{
+                    color: '#ffffff',
+                    fontFamily: 'Helvetica',
+                    fontSize: 18
+                  }}
+                >
+                  Confirm Password
+                </Label>
+                <Input
+                  onChangeText={text => this.setState({ rePassword: text })}
+                  style={{ flex: 1, fontSize: 16, color: '#ffffff' }}
+                  secureTextEntry={true}
+                />
+              </Item>
+            </>
+          ) : null}
           <Button
             block
             rounded
-            // bordered
             onPress={this.btnHandler}
             success
             style={{
               marginTop: 30,
               marginLeft: 10,
               marginRight: 10
-              //  borderColor: '#fff'
             }}
           >
             <Text
@@ -104,7 +177,7 @@ class ForgetPasswordScreen extends Component {
                 fontSize: 18
               }}
             >
-              Next
+              Confirm
             </Text>
           </Button>
         </Form>
@@ -116,5 +189,8 @@ class ForgetPasswordScreen extends Component {
 const mapStateToProps = state => ({
   email: state.email
 });
-
-export default connect(mapStateToProps)(ForgetPasswordScreen);
+const mapDispatchToProps = { changePassword };
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ForgetPasswordScreen);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Body, Right, Title, Card, CardItem, Text } from 'native-base';
 export default function WorkoutCard(props) {
+  console.log(props.num);
   return (
     <View
       style={{

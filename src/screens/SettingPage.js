@@ -14,7 +14,13 @@ export class SettingPage extends Component {
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent titleName="Setting" {...this.props} />
         <List>
-          <ListItem style={{ justifyContent: 'space-between' }}>
+          <ListItem
+            style={{
+              justifyContent: 'space-between',
+              marginLeft: 15,
+              marginRight: 15
+            }}
+          >
             <Text
               style={{
                 fontSize: 18,
@@ -24,21 +30,22 @@ export class SettingPage extends Component {
             >
               Profile
             </Text>
-            <Button
-              light
-              transparent
+            <Icon
+              name="ios-arrow-forward"
+              type="Ionicons"
+              style={{
+                color: '#ffffff'
+              }}
               onPress={() => this.props.navigation.navigate('Profile')}
-            >
-              <Icon
-                name="ios-arrow-forward"
-                type="Ionicons"
-                style={{
-                  color: '#ffffff'
-                }}
-              />
-            </Button>
+            />
           </ListItem>
-          <ListItem style={{ justifyContent: 'space-between' }}>
+          <ListItem
+            style={{
+              justifyContent: 'space-between',
+              marginLeft: 15,
+              marginRight: 15
+            }}
+          >
             <Text
               style={{
                 fontSize: 18,
@@ -48,22 +55,27 @@ export class SettingPage extends Component {
             >
               Change Password
             </Text>
-            <Button
+            {/* <Button
               light
               transparent
               onPress={() => this.props.navigation.navigate('Profile')}
-            >
-              <Icon
-                name="ios-arrow-forward"
-                type="Ionicons"
-                style={{
-                  color: '#ffffff'
-                }}
-                onPress={() => this.props.navigation.navigate('PasswordChange')}
-              />
-            </Button>
+            > */}
+            <Icon
+              name="ios-arrow-forward"
+              type="Ionicons"
+              style={{
+                color: '#ffffff'
+              }}
+              onPress={() => this.props.navigation.navigate('PasswordChange')}
+            />
           </ListItem>
-          <ListItem style={{ justifyContent: 'space-between' }}>
+          <ListItem
+            style={{
+              justifyContent: 'space-between',
+              marginLeft: 15,
+              marginRight: 15
+            }}
+          >
             <Text
               style={{
                 fontSize: 18,
