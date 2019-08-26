@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
+import { Provider, dispatch } from 'react-redux';
 import { store } from './redux/store';
 import { Root } from 'native-base';
-import { Platform, StyleSheet, View } from 'react-native';
-
 import AppNavigator from './navigations/AppNavigator';
+
+import Firebase from './utils/FirebaseUtil';
+
 export default class App extends Component {
+
+  componentDidMount() {
+    Firebase.setup();
+    this.onTokenRefreshListener = Firebase.onTokenRefreshListener();
+  }
+
+  componentWillUnmount() {
+    this.onTokenRefreshListener();
+  }
+
   render() {
     console.disableYellowBox = true;
     return (

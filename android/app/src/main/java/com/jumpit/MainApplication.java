@@ -3,6 +3,14 @@ package com.jumpit;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 import com.horcrux.svg.SvgPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.imagepicker.ImagePickerPackage;
@@ -27,6 +35,14 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFetchBlobPackage(),
+            new RNDeviceInfo(),
+            new RNFirebasePackage(),
+              new RNFirebaseMessagingPackage(),
+              new RNFirebaseAuthPackage(),
+              new RNFirebaseNotificationsPackage(),
+              new RNFirebaseAnalyticsPackage(),
+              new RNFirebaseStoragePackage(),
             new SvgPackage(),
             new AsyncStoragePackage(),
             new ImagePickerPackage(),
