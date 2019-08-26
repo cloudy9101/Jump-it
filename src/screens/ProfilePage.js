@@ -47,19 +47,23 @@ class ProfilePage extends Component {
       username,
       avator
     } = this.state;
-    // if (
-    //   ValidationUtil.isEmpty(username) ||
-    //   ValidationUtil.isEmpty(lastName) ||
-    //   ValidationUtil.isEmpty(firstName)
-    // ) {
-    //   Toast.show({
-    //     text: 'All Fields Are Required..',
-    //     buttonText: 'Cancel',
-    //     type: 'danger',
-    //     duration: 2000
-    //   });
-    //   return;
-    // }
+    if (
+      ValidationUtil.isEmpty(username) ||
+      ValidationUtil.isEmpty(lastName) ||
+      ValidationUtil.isEmpty(firstName)
+    ) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'All Fields Are Required..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+      return;
+    }
     AsyncStorage.getItem('token').then(token => {
       const obj = {
         avator: avator,
@@ -137,7 +141,10 @@ class ProfilePage extends Component {
         {/* <HeaderComponent titleName="Profile" {...this.props} /> */}
         <Content>
           <Form style={{ marginTop: 40 }}>
-            <Item inlineLabel style={{ margin: 10 }}>
+            <Item
+              inlineLabel
+              style={{ marginLeft: 15, marginRight: 15, marginTop: 10 }}
+            >
               <Label
                 style={{
                   color: '#ffffff',
@@ -163,7 +170,10 @@ class ProfilePage extends Component {
                 )}
               </Button>
             </Item>
-            <Item stackedLabel style={{ marginTop: 10 }}>
+            <Item
+              stackedLabel
+              style={{ marginLeft: 15, marginRight: 15, marginTop: 10 }}
+            >
               <Label
                 style={{
                   color: '#ffffff',
@@ -180,7 +190,10 @@ class ProfilePage extends Component {
                 onChangeText={text => this.setState({ username: text })}
               />
             </Item>
-            <Item stackedLabel style={{ marginTop: 10 }}>
+            <Item
+              stackedLabel
+              style={{ marginLeft: 15, marginRight: 15, marginTop: 10 }}
+            >
               <Label
                 style={{
                   color: '#ffffff',
@@ -197,7 +210,10 @@ class ProfilePage extends Component {
                 onChangeText={text => this.setState({ firstName: text })}
               />
             </Item>
-            <Item stackedLabel style={{ marginTop: 10 }}>
+            <Item
+              stackedLabel
+              style={{ marginLeft: 15, marginRight: 15, marginTop: 10 }}
+            >
               <Label
                 style={{
                   color: '#ffffff',
@@ -214,7 +230,10 @@ class ProfilePage extends Component {
                 onChangeText={text => this.setState({ lastName: text })}
               />
             </Item>
-            <Item stackedLabel style={{ marginTop: 5 }}>
+            <Item
+              stackedLabel
+              style={{ marginLeft: 15, marginRight: 15, marginTop: 10 }}
+            >
               <Label
                 style={{
                   color: '#ffffff',
@@ -231,7 +250,10 @@ class ProfilePage extends Component {
               />
             </Item>
 
-            <Item stackedLabel style={{ marginTop: 5 }}>
+            <Item
+              stackedLabel
+              style={{ marginLeft: 15, marginRight: 15, marginTop: 5 }}
+            >
               <Label
                 style={{
                   color: '#ffffff',

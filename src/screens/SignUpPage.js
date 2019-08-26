@@ -28,51 +28,67 @@ export default class SignUpPage extends Component {
   async btnHandler() {
     const { email, username, password, repassword } = this.state;
 
-    // if (
-    //   ValidationUtil.isEmpty(email) ||
-    //   ValidationUtil.isEmpty(username) ||
-    //   ValidationUtil.isEmpty(password) ||
-    //   ValidationUtil.isEmpty(repassword)
-    // ) {
-    //   Toast.show({
-    //     text: 'All Fields Are Required..',
-    //     buttonText: 'Cancel',
-    //     type: 'danger',
-    //     duration: 2500
-    //   });
-    //   return;
-    // }
-    // if (!ValidationUtil.isEmail(email)) {
-    //   Toast.show({
-    //     text: 'Email Format Wrong..',
-    //     buttonText: 'Cancel',
-    //     type: 'danger',
-    //     duration: 2500
-    //   });
-    //   return;
-    // }
+    if (
+      ValidationUtil.isEmpty(email) ||
+      ValidationUtil.isEmpty(username) ||
+      ValidationUtil.isEmpty(password) ||
+      ValidationUtil.isEmpty(repassword)
+    ) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'All Fields Are Required..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+      return;
+    }
+    if (!ValidationUtil.isEmail(email)) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'Email Format Wrong..',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+      return;
+    }
 
-    // if (
-    //   ValidationUtil.validPassword(password) ||
-    //   ValidationUtil.validPassword(repassword)
-    // ) {
-    //   Toast.show({
-    //     text: 'Minimum 8 Characters',
-    //     buttonText: 'Cancel',
-    //     type: 'danger',
-    //     duration: 2500
-    //   });
-    //   return;
-    // }
-    // if (!ValidationUtil.passwordMatch(password, repassword)) {
-    //   Toast.show({
-    //     text: 'Password Not Matched',
-    //     buttonText: 'Cancel',
-    //     type: 'danger',
-    //     duration: 2500
-    //   });
-    //   return;
-    // }
+    if (
+      ValidationUtil.validPassword(password) ||
+      ValidationUtil.validPassword(repassword)
+    ) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'Minimum 8 Characters',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+      return;
+    }
+    if (!ValidationUtil.passwordMatch(password, repassword)) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'Password Not Matched',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2500
+      });
+      return;
+    }
     await AsyncStorage.setItem(
       'payload',
       JSON.stringify({

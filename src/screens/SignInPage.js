@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View } from 'react-native';
+import { Image, View } from 'react-native';
 import {
   Container,
   Form,
@@ -32,6 +32,10 @@ export class SignInPage extends Component {
     const { email, password } = this.state;
     if (ValidationUtil.isEmpty(email) || ValidationUtil.isEmpty(password)) {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: 'All Fields Are Required..',
         buttonText: 'Cancel',
         type: 'danger',
@@ -48,6 +52,10 @@ export class SignInPage extends Component {
       this.props.navigation.navigate('home');
     } else {
       Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
         text: nextProps.users.error,
         buttonText: 'Cancel',
         type: 'danger',
@@ -60,24 +68,28 @@ export class SignInPage extends Component {
 
   render() {
     return (
-      <Container style={styles.containerStyle}>
+      <Container
+        style={{
+          backgroundColor: '#1f3954'
+        }}
+      >
         <KeyboardShift>
-          <Form style={styles.formStyle}>
-            <View
+          <Form
+            style={{
+              flex: 2,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: 40
+            }}
+          >
+            <Image
+              source={require('../../assets/jump.png')}
               style={{
-                alignItems: 'center',
-                height: '40%'
+                width: '100%',
+                height: '50%'
               }}
-            >
-              <Image
-                source={require('../../assets/jump.png')}
-                style={{
-                  width: '100%',
-                  height: '100%'
-                }}
-              />
-            </View>
-            <Item inlineLabel style={{ margin: 10 }}>
+            />
+            <Item inlineLabel style={{ marginLeft: 15, marginRight: 15 }}>
               <Icon
                 active
                 name="envelope"
@@ -101,7 +113,10 @@ export class SignInPage extends Component {
               />
             </Item>
 
-            <Item inlineLabel style={{ margin: 10 }}>
+            <Item
+              inlineLabel
+              style={{ marginTop: 10, marginLeft: 15, marginRight: 15 }}
+            >
               <Icon
                 active
                 name="lock"
@@ -125,13 +140,14 @@ export class SignInPage extends Component {
                 onChangeText={text => this.setState({ password: text })}
               />
             </Item>
+
             <Button
               block
               rounded
-              bordered
+              success
               onPress={this.btnHandler}
               style={{
-                marginTop: 30,
+                marginTop: 40,
                 marginLeft: 15,
                 marginRight: 15,
                 borderColor: '#fff'
@@ -147,7 +163,35 @@ export class SignInPage extends Component {
                 Sign In
               </Text>
             </Button>
-            <View style={styles.buttonStyle}>
+          </Form>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flex: 1
+            }}
+          >
+            <View>
+              <Button
+                transparent
+                onPress={() => {
+                  this.props.navigation.navigate('Forget');
+                }}
+                light
+                style={{ borderWidth: 0 }}
+              >
+                <Text
+                  style={{
+                    fontSize: 19,
+                    fontFamily: 'Helvetica',
+                    color: '#58a4d1'
+                  }}
+                >
+                  Forget Password
+                </Text>
+              </Button>
+            </View>
+            <View style={{ marginBottom: 60 }}>
               <Button
                 transparent
                 onPress={() => {
@@ -175,7 +219,7 @@ export class SignInPage extends Component {
                 </Text>
               </Button>
             </View>
-          </Form>
+          </View>
         </KeyboardShift>
       </Container>
     );
@@ -189,17 +233,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SignInPage);
-const styles = StyleSheet.create({
-  containerStyle: {
-    backgroundColor: '#1f3954'
-  },
-
-  formStyle: {
-    marginTop: 110
-  },
-  buttonStyle: {
-    flexDirection: 'row',
-    marginTop: 115,
-    justifyContent: 'center'
-  }
-});

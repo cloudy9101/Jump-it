@@ -33,7 +33,7 @@ class AboutPage extends Component {
                 fontSize: 19
               }}
             >
-              Version 0.0.1 #Build 2019
+              Version 1.0.0 #Build 2019
             </Text>
           </View>
         </View>
