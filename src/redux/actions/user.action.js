@@ -111,3 +111,13 @@ export const deviceUnreg = (token) => {
     });
   }
 }
+
+export const updateNotificationEnabled = (value, token) => {
+  return dispatch => {
+    put('/api/users/updateNotificationEnabled', { notificationEnabled: value }, token).then(res => {
+      if (res.code === 0) {
+        dispatch(userUpdate(res.data));
+      }
+    });
+  };
+};

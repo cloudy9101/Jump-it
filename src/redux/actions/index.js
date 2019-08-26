@@ -5,7 +5,8 @@ import {
   updateUser,
   deviceReg,
   deviceUnreg,
-  logout
+  logout,
+  updateNotificationEnabled
 } from './user.action';
 import { changePassword } from './password.action';
 import { fetchExercises, fetchDiets, addDiet } from './plan.action';
@@ -37,6 +38,7 @@ export {
   findUseInfo,
   changePassword,
   updateUser,
+  updateNotificationEnabled,
   addFood,
   updateFoodValue,
   updateFood,

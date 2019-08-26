@@ -22,7 +22,8 @@ const initState = {
   height: '',
   weight: '',
   isFinished: false,
-  token: ''
+  token: '',
+  notificationEnabled: true
 };
 
 export const users = (state = initState, action) => {
