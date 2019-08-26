@@ -9,6 +9,8 @@ buildscript {
         supportLibVersion = "28.0.0"
         googlePlayServicesVersion = "16.0.0"
         googlePlayServicesVisionVersion = "17.0.2"
+        fitnessVersion="16.0.1"
+        authVersion="16.0.1"
     }
     repositories {
         google()

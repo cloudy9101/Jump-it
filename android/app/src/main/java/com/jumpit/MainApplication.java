@@ -11,6 +11,7 @@ import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.storage.RNFirebaseStoragePackage;
+import com.reactnative.googlefit.GoogleFitPackage;
 import com.horcrux.svg.SvgPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.imagepicker.ImagePickerPackage;
@@ -38,11 +39,12 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFetchBlobPackage(),
             new RNDeviceInfo(),
             new RNFirebasePackage(),
-              new RNFirebaseMessagingPackage(),
-              new RNFirebaseAuthPackage(),
-              new RNFirebaseNotificationsPackage(),
-              new RNFirebaseAnalyticsPackage(),
-              new RNFirebaseStoragePackage(),
+            new RNFirebaseMessagingPackage(),
+            new RNFirebaseAuthPackage(),
+            new RNFirebaseNotificationsPackage(),
+            new RNFirebaseAnalyticsPackage(),
+            new RNFirebaseStoragePackage(),
+            new GoogleFitPackage(BuildConfig.APPLICATION_ID),
             new SvgPackage(),
             new AsyncStoragePackage(),
             new ImagePickerPackage(),
