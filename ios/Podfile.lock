@@ -68,6 +68,8 @@ PODS:
     - React/Core (= 0.59.9)
   - React/Core (0.59.9):
     - yoga (= 0.59.9.React)
+  - rn-fetch-blob (0.10.6):
+    - React/Core
   - RNDeviceInfo (2.3.2):
     - React
   - yoga (0.59.9.React)
@@ -77,6 +79,7 @@ DEPENDENCIES:
   - Firebase/Messaging (~> 6.3.0)
   - GoogleIDFASupport (~> 3.14.0)
   - React (from `../node_modules/react-native`)
+  - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -97,6 +100,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
+  rn-fetch-blob:
+    :path: "../node_modules/rn-fetch-blob"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
   yoga:
@@ -115,9 +120,10 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   React: a86b92f00edbe1873a63e4a212c29b7a7ad5224f
+  rn-fetch-blob: 766f85cabd2992300dfa1be2bc9e4e258abc6f04
   RNDeviceInfo: bdc3e922b2ed0f086e9d9ab534e61bc316f08576
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: cdc6b08b83556b3563ee6922ff62b8504ef90730
+PODFILE CHECKSUM: 064f9f0970e00b730a07e549a1a3741b07872184
 
 COCOAPODS: 1.7.4

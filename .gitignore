@@ -1,5 +1,6 @@
 # Firebase crendental
 ios/jumpit/GoogleService-Info.plist
+ios/GoogleService-Info.plist
 android/app/google-services.json
 
 # OSX
