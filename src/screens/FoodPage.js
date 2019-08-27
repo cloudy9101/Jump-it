@@ -48,10 +48,14 @@ class FoodPage extends Component {
         transparent
         onPress={() => this.props.navigation.navigate('FoodForm')}
       >
-        <Icon name="pluscircleo" type="AntDesign" />
+        <Icon
+          name="plus-circle"
+          type="FontAwesome"
+          style={{ color: '#ffffff' }}
+        />
       </Button>
     );
-    console.log(this.props.foods);
+
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
         <HeaderComponent
@@ -125,7 +129,7 @@ const FoodsPageNavigator = createStackNavigator(
     FoodForm: {
       screen: FoodFormPage,
       navigationOptions: ({ navigation }) => ({
-        header: null
+        title: 'FoodForm'
       })
     }
   },

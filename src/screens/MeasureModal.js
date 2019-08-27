@@ -179,6 +179,7 @@ class MeasureModal extends Component {
                       ref={input => {
                         this.textInput1 = input;
                       }}
+                      keyboardType={'numeric'}
                       placeholder="120"
                       placeholderTextColor="#888"
                       color="#fff"
@@ -228,6 +229,7 @@ class MeasureModal extends Component {
                       ref={input => {
                         this.textInput2 = input;
                       }}
+                      keyboardType={'numeric'}
                       placeholder="120"
                       placeholderTextColor="#888"
                       color="#fff"

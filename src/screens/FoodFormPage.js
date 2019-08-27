@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image } from 'react-native';
-import { Container, Content, View, Thumbnail, Text, Icon, Button, Form, Input, Label, Item } from 'native-base';
+import { Image, Platform } from 'react-native';
+import {
+  Container,
+  Content,
+  View,
+  Thumbnail,
+  Text,
+  Icon,
+  Button,
+  Form,
+  Input,
+  Label,
+  Item
+} from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { addFood, updateFoodValue, updateFood, deleteFood, fetchFoods } from '../redux/actions';
+import {
+  addFood,
+  updateFoodValue,
+  updateFood,
+  deleteFood,
+  fetchFoods
+} from '../redux/actions';
 import ImagePicker from 'react-native-image-picker';
 // import FSUtil from '../utils/FirebaseStorageUtil';
 import firebase from 'react-native-firebase';
@@ -23,12 +41,18 @@ foodImgs[9] = require('../../assets/foods/food9.jpg');
 foodImgs[10] = require('../../assets/foods/food10.jpg');
 
 const options = {
-  title: 'Select Avatar',
-  customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+  title: null,
+  cancelButtonTitle: 'Cancel',
+  takePhotoButtonTitle: 'Open Camera',
+  chooseFromLibraryButtonTitle: 'Choose From Photos',
+  quality: 1.0,
+  maxWidth: 500,
+  maxHeight: 500,
+  noData: true,
   storageOptions: {
     skipBackup: true,
-    path: 'images',
-  },
+    path: 'images'
+  }
 };
 
 class FoodFormPage extends Component {
@@ -36,13 +60,21 @@ class FoodFormPage extends Component {
     super(props);
     const item = this.props.navigation.getParam('item', null);
 
-    this.state = { imgRes: null, imgUri: null, imgIndex: 0, name: "", value: 0 }
-    if(item) {
-      this.state = { item: item,
-                     imgUri: item.imgUri ? item.imgUri : null,
-                     imgIndex: item.imgIndex || 0,
-                     name: item.name,
-                     value: item.value }
+    this.state = {
+      imgRes: null,
+      imgUri: null,
+      imgIndex: 0,
+      name: '',
+      value: 0
+    };
+    if (item) {
+      this.state = {
+        item: item,
+        imgUri: item.imgUri ? item.imgUri : null,
+        imgIndex: item.imgIndex || 0,
+        name: item.name,
+        value: item.value
+      };
     }
     this.addFood = this.addFood.bind(this);
     this.updateFood = this.updateFood.bind(this);
@@ -52,14 +84,28 @@ class FoodFormPage extends Component {
 
   addFood() {
     AsyncStorage.getItem('token').then(token => {
-      this.props.addFood(token, this.state.name, this.state.value, { imgRes: this.state.imgRes, imgUri: this.state.imgUri, imgIndex: this.state.imgIndex });
+      this.props.addFood(token, this.state.name, this.state.value, {
+        imgRes: this.state.imgRes,
+        imgUri: this.state.imgUri,
+        imgIndex: this.state.imgIndex
+      });
       this.props.navigation.goBack();
     });
   }
 
   updateFood() {
     AsyncStorage.getItem('token').then(token => {
-      this.props.updateFood(token, this.state.item._id, this.state.name, this.state.value, { imgRes: this.state.imgRes, imgUri: this.state.imgUri, imgIndex: this.state.imgIndex });
+      this.props.updateFood(
+        token,
+        this.state.item._id,
+        this.state.name,
+        this.state.value,
+        {
+          imgRes: this.state.imgRes,
+          imgUri: this.state.imgUri,
+          imgIndex: this.state.imgIndex
+        }
+      );
       this.props.navigation.goBack();
     });
   }
@@ -72,8 +118,7 @@ class FoodFormPage extends Component {
   }
 
   openImagePicker() {
-    ImagePicker.showImagePicker(options, (response) => {
-
+    ImagePicker.showImagePicker(options, response => {
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
@@ -82,60 +127,105 @@ class FoodFormPage extends Component {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         delete response.data;
-        this.setState({imgRes: response})
+        this.setState({ imgRes: response });
       }
     });
   }
 
   render() {
     const { navigation } = this.props;
-    const left = <Button transparent onPress={() => navigation.goBack()}><Icon name="md-arrow-back" /></Button>;
+    console.log(navigation);
+    const left = (
+      <Button transparent onPress={() => navigation.goBack()}>
+        <Icon name="md-arrow-back" />
+      </Button>
+    );
     const imgIndex = this.state.imgIndex || 0;
     let imgSource = foodImgs[imgIndex];
-    imgSource = this.state.imgUri != null ? { uri: this.state.imgUri } : imgSource;
-    imgSource = this.state.imgRes != null ? { uri: this.state.imgRes.uri } : imgSource;
+    imgSource =
+      this.state.imgUri != null ? { uri: this.state.imgUri } : imgSource;
+    imgSource =
+      this.state.imgRes != null ? { uri: this.state.imgRes.uri } : imgSource;
     return (
       <Container style={styles.container}>
-        <HeaderComponent left={left} title={navigation.state.routeName} {...this.props} />
         <Content style={styles.content}>
           <View style={styles.body}>
-            <Image
-              style={styles.selectedImg}
-              source={imgSource}
-            />
+            <Image style={styles.selectedImg} source={imgSource} />
             <View style={styles.imgList}>
               {foodImgs.map((item, key) => {
-                return <Button key={key} transparent style={styles.imgItem} onPress={() => {
-                  this.setState({
-                    imgIndex: key,
-                    imgUri: null,
-                    imgRes: null
-                  })
-                }}>
-                         <Thumbnail style={styles.imgThumb} square source={item} />
-                       </Button>
+                return (
+                  <Button
+                    key={key}
+                    transparent
+                    style={styles.imgItem}
+                    onPress={() => {
+                      this.setState({
+                        imgIndex: key,
+                        imgUri: null,
+                        imgRes: null
+                      });
+                    }}
+                  >
+                    <Thumbnail style={styles.imgThumb} square source={item} />
+                  </Button>
+                );
               })}
-              <Button transparent style={styles.cameraBtn} onPress={this.openImagePicker}>
-                <Icon name="md-camera" key={foodImgs.length} style={styles.cameraIcon} />
+              <Button
+                transparent
+                style={styles.cameraBtn}
+                onPress={this.openImagePicker}
+              >
+                <Icon
+                  name="md-camera"
+                  key={foodImgs.length}
+                  style={styles.cameraIcon}
+                />
               </Button>
             </View>
             <Form style={styles.form}>
               <Item fixedLabel>
-                <Label style={{ color: '#ffffff' }}>Food Item</Label>
-                <Input onChangeText={(text) => this.setState({name: text})} value={this.state.name} />
+                <Label style={{ color: '#ffffff', fontFamily: 'Helvetica' }}>
+                  Food Item
+                </Label>
+                <Input
+                  onChangeText={text => this.setState({ name: text })}
+                  value={this.state.name}
+                  style={{ color: '#ffffff' }}
+                />
               </Item>
               <Item fixedLabel>
-                <Label style={{ color: '#ffffff' }}>Stock</Label>
-                <Input onChangeText={(text) => this.setState({value: parseInt(text, 0) || 0})}
-                  value={"" + this.state.value}
+                <Label style={{ color: '#ffffff', fontFamily: 'Helvetica' }}>
+                  Stock
+                </Label>
+                <Input
+                  onChangeText={text =>
+                    this.setState({ value: parseInt(text, 0) || 0 })
+                  }
+                  value={'' + this.state.value}
+                  style={{ color: '#ffffff' }}
                   keyboardType={'numeric'}
                 />
               </Item>
-              <Button block success onPress={this.state.item ? this.updateFood : this.addFood} style={styles.submitBtn}>
-                <Text>Submit</Text>
+
+              <Button
+                block
+                success
+                onPress={this.state.item ? this.updateFood : this.addFood}
+                style={styles.submitBtn}
+              >
+                <Text style={{ color: '#ffffff', fontFamily: 'Helvetica' }}>
+                  Submit
+                </Text>
               </Button>
-              <Button bordered small danger onPress={this.deleteFood} style={styles.submitBtn}>
-                <Text>Delete</Text>
+
+              <Button
+                small
+                bordered
+                danger
+                onPress={this.deleteFood}
+                style={styles.submitBtn}
+              >
+                <Text style={{ fontFamily: 'Helvetica' }}>Delete</Text>
               </Button>
             </Form>
           </View>
@@ -157,39 +247,47 @@ const styles = {
   },
   imgList: {
     marginTop: 20,
-    marginLeft: 10,
-    marginRight: 10,
+    justifyContent: 'center',
+    marginLeft: Platform.OS === 'android' ? 10 : 1,
+    marginRight: Platform.OS === 'android' ? 10 : 1,
     flexWrap: 'wrap',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   imgItem: {
-    marginRight: 5,
-    marginBottom: 15,
-  },
+    marginRight: Platform.OS === 'android' ? 5 : 2,
+    marginLeft: Platform.OS === 'android' ? 0 : 2,
+    marginBottom: 15
+  }, //
   cameraBtn: {
     width: 56,
     height: 56,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   cameraIcon: {
     flex: 1,
-    color: '#ffffff',
+    color: '#ffffff'
   },
   form: {
-    width: "80%",
-    alignItems: 'center',
+    width: Platform.OS === 'android' ? '80%' : '90%',
+    alignItems: 'center'
   },
   submitBtn: {
     marginTop: 20,
     alignSelf: 'center',
-    width: "40%",
-    justifyContent: 'center',
+    width: '40%',
+    justifyContent: 'center'
   }
-}
+};
 
 const mapStateToProps = state => ({});
-const mapDispatchToProps = { addFood, updateFoodValue, updateFood, deleteFood, fetchFoods };
+const mapDispatchToProps = {
+  addFood,
+  updateFoodValue,
+  updateFood,
+  deleteFood,
+  fetchFoods
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
