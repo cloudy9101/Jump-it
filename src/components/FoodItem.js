@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { TouchableHighlight, View, TextInput } from 'react-native';
-import { ListItem, Thumbnail, Text, Icon, Button, Left, Body, Right } from 'native-base';
-import firebase from 'react-native-firebase';
+import {
+  ListItem,
+  Thumbnail,
+  Text,
+  Icon,
+  Button,
+  Left,
+  Body,
+  Right
+} from 'native-base';
 
 let foodImgs = [];
 foodImgs[0] = require('../../assets/foods/food0.jpg');
@@ -19,55 +27,86 @@ foodImgs[10] = require('../../assets/foods/food10.jpg');
 class FoodItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: this.props.item.value }
+    this.state = { value: this.props.item.value };
   }
 
   componentWillReceiveProps(props) {
-    this.setState({ value: props.item.value })
+    this.setState({ value: props.item.value });
   }
 
   valueChangeHandler(value) {
-    this.setState({value: value});
+    if (value <= 0) {
+      value = 0;
+    }
+    this.setState({ value: value });
     this.props.valueChangeHandler(value);
   }
 
   render() {
-    const source = this.props.item.imgUri ? { uri: this.props.item.imgUri } : foodImgs[this.props.item.imgIndex || 0];
+    const source = this.props.item.imgUri
+      ? { uri: this.props.item.imgUri }
+      : foodImgs[this.props.item.imgIndex || 0];
     const item = this.props.item;
-    return(
-      <TouchableHighlight onPress={() => this.props.navigation.navigate('FoodForm', { item })}>
-        <View style={{
-          flexDirection: 'row',
-          marginTop: 10,
-          justifyContent: 'flex-start',
-        }}>
+    return (
+      <TouchableHighlight
+        activeOpacity={0.9}
+        underlayColor="#2a4766"
+        onPress={() => this.props.navigation.navigate('FoodForm', { item })}
+      >
+        <View
+          style={{
+            flexDirection: 'row',
+            marginTop: 10,
+            justifyContent: 'flex-start',
+            marginRight: 15
+          }}
+        >
           <Thumbnail style={{ marginLeft: 10 }} square large source={source} />
-          <View style={{
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            marginLeft: 10,
-            borderBottomWidth: 1,
-            borderBottomColor: '#ffffff',
-            flexGrow: 1
-          }}>
-            <Text style={{ color: '#ffffff', marginLeft: 15, fontSize: 24 }}>{item.name}</Text>
+          <View
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              marginLeft: 10,
+              borderBottomWidth: 1,
+              borderBottomColor: '#ffffff',
+              flexGrow: 1
+            }}
+          >
+            <Text style={{ color: '#ffffff', marginLeft: 15, fontSize: 24 }}>
+              {item.name}
+            </Text>
             <View style={{ flexDirection: 'row' }}>
-              <Button iconLeft transparent
+              <Button
+                iconLeft
+                transparent
                 style={{ marginRight: 5 }}
                 onPress={() => this.valueChangeHandler(this.state.value + 1)}
               >
-                <Icon name='plus' type="EvilIcons" style={{ color: "#ffffff" }} />
+                <Icon
+                  name="plus"
+                  type="EvilIcons"
+                  style={{ color: '#ffffff' }}
+                />
               </Button>
-              <TextInput style={{ color: '#ffffff', fontSize: 18 }}
-                onChangeText={(text) => this.valueChangeHandler(parseInt(text, 0))}
-                value={"" + this.state.value}
-                keyboardType='numeric'
+              <TextInput
+                style={{ color: '#ffffff', fontSize: 18 }}
+                onChangeText={text =>
+                  this.valueChangeHandler(parseInt(text, 0))
+                }
+                value={'' + this.state.value}
+                keyboardType="numeric"
               />
-              <Button iconRight transparent
+              <Button
+                iconRight
+                transparent
                 style={{ marginLeft: 5 }}
                 onPress={() => this.valueChangeHandler(this.state.value - 1)}
               >
-                <Icon name='minus' type="EvilIcons" style={{ color: "#ffffff" }} />
+                <Icon
+                  name="minus"
+                  type="EvilIcons"
+                  style={{ color: '#ffffff' }}
+                />
               </Button>
             </View>
           </View>
