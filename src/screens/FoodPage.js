@@ -3,14 +3,18 @@ import { connect } from 'react-redux';
 import { FlatList } from 'react-native';
 import { Container, Content, View, Icon, Button } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
-import {
-  createStackNavigator,
-} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import FoodFormPage from '../screens/FoodFormPage';
 import HeaderComponent from '../components/HeaderComponent';
 import FoodItem from '../components/FoodItem';
-import { addFood, updateFoodValue, updateFood, deleteFood, fetchFoods } from '../redux/actions';
+import {
+  addFood,
+  updateFoodValue,
+  updateFood,
+  deleteFood,
+  fetchFoods
+} from '../redux/actions';
 
 class FoodPage extends Component {
   constructor(props) {
@@ -39,25 +43,38 @@ class FoodPage extends Component {
 
   render() {
     const { navigation } = this.props;
-    const addBtn =
-      <Button transparent onPress={() => this.props.navigation.navigate("FoodForm")}>
-        <Icon name='pluscircleo' type="AntDesign" />
+    const addBtn = (
+      <Button
+        transparent
+        onPress={() => this.props.navigation.navigate('FoodForm')}
+      >
+        <Icon name="pluscircleo" type="AntDesign" />
       </Button>
-    console.log(this.props.foods)
+    );
+    console.log(this.props.foods);
     return (
       <Container style={{ backgroundColor: '#1f3954' }}>
-        <HeaderComponent title={navigation.state.routeName} {...this.props} right={addBtn} />
+        <HeaderComponent
+          title={navigation.state.routeName}
+          {...this.props}
+          right={addBtn}
+        />
         <Content>
           <FlatList
-            data={this.props.foods.data.sort((a, b) => { return a._id > b._id })}
-            renderItem={ (data) => {
+            data={this.props.foods.data.sort((a, b) => {
+              return a._id > b._id;
+            })}
+            renderItem={data => {
               const item = data.item;
               return (
                 <View style={styles.rowFront}>
-                  <FoodItem key={item._id}
+                  <FoodItem
+                    key={item._id}
                     navigation={navigation}
                     item={item}
-                    valueChangeHandler={(value) => this.valueChangeHandler(item._id, value)}
+                    valueChangeHandler={value =>
+                      this.valueChangeHandler(item._id, value)
+                    }
                   />
                 </View>
               );
@@ -85,7 +102,13 @@ const styles = {
 const mapStateToProps = state => ({
   foods: state.foods
 });
-const mapDispatchToProps = { addFood, updateFoodValue, updateFood, deleteFood, fetchFoods };
+const mapDispatchToProps = {
+  addFood,
+  updateFoodValue,
+  updateFood,
+  deleteFood,
+  fetchFoods
+};
 const FoodConnectedPage = connect(
   mapStateToProps,
   mapDispatchToProps

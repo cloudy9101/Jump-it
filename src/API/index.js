@@ -2,8 +2,8 @@ import { Platform } from 'react-native';
 
 const GATEWAY =
   Platform.OS === 'android'
-    ? 'http://156.59.131.162:3000'
-    : 'http://localhost:3000';
+    ? 'http://156.59.131.217:3000'
+    : 'http://192.168.1.100:3000';
 //192.168.1.100
 export function post(path, body, token = '') {
   return fetch(GATEWAY + path, {
