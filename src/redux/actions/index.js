@@ -8,7 +8,7 @@ import {
   logout,
   updateNotificationEnabled
 } from './user.action';
-import { changePassword } from './password.action';
+import { changePassword, forgetPassword } from './password.action';
 import { fetchExercises, fetchDiets, addDiet } from './plan.action';
 import { getStepCount, getFloor, getDistance } from './workout.action';
 import { sendEmail } from './email.action';
@@ -25,7 +25,13 @@ import {
   clearDistance,
   clearFloor
 } from './measure.action';
-import { addFood, updateFoodValue, updateFood, deleteFood, fetchFoods } from './foods.action';
+import {
+  addFood,
+  updateFoodValue,
+  updateFood,
+  deleteFood,
+  fetchFoods
+} from './foods.action';
 export {
   register,
   login,
@@ -58,5 +64,6 @@ export {
   clearStep,
   clearDistance,
   clearFloor,
-  sendEmail
+  sendEmail,
+  forgetPassword
 };

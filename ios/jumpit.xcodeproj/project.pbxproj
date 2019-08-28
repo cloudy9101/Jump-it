@@ -537,12 +537,12 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				85438C4DEE8E4036838A6EA3 /* libRNFirebase.a in Frameworks */,
 				65A38610956E4F3E9F484844 /* libRNGestureHandler.a in Frameworks */,
 				A11D9F65FD164233905CD993 /* libRNImagePicker.a in Frameworks */,
 				2B913FBC08D44BCB8EE03D91 /* libRNCAsyncStorage.a in Frameworks */,
 				E1635D5A13B54AF7AB2DE6DA /* libRCTAppleHealthKit.a in Frameworks */,
 				4A6E89C9A09349868FDE6DA7 /* libRNSVG.a in Frameworks */,
-				85438C4DEE8E4036838A6EA3 /* libRNFirebase.a in Frameworks */,
 				1B285A8E7E93EC11771D5F95 /* libPods-jumpit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1831,6 +1831,10 @@
 				);
 				INFOPLIST_FILE = jumpit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1861,6 +1865,10 @@
 				);
 				INFOPLIST_FILE = jumpit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
