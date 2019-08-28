@@ -66,7 +66,7 @@ class FoodPage extends Component {
         <Content>
           <FlatList
             data={this.props.foods.data.sort((a, b) => {
-              return a._id > b._id;
+              return a._id.localeCompare(b._id);
             })}
             renderItem={data => {
               const item = data.item;
