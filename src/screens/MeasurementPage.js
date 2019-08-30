@@ -551,7 +551,7 @@ class MeasurementPage extends Component {
                     GradientFrom="#6e61a8"
                     GradientTo="#453687"
                     data={this.props.steps}
-                    width={1.5}
+                    width={6}
                   />
                   <ChartScreen
                     dividerColor="#3d7ea4"
@@ -559,7 +559,7 @@ class MeasurementPage extends Component {
                     GradientFrom="#3d7ea4"
                     GradientTo="#225d80"
                     data={this.props.floors}
-                    width={1.5}
+                    width={6}
                   />
                   <ChartScreen
                     dividerColor="#35652c"
@@ -567,7 +567,7 @@ class MeasurementPage extends Component {
                     GradientFrom="#35652c"
                     GradientTo="#163d0f"
                     data={this.props.distances}
-                    width={1.5}
+                    width={6}
                   />
                 </>
               ) : (

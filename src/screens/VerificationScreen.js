@@ -13,7 +13,7 @@ import {
 } from 'native-base';
 import ValidationUtil from '../utils/ValidationUtil';
 import { connect } from 'react-redux';
-import { changePassword } from '../redux/actions';
+import { forgetPassword } from '../redux/actions';
 
 class ForgetPasswordScreen extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class ForgetPasswordScreen extends Component {
     this.btnHandler = this.btnHandler.bind(this);
   }
   btnHandler() {
-    const { code, newPassword, rePassword } = this.state;
+    const { code, newPassword, rePassword, isOk } = this.state;
     if (ValidationUtil.isEmpty(code)) {
       Toast.show({
         style: {
@@ -42,7 +42,7 @@ class ForgetPasswordScreen extends Component {
       return;
     }
     //code == this.props.email.code
-    if (true) {
+    if (code == this.props.email.code) {
       this.setState({
         isOk: true
       });
@@ -59,19 +59,19 @@ class ForgetPasswordScreen extends Component {
       });
     }
 
-    // if (ValidationUtil.validPassword(newPassword)) {
-    //   Toast.show({
-    //     style: {
-    //       marginTop: 65
-    //     },
-    //     position: 'top',
-    //     text: 'Minimum 8 Characters',
-    //     buttonText: 'Cancel',
-    //     type: 'danger',
-    //     duration: 2000
-    //   });
-    //   return;
-    // }
+    if (ValidationUtil.validPassword(newPassword)) {
+      Toast.show({
+        style: {
+          marginTop: 65
+        },
+        position: 'top',
+        text: 'Minimum 8 Characters',
+        buttonText: 'Cancel',
+        type: 'danger',
+        duration: 2000
+      });
+      return;
+    }
     if (!ValidationUtil.passwordMatch(newPassword, rePassword)) {
       Toast.show({
         style: {
@@ -85,11 +85,16 @@ class ForgetPasswordScreen extends Component {
       });
       return;
     }
-    if (isOk)
-      this.props.changePassword({ newPassword, email: this.props.email.email });
+
+    if (isOk) {
+      this.props.forgetPassword({
+        password: newPassword,
+        email: this.props.email.email
+      });
+      this.props.navigation.navigate('SignIn');
+    }
   }
   render() {
-    const { isOk } = this.state;
     return (
       <Container
         style={{
@@ -121,7 +126,7 @@ class ForgetPasswordScreen extends Component {
               onChangeText={text => this.setState({ code: text })}
             />
           </Item>
-          {isOk ? (
+          {this.state.isOk ? (
             <>
               <Item floatingLabel style={{ marginLeft: 15, marginRight: 15 }}>
                 <Label
@@ -189,7 +194,7 @@ class ForgetPasswordScreen extends Component {
 const mapStateToProps = state => ({
   email: state.email
 });
-const mapDispatchToProps = { changePassword };
+const mapDispatchToProps = { forgetPassword };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
