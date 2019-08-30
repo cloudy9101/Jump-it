@@ -36,14 +36,34 @@ function userUpdate(payload) {
 export const logout = () => ({ type: LOG_OUT });
 export const register = userInfo => {
   return dispatch => {
-    post('/api/users/signup', userInfo).then(res => {
-      if (res.code === 0) {
-        dispatch(registerSuccess(res.data.token));
-        dispatch(deviceReg(res.data.token));
-      } else {
-        dispatch(registerFailure(res));
-      }
-    });
+    const { avatarRes } = userInfo;
+    if(avatarRes) {
+      firebase.storage()
+        .ref("avatars/" + avatarRes.fileName)
+        .putFile(avatarRes.path).then(snapshot => {
+          const imgUri = snapshot.downloadURL;
+
+          post('/api/users/signup', { ...userInfo, avator: imgUri }).then(res => {
+            if (res.code === 0) {
+              dispatch(registerSuccess(res.data.token));
+              dispatch(deviceReg(res.data.token));
+            } else {
+              dispatch(registerFailure(res));
+            }
+          });
+        }).catch(error => {
+          console.log("Error in image upload to firebase", error);
+        })
+    } else {
+      post('/api/users/signup', userInfo).then(res => {
+        if (res.code === 0) {
+          dispatch(registerSuccess(res.data.token));
+          dispatch(deviceReg(res.data.token));
+        } else {
+          dispatch(registerFailure(res));
+        }
+      });
+    }
   };
 };
 
@@ -74,11 +94,28 @@ export const findUseInfo = token => {
 
 export const updateUser = (body, token) => {
   return dispatch => {
-    put('/api/users/update', body, token).then(res => {
-      if (res.code === 0) {
-        dispatch(userUpdate(res.data));
-      }
-    });
+    const { avatarRes } = body;
+    if(avatarRes) {
+      firebase.storage()
+        .ref("avatars/" + avatarRes.fileName)
+        .putFile(avatarRes.path).then(snapshot => {
+          const imgUri = snapshot.downloadURL;
+
+          put('/api/users/update', { ...body, avator: imgUri }, token).then(res => {
+            if (res.code === 0) {
+              dispatch(userUpdate(res.data));
+            }
+          });
+        }).catch(error => {
+          console.log("Error in image upload to firebase", error);
+        })
+    } else {
+      put('/api/users/update', body, token).then(res => {
+        if (res.code === 0) {
+          dispatch(userUpdate(res.data));
+        }
+      });
+    }
   };
 };
 

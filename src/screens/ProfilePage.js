@@ -26,6 +26,7 @@ class ProfilePage extends Component {
     this.state = {
       isShow: false,
       avator: this.props.users.avator,
+      avatarRes: null,
       weight: this.props.users.weight,
       height: this.props.users.height,
       firstName: this.props.users.firstName,
@@ -45,7 +46,8 @@ class ProfilePage extends Component {
       firstName,
       lastName,
       username,
-      avator
+      avator,
+      avatarRes
     } = this.state;
     if (
       ValidationUtil.isEmpty(username) ||
@@ -65,18 +67,10 @@ class ProfilePage extends Component {
       return;
     }
     AsyncStorage.getItem('token').then(token => {
-      const obj = {
-        avator: avator,
-        username,
-        firstName,
-        lastName,
-        height,
-        weight
-      };
-
       this.props.updateUser(
         {
           avator: avator,
+          avatarRes,
           username,
           firstName,
           lastName,
@@ -128,6 +122,7 @@ class ProfilePage extends Component {
 
         this.setState({
           avator: source.uri,
+          avatarRes: response,
           isShow: true
         });
         console.log(this.state.avator);

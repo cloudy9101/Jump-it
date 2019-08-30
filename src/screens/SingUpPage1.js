@@ -58,13 +58,14 @@ export default class SignUpPage1 extends Component {
         let source = { uri: response.uri };
 
         this.setState({
-          avator: source
+          avator: source,
+          avatarRes: response
         });
       }
     });
   }
   async btnHandler() {
-    const { firstName, lastName, gender, avator } = this.state;
+    const { firstName, lastName, gender, avator, avatarRes } = this.state;
     if (ValidationUtil.isEmpty(firstName) || ValidationUtil.isEmpty(lastName)) {
       Toast.show({
         style: {
@@ -82,6 +83,7 @@ export default class SignUpPage1 extends Component {
 
     payload = Object.assign(JSON.parse(payload), {
       avator: avator === null ? null : avator.uri,
+      avatarRes,
       firstName,
       lastName,
       gender
