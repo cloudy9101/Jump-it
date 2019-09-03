@@ -10,6 +10,7 @@ target 'jumpit' do
   pod 'Firebase/Core', '~> 6.3.0'
   pod 'GoogleIDFASupport', '~> 3.14.0'
   pod 'Firebase/Messaging', '~> 6.3.0'
+  pod 'Firebase/Storage', '~> 6.3.0'
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
   pod 'React', :path => '../node_modules/react-native'

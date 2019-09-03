@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import {
   LOGIN_SUCCESS,
   SIGN_UP,
@@ -38,9 +39,10 @@ export const register = userInfo => {
   return dispatch => {
     const { avatarRes } = userInfo;
     if(avatarRes) {
+      const filePath = Platform.OS === 'android' ? avatarRes.path : avatarRes.uri;
       firebase.storage()
         .ref("avatars/" + avatarRes.fileName)
-        .putFile(avatarRes.path).then(snapshot => {
+        .putFile(filePath).then(snapshot => {
           const imgUri = snapshot.downloadURL;
 
           post('/api/users/signup', { ...userInfo, avator: imgUri }).then(res => {
@@ -96,9 +98,10 @@ export const updateUser = (body, token) => {
   return dispatch => {
     const { avatarRes } = body;
     if(avatarRes) {
+      const filePath = Platform.OS === 'android' ? avatarRes.path : avatarRes.uri;
       firebase.storage()
         .ref("avatars/" + avatarRes.fileName)
-        .putFile(avatarRes.path).then(snapshot => {
+        .putFile(filePath).then(snapshot => {
           const imgUri = snapshot.downloadURL;
 
           put('/api/users/update', { ...body, avator: imgUri }, token).then(res => {

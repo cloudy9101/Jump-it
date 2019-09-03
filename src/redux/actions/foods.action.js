@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import {
   FETCH_FOODS_SUCCESS,
   FETCH_FOODS_ERROR,
@@ -37,9 +38,10 @@ const addFood = function(token, name, value, img) {
   return dispatch => {
     console.log(img);
     if(img.imgRes != null) {
+      const filePath = Platform.OS === 'android' ? img.imgRes.path : img.imgRes.uri;
       firebase.storage()
         .ref("foods/" + img.imgRes.fileName)
-        .putFile(img.imgRes.path).then(snapshot => {
+        .putFile(filePath).then(snapshot => {
           const imgUri = snapshot.downloadURL;
 
           post('/api/users/foods', { name, value, imgUri }, token).then(res => {
@@ -82,9 +84,9 @@ const updateFoodValue = function(token, id, value) {
 const updateFood = function(token, id, name, value, img) {
   return dispatch => {
     if(img.imgRes != null) {
-      console.log("RES", img)
+      const filePath = Platform.OS === 'android' ? img.imgRes.path : img.imgRes.uri;
       firebase.storage().ref("foods/" + img.imgRes.fileName)
-        .putFile(img.imgRes.path).then(snapshot => {
+        .putFile(filePath).then(snapshot => {
           console.log(snapshot)
           const imgUri = snapshot.downloadURL;
 
