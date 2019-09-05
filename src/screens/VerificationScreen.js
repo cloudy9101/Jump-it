@@ -41,7 +41,7 @@ class ForgetPasswordScreen extends Component {
       });
       return;
     }
-    //code == this.props.email.code
+
     if (code == this.props.email.code) {
       this.setState({
         isOk: true
@@ -57,6 +57,7 @@ class ForgetPasswordScreen extends Component {
         type: 'danger',
         duration: 2000
       });
+      return;
     }
 
     if (ValidationUtil.validPassword(newPassword)) {
