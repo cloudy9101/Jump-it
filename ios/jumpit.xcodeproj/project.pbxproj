@@ -25,6 +25,34 @@
 		13E49DF21FBC4261BC193C10 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3999655C66D4BA0888D5BCD /* Ionicons.ttf */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		1B11E0282320F8D900E7E57B /* back-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0042320F8D800E7E57B /* back-icon@3x.png */; };
+		1B11E0292320F8D900E7E57B /* back-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0052320F8D800E7E57B /* back-icon@2x.png */; };
+		1B11E02A2320F8D900E7E57B /* back-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0062320F8D800E7E57B /* back-icon.png */; };
+		1B11E02B2320F8D900E7E57B /* back-icon-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0072320F8D800E7E57B /* back-icon-mask.png */; };
+		1B11E02C2320F8D900E7E57B /* date_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0092320F8D800E7E57B /* date_icon.png */; };
+		1B11E02D2320F8D900E7E57B /* previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E00E2320F8D900E7E57B /* previous@2x.png */; };
+		1B11E02E2320F8D900E7E57B /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E00F2320F8D900E7E57B /* next@2x.png */; };
+		1B11E02F2320F8D900E7E57B /* down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0112320F8D900E7E57B /* down@3x.png */; };
+		1B11E0302320F8D900E7E57B /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0122320F8D900E7E57B /* down@2x.png */; };
+		1B11E0312320F8D900E7E57B /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0132320F8D900E7E57B /* up.png */; };
+		1B11E0322320F8D900E7E57B /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0142320F8D900E7E57B /* down.png */; };
+		1B11E0332320F8D900E7E57B /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0152320F8D900E7E57B /* up@2x.png */; };
+		1B11E0342320F8D900E7E57B /* up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0162320F8D900E7E57B /* up@3x.png */; };
+		1B11E0352320F8D900E7E57B /* jump.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0182320F8D900E7E57B /* jump.png */; };
+		1B11E0362320F8D900E7E57B /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0192320F8D900E7E57B /* download.png */; };
+		1B11E0372320F8D900E7E57B /* food4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E01B2320F8D900E7E57B /* food4.jpg */; };
+		1B11E0382320F8D900E7E57B /* food5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E01C2320F8D900E7E57B /* food5.jpg */; };
+		1B11E0392320F8D900E7E57B /* food7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E01D2320F8D900E7E57B /* food7.jpg */; };
+		1B11E03A2320F8D900E7E57B /* food6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E01E2320F8D900E7E57B /* food6.jpg */; };
+		1B11E03B2320F8D900E7E57B /* food2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E01F2320F8D900E7E57B /* food2.jpg */; };
+		1B11E03C2320F8D900E7E57B /* food3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0202320F8D900E7E57B /* food3.jpg */; };
+		1B11E03D2320F8D900E7E57B /* food1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0212320F8D900E7E57B /* food1.jpg */; };
+		1B11E03E2320F8D900E7E57B /* food0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0222320F8D900E7E57B /* food0.jpg */; };
+		1B11E03F2320F8D900E7E57B /* food8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0232320F8D900E7E57B /* food8.jpg */; };
+		1B11E0402320F8D900E7E57B /* food9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0242320F8D900E7E57B /* food9.jpg */; };
+		1B11E0412320F8D900E7E57B /* food10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0252320F8D900E7E57B /* food10.jpg */; };
+		1B11E0422320F8D900E7E57B /* images.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0262320F8D900E7E57B /* images.png */; };
+		1B11E0432320F8D900E7E57B /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B11E0272320F8D900E7E57B /* main.jsbundle */; };
 		1B285A8E7E93EC11771D5F95 /* libPods-jumpit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FC9BC632AF962ABD87CB70 /* libPods-jumpit.a */; };
 		1B3E292022E2A00C00535263 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3E291F22E2A00C00535263 /* HealthKit.framework */; };
 		1B40C05B22CB4D7D0046B413 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B40C05822CB4D570046B413 /* libRNVectorIcons.a */; };
@@ -429,7 +457,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
@@ -451,6 +478,34 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		168C7CFA0A874E998BD478F5 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		1B06F7C922CC1BEC00F32AC1 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		1B11E0042320F8D800E7E57B /* back-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-icon@3x.png"; sourceTree = "<group>"; };
+		1B11E0052320F8D800E7E57B /* back-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-icon@2x.png"; sourceTree = "<group>"; };
+		1B11E0062320F8D800E7E57B /* back-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-icon.png"; sourceTree = "<group>"; };
+		1B11E0072320F8D800E7E57B /* back-icon-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-icon-mask.png"; sourceTree = "<group>"; };
+		1B11E0092320F8D800E7E57B /* date_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = date_icon.png; sourceTree = "<group>"; };
+		1B11E00E2320F8D900E7E57B /* previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "previous@2x.png"; sourceTree = "<group>"; };
+		1B11E00F2320F8D900E7E57B /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
+		1B11E0112320F8D900E7E57B /* down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@3x.png"; sourceTree = "<group>"; };
+		1B11E0122320F8D900E7E57B /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
+		1B11E0132320F8D900E7E57B /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		1B11E0142320F8D900E7E57B /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		1B11E0152320F8D900E7E57B /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up@2x.png"; sourceTree = "<group>"; };
+		1B11E0162320F8D900E7E57B /* up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up@3x.png"; sourceTree = "<group>"; };
+		1B11E0182320F8D900E7E57B /* jump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump.png; sourceTree = "<group>"; };
+		1B11E0192320F8D900E7E57B /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
+		1B11E01B2320F8D900E7E57B /* food4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food4.jpg; sourceTree = "<group>"; };
+		1B11E01C2320F8D900E7E57B /* food5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food5.jpg; sourceTree = "<group>"; };
+		1B11E01D2320F8D900E7E57B /* food7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food7.jpg; sourceTree = "<group>"; };
+		1B11E01E2320F8D900E7E57B /* food6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food6.jpg; sourceTree = "<group>"; };
+		1B11E01F2320F8D900E7E57B /* food2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food2.jpg; sourceTree = "<group>"; };
+		1B11E0202320F8D900E7E57B /* food3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food3.jpg; sourceTree = "<group>"; };
+		1B11E0212320F8D900E7E57B /* food1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food1.jpg; sourceTree = "<group>"; };
+		1B11E0222320F8D900E7E57B /* food0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food0.jpg; sourceTree = "<group>"; };
+		1B11E0232320F8D900E7E57B /* food8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food8.jpg; sourceTree = "<group>"; };
+		1B11E0242320F8D900E7E57B /* food9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food9.jpg; sourceTree = "<group>"; };
+		1B11E0252320F8D900E7E57B /* food10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = food10.jpg; sourceTree = "<group>"; };
+		1B11E0262320F8D900E7E57B /* images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images.png; sourceTree = "<group>"; };
+		1B11E0272320F8D900E7E57B /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../release_ios/main.jsbundle; sourceTree = "<group>"; };
 		1B3E291622E2714700535263 /* jumpit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = jumpit.entitlements; path = jumpit/jumpit.entitlements; sourceTree = "<group>"; };
 		1B3E291F22E2A00C00535263 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		1B3E292322E2AF8900535263 /* RCTAppleHealthKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAppleHealthKit.xcodeproj; path = "../node_modules/rn-apple-healthkit/RCTAppleHealthKit.xcodeproj"; sourceTree = "<group>"; };
@@ -660,10 +715,11 @@
 		13B07FAE1A68108700A75B9A /* jumpit */ = {
 			isa = PBXGroup;
 			children = (
+				1B11E0272320F8D900E7E57B /* main.jsbundle */,
+				1B11DFFD2320F8D800E7E57B /* assets */,
 				1B73ED7E2310B194007EF514 /* Base.lproj */,
 				5109C6FF230412270025DCE9 /* GoogleService-Info.plist */,
 				1B3E291622E2714700535263 /* jumpit.entitlements */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -702,6 +758,152 @@
 				1B06F7CE22CC1BEC00F32AC1 /* libRNImagePicker.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1B11DFFD2320F8D800E7E57B /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				1B11DFFE2320F8D800E7E57B /* node_modules */,
+				1B11E0172320F8D900E7E57B /* assets */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		1B11DFFE2320F8D800E7E57B /* node_modules */ = {
+			isa = PBXGroup;
+			children = (
+				1B11DFFF2320F8D800E7E57B /* react-navigation-stack */,
+				1B11E0082320F8D800E7E57B /* react-native-datepicker */,
+				1B11E00A2320F8D800E7E57B /* react-native-calendars */,
+			);
+			path = node_modules;
+			sourceTree = "<group>";
+		};
+		1B11DFFF2320F8D800E7E57B /* react-navigation-stack */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E0002320F8D800E7E57B /* lib */,
+			);
+			path = "react-navigation-stack";
+			sourceTree = "<group>";
+		};
+		1B11E0002320F8D800E7E57B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E0012320F8D800E7E57B /* module */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		1B11E0012320F8D800E7E57B /* module */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E0022320F8D800E7E57B /* views */,
+			);
+			path = module;
+			sourceTree = "<group>";
+		};
+		1B11E0022320F8D800E7E57B /* views */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E0032320F8D800E7E57B /* assets */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		1B11E0032320F8D800E7E57B /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E0042320F8D800E7E57B /* back-icon@3x.png */,
+				1B11E0052320F8D800E7E57B /* back-icon@2x.png */,
+				1B11E0062320F8D800E7E57B /* back-icon.png */,
+				1B11E0072320F8D800E7E57B /* back-icon-mask.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		1B11E0082320F8D800E7E57B /* react-native-datepicker */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E0092320F8D800E7E57B /* date_icon.png */,
+			);
+			path = "react-native-datepicker";
+			sourceTree = "<group>";
+		};
+		1B11E00A2320F8D800E7E57B /* react-native-calendars */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E00B2320F8D900E7E57B /* src */,
+			);
+			path = "react-native-calendars";
+			sourceTree = "<group>";
+		};
+		1B11E00B2320F8D900E7E57B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E00C2320F8D900E7E57B /* calendar */,
+				1B11E0102320F8D900E7E57B /* img */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		1B11E00C2320F8D900E7E57B /* calendar */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E00D2320F8D900E7E57B /* img */,
+			);
+			path = calendar;
+			sourceTree = "<group>";
+		};
+		1B11E00D2320F8D900E7E57B /* img */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E00E2320F8D900E7E57B /* previous@2x.png */,
+				1B11E00F2320F8D900E7E57B /* next@2x.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		1B11E0102320F8D900E7E57B /* img */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E0112320F8D900E7E57B /* down@3x.png */,
+				1B11E0122320F8D900E7E57B /* down@2x.png */,
+				1B11E0132320F8D900E7E57B /* up.png */,
+				1B11E0142320F8D900E7E57B /* down.png */,
+				1B11E0152320F8D900E7E57B /* up@2x.png */,
+				1B11E0162320F8D900E7E57B /* up@3x.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		1B11E0172320F8D900E7E57B /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E0182320F8D900E7E57B /* jump.png */,
+				1B11E0192320F8D900E7E57B /* download.png */,
+				1B11E01A2320F8D900E7E57B /* foods */,
+				1B11E0262320F8D900E7E57B /* images.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		1B11E01A2320F8D900E7E57B /* foods */ = {
+			isa = PBXGroup;
+			children = (
+				1B11E01B2320F8D900E7E57B /* food4.jpg */,
+				1B11E01C2320F8D900E7E57B /* food5.jpg */,
+				1B11E01D2320F8D900E7E57B /* food7.jpg */,
+				1B11E01E2320F8D900E7E57B /* food6.jpg */,
+				1B11E01F2320F8D900E7E57B /* food2.jpg */,
+				1B11E0202320F8D900E7E57B /* food3.jpg */,
+				1B11E0212320F8D900E7E57B /* food1.jpg */,
+				1B11E0222320F8D900E7E57B /* food0.jpg */,
+				1B11E0232320F8D900E7E57B /* food8.jpg */,
+				1B11E0242320F8D900E7E57B /* food9.jpg */,
+				1B11E0252320F8D900E7E57B /* food10.jpg */,
+			);
+			path = foods;
 			sourceTree = "<group>";
 		};
 		1B3E291122E270DD00535263 /* Products */ = {
@@ -1506,27 +1708,55 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B11E03D2320F8D900E7E57B /* food1.jpg in Resources */,
+				1B11E0402320F8D900E7E57B /* food9.jpg in Resources */,
 				1B73EDB02310B194007EF514 /* LaunchScreen.xib in Resources */,
+				1B11E0422320F8D900E7E57B /* images.png in Resources */,
+				1B11E0382320F8D900E7E57B /* food5.jpg in Resources */,
+				1B11E0352320F8D900E7E57B /* jump.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				1B11E0302320F8D900E7E57B /* down@2x.png in Resources */,
 				667ECFD375E74C5FBCC9E000 /* AntDesign.ttf in Resources */,
 				BE9D010E7437466297AB84C9 /* Entypo.ttf in Resources */,
 				8809175D5BEE4331B6E7ACFE /* EvilIcons.ttf in Resources */,
 				9F39DC580121452DAC0A6093 /* Feather.ttf in Resources */,
+				1B11E03C2320F8D900E7E57B /* food3.jpg in Resources */,
 				82B42BA553054F6F9762A868 /* FontAwesome.ttf in Resources */,
+				1B11E0342320F8D900E7E57B /* up@3x.png in Resources */,
 				63ABD4E9618941DD98A3B78B /* FontAwesome5_Brands.ttf in Resources */,
+				1B11E0312320F8D900E7E57B /* up.png in Resources */,
 				BCD4F998FD8A4D1EB75E40C4 /* FontAwesome5_Regular.ttf in Resources */,
 				98D1DCA5C21342BC870FEC9F /* FontAwesome5_Solid.ttf in Resources */,
+				1B11E0432320F8D900E7E57B /* main.jsbundle in Resources */,
+				1B11E0412320F8D900E7E57B /* food10.jpg in Resources */,
+				1B11E02D2320F8D900E7E57B /* previous@2x.png in Resources */,
 				C542A87F94464F00A63A4C72 /* Foundation.ttf in Resources */,
+				1B11E03B2320F8D900E7E57B /* food2.jpg in Resources */,
 				13E49DF21FBC4261BC193C10 /* Ionicons.ttf in Resources */,
+				1B11E0392320F8D900E7E57B /* food7.jpg in Resources */,
 				1FC2237FD0604385A088595A /* MaterialCommunityIcons.ttf in Resources */,
+				1B11E0292320F8D900E7E57B /* back-icon@2x.png in Resources */,
+				1B11E02C2320F8D900E7E57B /* date_icon.png in Resources */,
+				1B11E0332320F8D900E7E57B /* up@2x.png in Resources */,
 				CDE4082EB9D0417B8A8C0973 /* MaterialIcons.ttf in Resources */,
+				1B11E0322320F8D900E7E57B /* down.png in Resources */,
+				1B11E0362320F8D900E7E57B /* download.png in Resources */,
 				E932ABE875F440B1AE4ECC0A /* Octicons.ttf in Resources */,
 				136DBCA09CF2411290ECB527 /* Roboto_medium.ttf in Resources */,
 				35561681B08F49459388CF25 /* Roboto.ttf in Resources */,
 				C0A7CD7555314CD082D614E7 /* rubicon-icon-font.ttf in Resources */,
 				0A767F89A95A4951835B4E3C /* SimpleLineIcons.ttf in Resources */,
+				1B11E02F2320F8D900E7E57B /* down@3x.png in Resources */,
+				1B11E0282320F8D900E7E57B /* back-icon@3x.png in Resources */,
+				1B11E02E2320F8D900E7E57B /* next@2x.png in Resources */,
 				7F46D87B26764FF696654585 /* Zocial.ttf in Resources */,
 				5109C730230412270025DCE9 /* GoogleService-Info.plist in Resources */,
+				1B11E03F2320F8D900E7E57B /* food8.jpg in Resources */,
+				1B11E02B2320F8D900E7E57B /* back-icon-mask.png in Resources */,
+				1B11E03E2320F8D900E7E57B /* food0.jpg in Resources */,
+				1B11E0372320F8D900E7E57B /* food4.jpg in Resources */,
+				1B11E03A2320F8D900E7E57B /* food6.jpg in Resources */,
+				1B11E02A2320F8D900E7E57B /* back-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1560,7 +1790,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		115AA01A511E46FA44FF18F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1835,6 +2065,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

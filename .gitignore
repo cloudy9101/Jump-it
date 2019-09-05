@@ -42,6 +42,7 @@ node_modules/
 npm-debug.log
 yarn-error.log
 /src/api/config.js
+/release_ios
 # BUCK
 buck-out/
 \.buckd/
