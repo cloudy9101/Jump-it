@@ -1,10 +1,10 @@
 import { Platform } from 'react-native';
-import { GATEWAY } from './config';
-// const GATEWAY =
-//   Platform.OS === 'android'
-//     ? 'http://156.59.131.217:3000'
-//     : 'http://localhost:3000';
-//192.168.1.102
+// import { GATEWAY } from './config';
+const GATEWAY =
+  Platform.OS === 'android'
+    ? 'http://192.168.1.101:3000'
+    : 'http://192.168.18.46:3000';
+
 export function post(path, body, token = '') {
   return fetch(GATEWAY + path, {
     method: 'POST',

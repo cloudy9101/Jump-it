@@ -4,6 +4,7 @@ import {
   ADD_DIET_SUCCESS
 } from '../actiontypes/index';
 import { get, post } from '../../API';
+import AsyncStorage from '@react-native-community/async-storage';
 
 function fetchSuccess(data) {
   return { type: FETCH_SUCCESS, data };
@@ -47,6 +48,7 @@ function addDiet(token, name, value) {
       if (res.code === 0) {
         dispatch(addDietSuccess(res.data));
       } else {
+        AsyncStorage.removeItem('token');
         dispatch(fetchError(res));
       }
     });

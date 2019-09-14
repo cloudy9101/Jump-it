@@ -41,53 +41,50 @@ class ForgetPasswordScreen extends Component {
       });
       return;
     }
-
-    if (code == this.props.email.code) {
-      this.setState({
-        isOk: true
-      });
+    if (!isOk) {
+      if (code == this.props.email.code) {
+        this.setState({
+          isOk: true
+        });
+      } else {
+        Toast.show({
+          style: {
+            marginTop: 65
+          },
+          position: 'top',
+          text: 'Verification Not Pass',
+          buttonText: 'Cancel',
+          type: 'danger',
+          duration: 2000
+        });
+      }
     } else {
-      Toast.show({
-        style: {
-          marginTop: 65
-        },
-        position: 'top',
-        text: 'Verification Not Pass',
-        buttonText: 'Cancel',
-        type: 'danger',
-        duration: 2000
-      });
-      return;
-    }
-
-    if (ValidationUtil.validPassword(newPassword)) {
-      Toast.show({
-        style: {
-          marginTop: 65
-        },
-        position: 'top',
-        text: 'Minimum 8 Characters',
-        buttonText: 'Cancel',
-        type: 'danger',
-        duration: 2000
-      });
-      return;
-    }
-    if (!ValidationUtil.passwordMatch(newPassword, rePassword)) {
-      Toast.show({
-        style: {
-          marginTop: 65
-        },
-        position: 'top',
-        text: 'Password Not Matched',
-        buttonText: 'Cancel',
-        type: 'danger',
-        duration: 2000
-      });
-      return;
-    }
-
-    if (isOk) {
+      if (ValidationUtil.validPassword(newPassword)) {
+        Toast.show({
+          style: {
+            marginTop: 65
+          },
+          position: 'top',
+          text: 'Minimum 8 Characters',
+          buttonText: 'Cancel',
+          type: 'danger',
+          duration: 2000
+        });
+        return;
+      }
+      if (!ValidationUtil.passwordMatch(newPassword, rePassword)) {
+        Toast.show({
+          style: {
+            marginTop: 65
+          },
+          position: 'top',
+          text: 'Password Not Matched',
+          buttonText: 'Cancel',
+          type: 'danger',
+          duration: 2000
+        });
+        return;
+      }
       this.props.forgetPassword({
         password: newPassword,
         email: this.props.email.email

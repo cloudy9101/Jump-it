@@ -6,7 +6,8 @@ import {
   ListItem,
   Left,
   Body,
-  Right
+  Right,
+  Spinner
 } from 'native-base';
 import { TextInput } from 'react-native';
 import { connect } from 'react-redux';
@@ -50,6 +51,7 @@ class DietPlanPage extends Component {
         />
         <Content>
           {items}
+
           <ListItem icon>
             <Left>
               <Icon

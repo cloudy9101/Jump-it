@@ -183,7 +183,7 @@ class WorkoutPage extends Component {
           />
           <WorkoutCard
             bkColor={'#3d7ea4'}
-            name={'Flights Climebed'}
+            name={'Flights Climbed'}
             num={this.props.floor.value || '6'}
             unit={'floor'}
             time={moment(this.props.floor.endDate).format('HH:mm') || '19:00'}
@@ -204,9 +204,6 @@ class WorkoutPage extends Component {
           onPressDate={this.dateSelected}
           onPressGoToday={this.goBackToday}
           openModal={this.openModal}
-          // onSwipeDown={() => {
-          //   alert('onSwipeDown');
-          // }}
         />
 
         <Content>
