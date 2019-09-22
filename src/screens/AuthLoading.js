@@ -11,7 +11,7 @@ export class AuthLoading extends Component {
   }
   _bootstrapAsync = async () => {
     // await AsyncStorage.removeItem('token'); for testing
-    // this.props.navigation.navigate('login');
+    //this.props.navigation.navigate('login');
     const userToken = await AsyncStorage.getItem('token');
 
     if (userToken) {

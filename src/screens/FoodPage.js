@@ -120,7 +120,7 @@ const FoodConnectedPage = connect(
 
 const FoodsPageNavigator = createStackNavigator(
   {
-    Foods: {
+    Food: {
       screen: FoodConnectedPage,
       navigationOptions: ({ navigation }) => ({
         header: null
@@ -129,12 +129,12 @@ const FoodsPageNavigator = createStackNavigator(
     FoodForm: {
       screen: FoodFormPage,
       navigationOptions: ({ navigation }) => ({
-        title: 'FoodForm'
+        title: 'Food Form'
       })
     }
   },
   {
-    initialRouteName: 'Foods',
+    initialRouteName: 'Food',
     defaultNavigationOptions: () => ({
       headerBackTitle: null,
       headerTintColor: '#ffffff',

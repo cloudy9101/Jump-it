@@ -19,6 +19,7 @@ import HeaderComponent from '../components/HeaderComponent';
 class DietPlanPage extends Component {
   constructor(props) {
     super(props);
+
     this.state = { name: '', value: '' };
     this.addItem = this.addItem.bind(this);
   }

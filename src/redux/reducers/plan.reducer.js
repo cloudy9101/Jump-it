@@ -1,7 +1,8 @@
 import {
   FETCH_SUCCESS,
   FETCH_ERROR,
-  ADD_DIET_SUCCESS
+  ADD_DIET_SUCCESS,
+  CLEAR_PLAN
 } from '../actiontypes/index';
 
 const exerciseInitState = { isFinished: true, data: [], isLoading: false };
@@ -13,6 +14,11 @@ const exercisesPlan = (state = exerciseInitState, action) => {
       return { isFinished: true, data: action.data, isLoading: true };
     case FETCH_ERROR:
       return { isFinished: true, error: action.error, isLoading: true };
+    case CLEAR_PLAN: {
+      console.log('ssss');
+      return { data: [] };
+    }
+
     default:
       return state;
   }

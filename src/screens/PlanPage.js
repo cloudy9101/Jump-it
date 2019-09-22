@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Container, Content, Spinner } from 'native-base';
-//import CalendarStrip from 'react-native-calendar-strip';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import moment from 'moment';

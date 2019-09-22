@@ -1,7 +1,8 @@
 import {
   FETCH_SUCCESS,
   FETCH_ERROR,
-  ADD_DIET_SUCCESS
+  ADD_DIET_SUCCESS,
+  CLEAR_PLAN
 } from '../actiontypes/index';
 import { get, post } from '../../API';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -54,5 +55,5 @@ function addDiet(token, name, value) {
     });
   };
 }
-
-export { fetchExercises, fetchDiets, addDiet };
+const clearPlan = () => ({ type: CLEAR_PLAN });
+export { fetchExercises, fetchDiets, clearPlan };

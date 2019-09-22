@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { View, Platform } from 'react-native';
 import { Button, Text } from 'native-base';
-
-export default class PlanPageTitle extends Component {
+import { connect } from 'react-redux';
+import { clearPlan } from '../redux/actions/plan.action';
+class PlanPageTitle extends Component {
   constructor(props) {
     super(props);
 
     this.routes = ['Exercise', 'Diet'];
-
     this.state = { btnIndex: 0 };
+    this.props.exercisesPlan.data = [];
     this.pressHandler = this.pressHandler.bind(this);
   }
 
   pressHandler(index) {
+    console.log(this.props);
+    this.props.exercisesPlan.data = [];
+    console.log();
+
     this.props.navigation.navigate(this.routes[index]);
   }
 
@@ -64,3 +69,13 @@ export default class PlanPageTitle extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  exercisesPlan: state.exercisesPlan
+});
+const mapDispatchToProps = {
+  clearPlan
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlanPageTitle);

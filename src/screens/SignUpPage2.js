@@ -225,7 +225,7 @@ class SignUpPage2 extends Component {
                 fontSize: 18
               }}
             >
-              Conform
+              Confirm
             </Text>
           </Button>
         </Form>

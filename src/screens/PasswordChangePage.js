@@ -158,7 +158,7 @@ class PasswordChangePage extends Component {
                 fontSize: 18
               }}
             >
-              Conform
+              Confirm
             </Text>
           </Button>
         </Form>

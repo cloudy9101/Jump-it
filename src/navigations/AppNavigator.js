@@ -66,7 +66,7 @@ const BottomTabNavigator = createBottomTabNavigator(
         )
       }
     },
-    Measurement: {
+    Measure: {
       screen: MonitorPage,
       navigationOptions: {
         tabBarIcon: ({ tintColor, focused }) => (

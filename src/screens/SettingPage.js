@@ -9,7 +9,7 @@ class SettingPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { notificationEnabled: props.users.notificationEnabled }
+    this.state = { notificationEnabled: props.users.notificationEnabled };
     this.toggleSwitch = this.toggleSwitch.bind(this);
   }
   toggleSwitch(value) {
@@ -24,11 +24,13 @@ class SettingPage extends Component {
         <HeaderComponent titleName="Setting" {...this.props} />
         <List>
           <ListItem
+            underlayColor="#2a4766"
             style={{
               justifyContent: 'space-between',
               marginLeft: 15,
               marginRight: 15
             }}
+            onPress={() => this.props.navigation.navigate('Profile')}
           >
             <Text
               style={{
@@ -45,15 +47,16 @@ class SettingPage extends Component {
               style={{
                 color: '#ffffff'
               }}
-              onPress={() => this.props.navigation.navigate('Profile')}
             />
           </ListItem>
           <ListItem
+            underlayColor="#2a4766"
             style={{
               justifyContent: 'space-between',
               marginLeft: 15,
               marginRight: 15
             }}
+            onPress={() => this.props.navigation.navigate('PasswordChange')}
           >
             <Text
               style={{
@@ -64,18 +67,13 @@ class SettingPage extends Component {
             >
               Change Password
             </Text>
-            {/* <Button
-              light
-              transparent
-              onPress={() => this.props.navigation.navigate('Profile')}
-            > */}
+
             <Icon
               name="ios-arrow-forward"
               type="Ionicons"
               style={{
                 color: '#ffffff'
               }}
-              onPress={() => this.props.navigation.navigate('PasswordChange')}
             />
           </ListItem>
           <ListItem
@@ -94,7 +92,10 @@ class SettingPage extends Component {
             >
               Notification
             </Text>
-            <Switch onValueChange={this.toggleSwitch} value={this.state.notificationEnabled} />
+            <Switch
+              onValueChange={this.toggleSwitch}
+              value={this.state.notificationEnabled}
+            />
           </ListItem>
         </List>
       </Container>
