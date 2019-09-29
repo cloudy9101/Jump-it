@@ -21,7 +21,6 @@ const foods = (state = foodsInitState, action) => {
       }), action.data.food] };
       break;
     case DELETE_FOOD_SUCCESS:
-      console.log('Test');
       return {
         isFinished: true,
         data: state.data.filter(item => {

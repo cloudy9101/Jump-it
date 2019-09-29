@@ -16,6 +16,11 @@ const ItemComponent = props => {
       </Body>
       <Right>
         <Text style={{ color: '#ffffff' }}>{props.itemSubname}</Text>
+        <Icon
+          style={{ color: '#d9534f' }}
+          name={"trash"}
+          onPress={props.del}
+        />
       </Right>
     </ListItem>
   );
@@ -30,6 +35,7 @@ const DietPlanItem = props => {
           iconName="spray-bottle"
           itemName="Sugar"
           itemSubname={props.value}
+          del={props.del}
         />
       );
       break;
@@ -40,6 +46,7 @@ const DietPlanItem = props => {
           iconName="notebook"
           itemName={props.name}
           itemSubname={props.value}
+          del={props.del}
         />
       );
   }

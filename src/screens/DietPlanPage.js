@@ -12,7 +12,7 @@ import {
 import { TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
-import { fetchDiets, addDiet } from '../redux/actions';
+import { fetchDiets, addDiet, delDiet } from '../redux/actions';
 import DietPlanItem from '../components/DietPlanItem';
 import HeaderComponent from '../components/HeaderComponent';
 
@@ -22,6 +22,7 @@ class DietPlanPage extends Component {
 
     this.state = { name: '', value: '' };
     this.addItem = this.addItem.bind(this);
+    this.delItem = this.delItem.bind(this);
   }
 
   componentDidMount() {
@@ -39,9 +40,15 @@ class DietPlanPage extends Component {
     });
   }
 
+  delItem(dietId) {
+    AsyncStorage.getItem('token').then(token => {
+      this.props.delDiet(token, dietId);
+    });
+  }
+
   render() {
     const items = this.props.dietPlan.data.map((item, i) => {
-      return <DietPlanItem key={i} name={item.name} value={item.value} />;
+      return <DietPlanItem key={i} name={item.name} value={item.value} del={() => this.delItem(item._id)} />;
     });
 
     return (
@@ -100,7 +107,7 @@ class DietPlanPage extends Component {
 const mapStateToProps = state => ({
   dietPlan: state.dietPlan
 });
-const mapDispatchToProps = { fetchDiets, addDiet };
+const mapDispatchToProps = { fetchDiets, addDiet, delDiet };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

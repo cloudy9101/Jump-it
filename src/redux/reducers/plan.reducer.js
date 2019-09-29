@@ -2,6 +2,7 @@ import {
   FETCH_SUCCESS,
   FETCH_ERROR,
   ADD_DIET_SUCCESS,
+  DEL_DIET_SUCCESS,
   CLEAR_PLAN
 } from '../actiontypes/index';
 
@@ -32,6 +33,10 @@ const dietPlan = (state = dietInitState, action) => {
       return { isFinished: true, error: action.error, isLoading: true };
     case ADD_DIET_SUCCESS:
       return { isFinished: true, data: [...state.data, action.data] };
+    case DEL_DIET_SUCCESS:
+      return { isFinished: true, data: state.data.filter(item => {
+        return item._id != action.data;
+      })};
     default:
       return state;
   }

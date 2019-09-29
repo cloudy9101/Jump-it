@@ -9,7 +9,7 @@ import {
   updateNotificationEnabled
 } from './user.action';
 import { changePassword, forgetPassword } from './password.action';
-import { fetchExercises, fetchDiets, addDiet } from './plan.action';
+import { fetchExercises, fetchDiets, addDiet, delDiet } from './plan.action';
 import { getStepCount, getFloor, getDistance } from './workout.action';
 import { sendEmail } from './email.action';
 import {
@@ -41,6 +41,7 @@ export {
   fetchExercises,
   fetchDiets,
   addDiet,
+  delDiet,
   findUseInfo,
   changePassword,
   updateUser,
