@@ -40,6 +40,10 @@ class WorkoutPage extends Component {
         Scopes.FITNESS_LOCATION_READ
       ],
     }
+    GoogleFit.isAvailable((msg, res) => {
+      console.log("!MSG", msg);
+      console.log("!RES", res);
+    })
     GoogleFit.authorize(options)
       .then(authResult => {
         console.log(authResult);
@@ -74,9 +78,9 @@ class WorkoutPage extends Component {
       selectedDate: selected
     });
     AsyncStorage.getItem('token').then(token => {
-      this.props.getStepCount({ date: new Date().toISOString() }, token);
-      this.props.getDistance({ date: new Date().toISOString() }, token);
-      this.props.getFloor({ date: new Date().toISOString() }, token);
+      this.props.getStepCount({ date: selected.toISOString() }, token);
+      this.props.getDistance({ date: selected.toISOString() }, token);
+      this.props.getFloor({ date: selected.toISOString() }, token);
     });
   }
   goBackToday(today) {

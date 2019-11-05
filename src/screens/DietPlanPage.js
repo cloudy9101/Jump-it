@@ -47,6 +47,7 @@ class DietPlanPage extends Component {
   }
 
   render() {
+    console.log(this.props.dietPlan)
     const items = this.props.dietPlan.data.map((item, i) => {
       return <DietPlanItem key={i} name={item.name} value={item.value} del={() => this.delItem(item._id)} />;
     });

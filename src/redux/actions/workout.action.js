@@ -30,11 +30,12 @@ export const getStepCount = (config, token) => {
           }).steps.find(e => {
             return date.isSame(moment(e.date), 'd');
           })
-          let value = 0;
+          let value = "0";
           if(steps) {
-            value = steps.value;
+            value = String(steps.value);
           }
           const results = { value, ...options };
+          console.log("RESULTS", results)
           dispatch(getStep(results));
           post(
             '/api/users/workout/save',
@@ -42,7 +43,7 @@ export const getStepCount = (config, token) => {
             token
           );
        })
-       .catch((err) => {console.warn(err)})
+       .catch((err) => {console.warn("ERR", err)})
     } else {
       AppleHealthKit.getStepCount(config, (err, results) => {
         if (err) {
@@ -77,7 +78,7 @@ export const getDistance = (config, token) => {
           res.map(e => {
             value += e.distance;
           })
-          const results = { value, ...options };
+          const results = { value: String(value), ...options };
           dispatch(getDistanceSample(results));
           post(
             '/api/users/workout/save',
@@ -86,7 +87,7 @@ export const getDistance = (config, token) => {
           );
         } else {
           let value = 0;
-          const results = { value, ...options };
+          const results = { value: String(value), ...options };
           dispatch(getDistanceSample(results));
         }
        })
@@ -116,7 +117,7 @@ export const getFloor = (config, token) => {
     if(Platform.OS === 'android') {
       console.log(config)
       const options = getAndroidOptions(config);
-      const results = { value: 0, ...options }
+      const results = { value: "0", ...options }
       dispatch(getFloorSample(results));
     } else {
       AppleHealthKit.getFlightsClimbed(config, (err, results) => {
